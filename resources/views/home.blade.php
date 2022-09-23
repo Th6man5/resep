@@ -22,12 +22,6 @@
 </div>
 
 
-
-
-
-
-
-
 <div class="container">
     <div class="row">
          @foreach ($recipe as $resep)
@@ -35,6 +29,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5>{{ $resep->recipe_name }}</h5>
+                    <p>{{ $resep->country->name }}</p>
                 </div>
                
                     <img src="https://source.unsplash.com/500x500/?dog">

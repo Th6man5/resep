@@ -19,9 +19,11 @@ class RecipeFactory extends Factory
     {
         return [
             'recipe_name' => fake()->name(),
+            'slug' => $this->faker->slug(),
             'description' => collect($this->faker->paragraphs(mt_rand(5, 10)))->map(
                 fn ($p) => "<p>$p</p>"
             )->implode(''),
+            'country_id' => '1',
             'steps' => $this->faker->paragraph(),
             'ingredients' => $this->faker->paragraph(),
         ];
