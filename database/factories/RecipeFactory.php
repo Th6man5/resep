@@ -20,12 +20,19 @@ class RecipeFactory extends Factory
         return [
             'recipe_name' => fake()->name(),
             'slug' => $this->faker->slug(),
-            'description' => collect($this->faker->paragraphs(mt_rand(5, 10)))->map(
-                fn ($p) => "<p>$p</p>"
-            )->implode(''),
-            'country_id' => '1',
+            'about' => $this->faker->paragraph(),
+            'portion' =>
+            $this->faker->paragraph(),
+            'time' =>
+            $this->faker->paragraph(),
+
+            'country_id' => mt_rand(1, 2),
             'steps' => $this->faker->paragraph(),
             'ingredients' => $this->faker->paragraph(),
         ];
     }
 }
+
+// collect($this->faker->paragraphs(mt_rand(5, 10)))->map(
+//                 fn ($p) => "<p>$p</p>"
+//             )->implode(''),

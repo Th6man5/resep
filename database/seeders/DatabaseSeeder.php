@@ -26,8 +26,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Country::create([
-            'name' => 'Itali',
-            'slug' => 'itali'
+            'name' => 'Internasional',
+            'slug' => 'internasional'
+        ]);
+
+        Country::create([
+            'name' => 'Local',
+            'slug' => 'local'
         ]);
 
         User::create([

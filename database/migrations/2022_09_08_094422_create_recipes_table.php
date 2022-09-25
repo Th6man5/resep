@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('recipe_name');
-            $table->text('description');
+            $table->string('about');
             $table->string('slug')->unique();
-            $table->text('steps');
+            $table->string('portion');
+            $table->string('time');
+            $table->string('steps');
             $table->string('country_id');
-            $table->text('ingredients');
+            $table->string('ingredients');
             $table->timestamps();
         });
     }

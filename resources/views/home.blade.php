@@ -29,11 +29,16 @@
             <div class="card">
                 <div class="card-header">
                     <h5>{{ $resep->recipe_name }}</h5>
+                    <h5>Daerah</h5>
                     <p>{{ $resep->country->name }}</p>
+                    <h5>Tentang</h5>
+                    <p>{{ $resep->about }}</p>
+                    <h5>Langkah</h5>
+                    <p>{{ $resep->steps }}</p>
+                    <h5>Bahan</h5>
+                    <p>{{ $resep->ingredients }}</p>
                 </div>
-               
-                    <img src="https://source.unsplash.com/500x500/?dog">
-           
+                    <img src="https://source.unsplash.com/500x500/?food">
             </div>
         </div>
         @endforeach
