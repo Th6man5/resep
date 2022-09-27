@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +25,19 @@ Route::get('/', function (Recipe $recipe) {
     ]);
 });
 
-Route::get('/about', function () {
-    return view('about', [
-        'title' => 'About',
-        'active' => 'about'
-    ]);
-});
+// Route::get('/about', function () {
+//     return view('about', [
+//         'title' => 'About',
+//         'active' => 'about'
+//     ]);
+// });
+
+//Login
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);

@@ -20,15 +20,15 @@ class RecipeFactory extends Factory
         return [
             'recipe_name' => fake()->name(),
             'slug' => $this->faker->slug(),
-            'about' => $this->faker->paragraph(),
+            'about' => $this->faker->slug(),
             'portion' =>
-            $this->faker->paragraph(),
+            $this->faker->slug(),
             'time' =>
-            $this->faker->paragraph(),
+            $this->faker->slug(),
 
             'country_id' => mt_rand(1, 2),
-            'steps' => $this->faker->paragraph(),
-            'ingredients' => $this->faker->paragraph(),
+            'steps' => $this->faker->slug(),
+            'ingredients' => $this->faker->slug(),
         ];
     }
 }

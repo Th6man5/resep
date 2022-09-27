@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('portion');
             $table->string('time');
             $table->string('steps');
-            $table->string('country_id');
+            $table->foreignId('country_id');
+            $table->foreignId('user_id')->nullable();
             $table->string('ingredients');
             $table->timestamps();
         });

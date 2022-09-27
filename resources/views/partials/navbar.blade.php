@@ -9,11 +9,11 @@
           <li class="nav-item">
             <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href="/">Home</a>
           </li>
-           <li class="nav-item">
+           {{-- <li class="nav-item">
             <a class="nav-link {{ $active === 'about' ? 'active' : '' }}" href="/about">About</a>
-          </li>
+          </li> --}}
         </ul>
-           {{-- <ul class="navbar-nav ms-auto">
+           <ul class="navbar-nav ms-auto">
         @auth
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,14 +28,14 @@
                 <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</a></li></button>
               </form>
             </li>
-          </ul> --}}
+          </ul>
     
-          {{-- @else
+          @else
           <li class="nav-item">
             <a href="/login" class="nav-link {{ $active === 'login' ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
           </li>
         </ul> 
-        @endauth --}}
+        @endauth
       </div>
     </div>
   </nav>
