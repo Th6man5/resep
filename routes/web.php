@@ -25,6 +25,14 @@ Route::get('/', function (Recipe $recipe) {
     ]);
 });
 
+Route::get('/recipe', function (Recipe $recipe) {
+    return view('recipe', [
+        'title' => 'Recipe',
+        'active' => 'recipe',
+        'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
+    ]);
+});
+
 // Route::get('/about', function () {
 //     return view('about', [
 //         'title' => 'About',

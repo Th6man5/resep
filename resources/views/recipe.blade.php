@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 
-     <h1 class="text-center">MEALSUP</h1>
+     <h1 class="text-center">FeastUP</h1>
 
      {{-- <div class="row justify-content-center">
     
@@ -49,7 +49,6 @@
                     <img src="https://source.unsplash.com/500x500/?food">
                 
                       <h5 class="text-center my-2">{{ $resep->recipe_name }}</h5>
-                      <p class="text-center">{{ $resep->category->name }}</p>
                 
             </div>
         </div>

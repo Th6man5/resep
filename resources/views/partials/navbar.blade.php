@@ -9,12 +9,18 @@
           <li class="nav-item">
             <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href="/">Home</a>
           </li>
+          @auth
+           <li class="nav-item">
+            <a class="nav-link {{ $active === 'recipe' ? 'active' : '' }}" href="/recipe">Recipe</a>
+          </li>
+          @endauth
            {{-- <li class="nav-item">
             <a class="nav-link {{ $active === 'about' ? 'active' : '' }}" href="/about">About</a>
           </li> --}}
         </ul>
            <ul class="navbar-nav ms-auto">
         @auth
+           <img class="image rounded-circle" src="https://source.unsplash.com/30x30/?user" alt="profile_image" style="width: 30px;height: 30px; margin: 0px; ">
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Welcome back, {{ auth()->user()->name }}

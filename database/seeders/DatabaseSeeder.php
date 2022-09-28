@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Category;
 use App\Models\Country;
 use App\Models\Recipe;
 use App\Models\User;
@@ -25,6 +26,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // User::factory(3)->create();
+
         Country::create([
             'name' => 'Internasional',
             'slug' => 'internasional'
@@ -35,6 +38,16 @@ class DatabaseSeeder extends Seeder
             'slug' => 'local'
         ]);
 
+        Category::create([
+            'name' => 'Bekal',
+            'slug' => 'bekal'
+        ]);
+
+        Category::create([
+            'name' => 'Murah',
+            'slug' => 'murah'
+        ]);
+
         User::create([
             'name' => 'user',
             'username' => 'jojo',
@@ -42,6 +55,13 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345'),
         ]);
 
-        Recipe::factory(20)->create();
+        User::create([
+            'name' => 'patapon',
+            'username' => 'gyro',
+            'email' => 'coba@gmail.com',
+            'password' => bcrypt('12345'),
+        ]);
+
+        Recipe::factory(5)->create();
     }
 }

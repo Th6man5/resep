@@ -25,8 +25,9 @@ class RecipeFactory extends Factory
             $this->faker->slug(),
             'time' =>
             $this->faker->slug(),
-
+            'user_id' => mt_rand(1, 2),
             'country_id' => mt_rand(1, 2),
+            'category_id' => mt_rand(1, 2),
             'steps' => $this->faker->slug(),
             'ingredients' => $this->faker->slug(),
         ];
