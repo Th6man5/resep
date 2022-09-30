@@ -11,6 +11,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 
     <title>FeastUP | {{ $title }}</title>
+
+    <style>
+
+     @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Montserrat:wght@501&display=swap');
+  .h1up{
+    color: #cc080b;
+  }
+  
+        *{
+     font-family: 'Montserrat', sans-serif;
+  }
+ 
+    </style>
   </head>
 
 

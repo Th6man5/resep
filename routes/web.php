@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RecipeDashboardController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -49,3 +50,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+
+Route::get('/dashboard', function (Recipe $recipe) {
+    return view('dashboard.index', [
+        'title' => 'Dashboard',
+        'active' => 'recipe',
+        'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
+    ]);
+});
