@@ -7,10 +7,6 @@
     color: #cc080b;
   }
 
-  /* #meal{
-     font-family: 'Montserrat', sans-serif;
-  } */
-
 </style>
      <h1 id="meal" class="text-center">MEALS<span class="h1up">UP</span></h1>
 
@@ -46,19 +42,7 @@
          @foreach ($recipe as $resep)
         <div class="col-md-2 mb-4">
             <div class="card">
-                {{-- <div class="card-header">
-                    <h5>{{ $resep->recipe_name }}</h5>
-                    <h5>Daerah</h5>
-                    <p>{{ $resep->country->name }}</p>
-                    <h5>Tentang</h5>
-                    <p>{{ $resep->about }}</p>
-                    <h5>Langkah</h5>
-                    <p>{{ $resep->steps }}</p>
-                    <h5>Bahan</h5>
-                    <p>{{ $resep->ingredients }}</p>
-                </div> --}}
-                    <img src="https://source.unsplash.com/500x500/?food">
-                
+                    <img class="img-thumbnail" src="https://source.unsplash.com/500x500/?food">
                       <h5 class="text-center my-2">{{ $resep->recipe_name }}</h5>
                       <p class="badge bg-primary text-center w-50 ms-5">{{ $resep->category->name }}</p>
             </div>

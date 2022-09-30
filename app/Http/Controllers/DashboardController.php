@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
-class RecipeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Recipe $recipe)
     {
-        //
+        return view('dashboard.index', [
+            'title' => 'Dashboard',
+            'active' => 'Dashboard',
+            // 'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
+        ]);
     }
 
     /**

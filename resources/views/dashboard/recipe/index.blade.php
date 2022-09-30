@@ -1,8 +1,6 @@
 @extends('layouts.main')
 @section('content')
 
-  
-
 
 <div class="container-sm">
     <div class="card">
@@ -16,10 +14,24 @@
 </div>
       <div class="d-flex flex-row mb-2 ms-4">
   <div class="p-2">Saved</div>
-  <div class="p-2"><a href="/dashboard/recipe">My Recipe</a></div>
+  <div class="p-2"><a href="/recipe">My Recipe</a></div>
 </div>
  
     </div>
 </div>
 
+<div class="container mt-5">
+    <div class="row">
+         @foreach ($recipe as $resep)
+        <div class="col-md-2 mb-4">
+            <div class="card">
+                    <img src="https://source.unsplash.com/500x500/?food">
+                
+                      <h5 class="text-center my-2">{{ $resep->recipe_name }}</h5>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+Hello
 @endsection
