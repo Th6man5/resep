@@ -17,7 +17,6 @@ class DashboardController extends Controller
         return view('dashboard.index', [
             'title' => 'Dashboard',
             'active' => 'Dashboard',
-            // 'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
         ]);
     }
 

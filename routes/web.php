@@ -28,8 +28,15 @@ Route::get('/', function (Recipe $recipe) {
     ]);
 });
 
+Route::get('/dashboard', function (Recipe $recipe) {
+    return view('dashboard.index', [
+        'title' => 'Home',
+        'active' => 'home',
+    ]);
+});
 
-
+Route::resource('/dashboard/recipe', RecipeDashboardController::class)
+    ->middleware('auth');
 
 
 
@@ -42,10 +49,3 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
-
-
-Route::resource('/dashboard', DashboardController::class)
-    ->middleware('auth');
-
-Route::resource('/dashboard/recipe', RecipeDashboardController::class)
-    ->middleware('auth');

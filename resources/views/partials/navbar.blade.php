@@ -26,7 +26,7 @@ background: linear-gradient(90deg, rgba(204,8,11,1) 10%, rgba(242,91,10,1) 25%, 
           </li>
           @auth
            <li class="nav-item">
-            <a class="nav-link {{ $active === 'recipe' ? 'active' : '' }}" href="/recipe">Recipe</a>
+            <a class="nav-link {{ $active === 'recipe' ? 'active' : '' }}" href="/dashboard/recipe">Recipe</a>
           </li>
           @endauth
          
@@ -36,10 +36,10 @@ background: linear-gradient(90deg, rgba(204,8,11,1) 10%, rgba(242,91,10,1) 25%, 
         </ul>
            <ul class="navbar-nav ms-auto">
         @auth
-           <img class="image rounded-circle" src="https://source.unsplash.com/30x30/?user" alt="profile_image" style="width: 30px;height: 30px; margin: 0px; ">
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Welcome back, {{ auth()->user()->name }}
+            <img class="image rounded-circle me-2" src="https://source.unsplash.com/30x30/?user" alt="Logo" width="25" height="25">
+            {{ auth()->user()->name }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard</a></li>
