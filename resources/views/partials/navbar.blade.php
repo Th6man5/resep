@@ -13,7 +13,7 @@ background: linear-gradient(90deg, rgba(204,8,11,1) 10%, rgba(242,91,10,1) 25%, 
   }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">MEALSUP</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
