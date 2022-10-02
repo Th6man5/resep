@@ -6,10 +6,7 @@ background: linear-gradient(90deg, rgba(204,8,11,1) 10%, rgba(242,91,10,1) 25%, 
   }
 
   .navbar-brand{
-     
     font-family: 'Fira Sans', sans-serif;
- 
-
   }
 </style>
 
