@@ -28,7 +28,7 @@
         </div>
        
         <div class="button">
-<a href="#" class="btn btn-info "><i class="bi bi-eye-fill"></i>  </a>
+<a href="/{{ $resep->slug }}" class="btn btn-info "><i class="bi bi-eye-fill"></i>  </a>
                <a href="#" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
         </div>
                
