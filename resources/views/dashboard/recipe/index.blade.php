@@ -16,6 +16,17 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{ $resep->recipe_name }}</h5>
+        <div class="row mt-2">
+          <div class="col">
+ <p><i class="bi bi-clock"></i> {{ $resep->time }} Menit</p>
+          </div>
+
+ <div class="col">
+ <p><i class="bi bi-clock"></i> {{ $resep->portion }} Porsi</p>
+ </div>
+       
+        </div>
+       
         <div class="button">
 <a href="#" class="btn btn-info "><i class="bi bi-eye-fill"></i>  </a>
                <a href="#" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
