@@ -37,7 +37,7 @@ Route::get('/dashboard', function (Recipe $recipe) {
         'title' => 'Home',
         'active' => 'home',
     ]);
-});
+})->middleware('auth');
 
 Route::resource('/dashboard/recipe', RecipeDashboardController::class)
     ->middleware('auth');
