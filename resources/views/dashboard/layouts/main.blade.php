@@ -57,11 +57,11 @@
   <div class="p-2 mt-5"><a href="#" class="btn btn-primary btn-sm"><i class="bi bi-bar-chart-fill"></i></a></div>
   <div class="py-2 mt-5 me-2"><a href="#" class="btn btn-secondary btn-sm"><i class="bi bi-gear-fill"></i></a></div>  
 </div>
-      <div class="d-flex flex-row mb-2 ms-4">
+      <div class="d-flex flex-row mb-2 ms-4 me-4">
   <div class="p-2"><a href="/dashboard">Saved</a></div>
   <div class="p-2"><a href="/dashboard/recipe">My Recipe</a></div>
+  <div class="ms-auto"><a href="#" class="btn btn-primary btn-sm">New Recipe</a></div>
       </div>
- 
     </div>
 </div>
     @yield('content')

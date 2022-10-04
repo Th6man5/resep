@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RecipeDashboardController;
@@ -27,6 +28,9 @@ Route::get('/', function (Recipe $recipe) {
         'recipe' => Recipe::all(),
     ]);
 });
+
+Route::get('/{recipe:slug}', [RecipeController::class, 'show']);
+
 
 Route::get('/dashboard', function (Recipe $recipe) {
     return view('dashboard.index', [
