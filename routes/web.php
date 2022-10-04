@@ -29,7 +29,7 @@ Route::get('/', function (Recipe $recipe) {
     ]);
 });
 
-Route::get('/{recipe:slug}', [RecipeController::class, 'show']);
+
 
 
 Route::get('/dashboard', function (Recipe $recipe) {
@@ -53,3 +53,5 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/{recipe:slug}', [RecipeController::class, 'show']);

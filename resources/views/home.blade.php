@@ -27,16 +27,8 @@
     </form>
   </div>
 </div> --}}
-@guest
 
-<div class="container text-center">
-<h4>Not Logged In</h4>
 
-</div>
-
-@endguest
-
-@auth
 <div class="container">
     <div class="row">
          @foreach ($recipe as $resep)
@@ -51,5 +43,5 @@
         @endforeach
     </div>
 </div>
-@endauth
+
 @endsection
