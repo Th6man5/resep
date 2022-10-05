@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreignId('country_id');
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            $table->string('ingredients');
+            $table->text('ingredients');
             $table->timestamps();
         });
     }
