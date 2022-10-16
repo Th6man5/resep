@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Ingredients;
 use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -63,5 +64,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Recipe::factory(15)->create();
+        Ingredients::factory(30)->create();
     }
 }

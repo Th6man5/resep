@@ -3,22 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Recipe;
 
-class RecipeDashboardController extends Controller
+class IngredientsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Recipe $recipe)
+    public function index()
     {
-        return view('dashboard.recipe.index', [
-            'title' => 'Recipe',
-            'active' => 'recipe',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
-        ]);
+        //
     }
 
     /**
@@ -28,10 +23,7 @@ class RecipeDashboardController extends Controller
      */
     public function create()
     {
-        return view('dashboard.recipe.create', [
-            'title' => 'Create Recipe',
-            'active' => 'recipe'
-        ]);
+        //
     }
 
     /**
@@ -53,7 +45,6 @@ class RecipeDashboardController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

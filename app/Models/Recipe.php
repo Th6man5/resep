@@ -27,6 +27,11 @@ class Recipe extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    // public function ingredient()
+    // {
+    //     return $this->belongsToMany(Ingredients::class);
+    // }
+
     public function getRouteKeyName()
     {
         return 'slug';

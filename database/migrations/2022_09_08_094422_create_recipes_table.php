@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('portion');
             $table->string('time');
-            $table->string('steps');
+            $table->string('steps', 10000);
             $table->foreignId('country_id');
             $table->foreignId('category_id');
             $table->foreignId('user_id');

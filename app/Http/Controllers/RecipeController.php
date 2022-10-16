@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ingredients;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -44,12 +45,12 @@ class RecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show(Recipe $recipe, Ingredients $ingredients)
     {
         return view('recipe', [
             "title" =>  $recipe->recipe_name,
             "active" => 'home',
-            "recipe" => $recipe
+            "recipe" => $recipe,
         ]);
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class RecipeFactory extends Factory
+class IngredientsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,16 +18,8 @@ class RecipeFactory extends Factory
     public function definition()
     {
         return [
-            'recipe_name' => fake()->name(),
-            'slug' => $this->faker->slug(),
-            'about' => $this->faker->slug(),
-            'portion' => mt_rand(1, 4),
-            'time' => mt_rand(1, 100),
-            'user_id' => mt_rand(1, 2),
-            'country_id' => mt_rand(1, 2),
-            'category_id' => mt_rand(1, 2),
-            'steps' => $this->faker->paragraph(20),
-            'ingredients' => $this->faker->paragraph(10),
+            'name' => fake()->name(),
+            'quantity' =>  mt_rand(1, 2),
         ];
     }
 }
