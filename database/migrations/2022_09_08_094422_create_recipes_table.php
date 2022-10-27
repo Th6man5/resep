@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('recipe_name');
             $table->string('about');
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable();
             $table->string('portion');
             $table->string('time');
-            $table->string('steps', 10000);
+            $table->text('ingredients');
+            $table->text('steps');
             $table->foreignId('country_id');
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            $table->text('ingredients');
             $table->timestamps();
         });
     }

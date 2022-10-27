@@ -23,6 +23,7 @@
                             <div class="me-1">{{ $recipe->maker->name }}</div>
                             <div class="text-muted">#{{ $recipe->maker->username }}</div>
                         </div>
+                        <div class="me-1">{{ $recipe->about }}</div>
                     </div>
 
 

@@ -27,7 +27,7 @@ class RecipeFactory extends Factory
             'country_id' => mt_rand(1, 2),
             'category_id' => mt_rand(1, 2),
             'steps' => $this->faker->paragraph(20),
-            'ingredients' => $this->faker->paragraph(10),
+            'ingredients' => mt_rand(1, 10),
         ];
     }
 }

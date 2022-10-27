@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class RecipeDashboardController extends Controller
 {
@@ -30,7 +34,10 @@ class RecipeDashboardController extends Controller
     {
         return view('dashboard.recipe.create', [
             'title' => 'Create Recipe',
-            'active' => 'recipe'
+            'active' => 'recipe',
+            'category' => Category::all(),
+            'country' => Country::all(),
+            'user' => User::all()
         ]);
     }
 
@@ -40,9 +47,34 @@ class RecipeDashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Recipe $recipe)
     {
-        //
+        $CreateRecipe = $request->validate([
+            'recipe_name' => 'required',
+            'about' => 'required',
+            'portion' => 'required',
+            'time' => 'required',
+            'steps' => 'required',
+            'ingredients' => 'required',
+            'user_id' => 'required',
+            'category_id' => 'required',
+            'country_id' => 'required',
+            'slug' => 'required'
+        ]);
+
+        Recipe::create($CreateRecipe);
+
+        // $table->string('recipe_name');
+        // $table->string('about');
+        // $table->string('slug')->unique();
+        // $table->string('portion');
+        // $table->string('time');
+        // $table->string('steps', 10000);
+        // $table->foreignId('country_id');
+        // $table->foreignId('category_id');
+        // $table->foreignId('user_id');
+        // $table->text('ingredients');
+        return redirect('dashboard/recipe')->with('success', 'Recipe Is Successfully Created');
     }
 
     /**
@@ -87,6 +119,8 @@ class RecipeDashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
+        return redirect('dashboard/recipe')->with('delete', 'Recipe is successfully deleted');
     }
 }

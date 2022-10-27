@@ -32,12 +32,12 @@
         <div class="row">
             @foreach ($recipe as $resep)
                 <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/500x500/?food">
+                    <div class="card shadow-sm">
+                        <img class="" src="https://source.unsplash.com/500x500/?food">
                         <h5 class="text-center my-2">{{ $resep->recipe_name }}</h5>
-                        <p class="badge bg-primary text-center w-50 ms-5">{{ $resep->category->name }}</p>
+                        <p class="badge bg-primary text-center w-50 m-auto ">{{ $resep->country->name }}</p>
 
-                        <a href="/{{ $resep->slug }}" class="btn btn-primary">Read More</a>
+                        <a href="/{{ $resep->slug }}" class="btn btn-primary mt-3">Read More</a>
                     </div>
                 </div>
             @endforeach
