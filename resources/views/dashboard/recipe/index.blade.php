@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 @section('content')
     <div class="container-sm">
-        <div class="card">
+        <div class="card shadow-sm">
 
             <div class="d-flex mb-3">
                 <div class="p-2 m-3"><img src="https://source.unsplash.com/500x500/?anime" width="200"
@@ -43,7 +43,7 @@
         <div class="row">
             @foreach ($recipe as $resep)
                 <div class="col-md-6">
-                    <div class="card mb-3" style="max-width: 600px; margin: auto;">
+                    <div class="card mb-3 shadow-sm" style="max-width: 600px; margin: auto;">
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <img src="https://source.unsplash.com/1000x1000/?food" class="img-fluid rounded-start"
@@ -64,7 +64,7 @@
                                     </div>
 
                                     <div class="button">
-                                        <a href="/{{ $resep->slug }}" class="btn btn-info "><i class="bi bi-eye-fill"></i>
+                                        <a href="/{{ $resep->id }}" class="btn btn-info "><i class="bi bi-eye-fill"></i>
                                         </a>
                                         <a href="#" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
                                         <form action="/dashboard/recipe/{{ $resep->id }}" class="d-inline"

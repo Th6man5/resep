@@ -37,7 +37,7 @@
                         <h5 class="text-center my-2">{{ $resep->recipe_name }}</h5>
                         <p class="badge bg-primary text-center w-50 m-auto ">{{ $resep->country->name }}</p>
 
-                        <a href="/{{ $resep->slug }}" class="btn btn-primary mt-3">Read More</a>
+                        <a href="/{{ $resep->id }}" class="btn btn-primary mt-3">Read More</a>
                     </div>
                 </div>
             @endforeach

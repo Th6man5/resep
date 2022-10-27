@@ -80,15 +80,7 @@
                                 @endforeach
                             </select>
 
-                            <label class="form-label mt-2">User</label>
-                            <select class="form-select" name="user_id" required>
-                                @foreach ($user as $use)
-                                    <option value="{{ $use->id }}">{{ $use->name }}</option>
-                                @endforeach
-                            </select>
 
-                            <label class="form-label mt-2">Slug</label>
-                            <input type="text" name="slug" id="" class="form-control" required>
                         </div>
                     </div>
                 </div>

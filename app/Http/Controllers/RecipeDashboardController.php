@@ -56,12 +56,11 @@ class RecipeDashboardController extends Controller
             'time' => 'required',
             'steps' => 'required',
             'ingredients' => 'required',
-            'user_id' => 'required',
             'category_id' => 'required',
             'country_id' => 'required',
-            'slug' => 'required'
         ]);
 
+        $CreateRecipe['user_id'] = auth()->user()->id;
         Recipe::create($CreateRecipe);
 
         // $table->string('recipe_name');
