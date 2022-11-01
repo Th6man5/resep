@@ -49,7 +49,8 @@
                             </div>
 
                             <label class="form-label mt-2">Ingredients</label>
-                            <textarea type="text" name="ingredients" placeholder="Ingredients" id="" class="form-control" required></textarea>
+                            <textarea type="text" name="ingredients" rows="3" placeholder="Ingredients" id="" class="form-control"
+                                required></textarea>
                         </div>
                     </div>
                 </div>
@@ -58,7 +59,7 @@
                     <div class="text-start">
                         <div class="card-body">
                             <label class="form-label">Steps</label>
-                            <textarea type="text" name="steps" placeholder="Steps" id="" class="form-control"></textarea>
+                            <textarea type="text" name="steps" rows="3" placeholder="Steps" id="" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>

@@ -29,9 +29,6 @@ Route::get('/', function (Recipe $recipe) {
     ]);
 });
 
-
-
-
 Route::get('/dashboard', function (Recipe $recipe) {
     return view('dashboard.index', [
         'title' => 'Home',
@@ -39,8 +36,18 @@ Route::get('/dashboard', function (Recipe $recipe) {
     ]);
 })->middleware('auth');
 
+
 Route::resource('/dashboard/recipe', RecipeDashboardController::class)
     ->middleware('auth');
+
+Route::get('/dashboard/report', function (Recipe $recipe) {
+    return view('dashboard.report.index', [
+        'title' => 'Report',
+        'active' => 'report',
+        'recipe' =>
+        Recipe::where('user_id', auth()->user()->id)->get(),
+    ]);
+})->middleware('auth');
 
 
 

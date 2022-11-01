@@ -13,7 +13,7 @@
                 </div>
                 <div class="ms-2 py-2 mt-5"><a href="#" class="btn btn-success btn-sm"><i
                             class="bi bi-pen-fill"></i></a></div>
-                <div class="p-2 mt-5"><a href="#" class="btn btn-primary btn-sm"><i
+                <div class="p-2 mt-5"><a href="/dashboard/report" class="btn btn-primary btn-sm"><i
                             class="bi bi-bar-chart-fill"></i></a></div>
                 <div class="py-2 mt-5 me-2"><a href="#" class="btn btn-secondary btn-sm"><i
                             class="bi bi-gear-fill"></i></a></div>

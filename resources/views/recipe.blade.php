@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <h5>Ingredients</h5>
                         <div class="d-flex justify-content-center">
-                            <p class="me-5"><i class="bi bi-clock-fill"></i> {{ $recipe->time }} Minute</p>
+                            <p class="me-5"><i class="bi bi-clock-fill"></i> {{ $recipe->time }}</p>
                             <p><i class="bi bi-person-fill"></i> {{ $recipe->portion }} Portion</p>
                         </div>
 

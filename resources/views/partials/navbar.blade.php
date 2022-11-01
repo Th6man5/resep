@@ -32,6 +32,9 @@
                     <li class="nav-item me-2">
                         <a class="nav-link {{ $active === 'recipe' ? 'active' : '' }}" href="/dashboard/recipe">Recipe</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $active === 'report' ? 'active' : '' }}" href="/dashboard/report">Report</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
