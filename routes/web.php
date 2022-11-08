@@ -8,6 +8,8 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RecipeDashboardController;
+use App\Http\Controllers\UserDashboardController;
+
 
 
 /*
@@ -29,6 +31,23 @@ Route::get('/', function (Recipe $recipe) {
     ]);
 });
 
+Route::get('/', [RecipeController::class, 'index']);
+
+Route::get('/categories/{category:name}', function ($category) {
+    return view('recipe', [
+        'title' => " Post by Category : $category->name",
+        'active' => 'categories',
+        'recipe' => $category->recipe->load('category', 'maker'),
+    ]);
+});
+
+Route::get('/makers/{maker:username}', function (User $maker) {
+    return view('recipe', [
+        'title' => "Post By : $maker->name",
+        'active' => 'recipe',
+        'recipe' => $maker->recipe->load('category', 'maker'),
+    ]);
+});
 Route::get('/dashboard', function (Recipe $recipe) {
     return view('dashboard.index', [
         'title' => 'Home',
@@ -62,3 +81,6 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/{recipe:id}', [RecipeController::class, 'show']);
+
+Route::resource('/dashboard/user', UserDashboardController::class)
+    ->middleware('auth');

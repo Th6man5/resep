@@ -11,7 +11,7 @@
                     <h3>{{ auth()->user()->name }}</h3>
                     <p><small class="text-muted">#{{ auth()->user()->username }}</small></p>
                 </div>
-                <div class="ms-2 py-2 mt-5"><a href="#" class="btn btn-success btn-sm"><i
+                <div class="ms-2 py-2 mt-5"><a href="/dashboard/user" class="btn btn-success btn-sm"><i
                             class="bi bi-pen-fill"></i></a></div>
                 <div class="p-2 mt-5"><a href="/dashboard/report" class="btn btn-primary btn-sm"><i
                             class="bi bi-bar-chart-fill"></i></a></div>
@@ -33,6 +33,12 @@
         </div>
     @endif
 
+    @if (session()->has('edit'))
+        <div class="alert alert-warning mt-3" role="alert">
+            {{ session('edit') }}
+        </div>
+    @endif
+
     @if (session()->has('delete'))
         <div class="alert alert-danger mt-3" role="alert">
             {{ session('delete') }}
@@ -46,8 +52,8 @@
                     <div class="card mb-3 shadow-sm" style="max-width: 600px; margin: auto;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="https://source.unsplash.com/1000x1000/?food" class="img-fluid rounded-start"
-                                    alt="...">
+                                <img src="https://source.unsplash.com/1000x1000/?{{ $resep->recipe_name }}"
+                                    class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -66,7 +72,8 @@
                                     <div class="button">
                                         <a href="/{{ $resep->id }}" class="btn btn-info "><i class="bi bi-eye-fill"></i>
                                         </a>
-                                        <a href="#" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
+                                        <a href="/dashboard/recipe/{{ $resep->id }}/edit" class="btn btn-warning "><i
+                                                class="bi bi-pencil-square"></i></a>
                                         <form action="/dashboard/recipe/{{ $resep->id }}" class="d-inline"
                                             method="POST">
                                             @method('delete')

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingredients;
 use App\Models\Recipe;
+use App\Models\User;
+use App\Models\Country;
+use App\Models\Category;
+use App\Models\Ingredients;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RecipeController extends Controller
 {
@@ -15,7 +19,28 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        $title = '';
+        if (request('category')) {
+            $category = Category::firstWhere('name', request('category'));
+            $title = ' in ' . $category->name;
+        }
+
+        if (request('maker')) {
+            $author = User::firstWhere('username', request('maker'));
+            $title = ' by ' . $author->name;
+        }
+
+        if (request('country')) {
+            $country = Country::firstWhere('name', request('country'));
+            $title = ' in ' . $country->name;
+        }
+
+        return view('home', [
+            "title" => "All Recipes" . $title,
+            "active" => 'home',
+            "recipe" => Recipe::latest()->filter(request(['search', 'category', 'maker', 'country']))->paginate(8)->withQueryString()
+
+        ]);
     }
 
     /**
@@ -45,13 +70,18 @@ class RecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe, Ingredients $ingredients)
+    public function show(Recipe $recipe)
     {
-        return view('recipe', [
-            "title" =>  $recipe->recipe_name,
-            "active" => 'home',
-            "recipe" => $recipe,
-        ]);
+        $recipe->incrementReadCount();
+        return view(
+            'recipe',
+            compact($recipe),
+            [
+                "title" =>  $recipe->recipe_name,
+                "active" => 'home',
+                "recipe" => $recipe,
+            ]
+        );
     }
 
     /**

@@ -37,7 +37,7 @@ class RecipeDashboardController extends Controller
             'active' => 'recipe',
             'category' => Category::all(),
             'country' => Country::all(),
-            'user' => User::all()
+
         ]);
     }
 
@@ -49,6 +49,7 @@ class RecipeDashboardController extends Controller
      */
     public function store(Request $request, Recipe $recipe)
     {
+
         $CreateRecipe = $request->validate([
             'recipe_name' => 'required',
             'about' => 'required',
@@ -59,20 +60,11 @@ class RecipeDashboardController extends Controller
             'category_id' => 'required',
             'country_id' => 'required',
         ]);
-
+        dd($CreateRecipe);
         $CreateRecipe['user_id'] = auth()->user()->id;
         Recipe::create($CreateRecipe);
 
-        // $table->string('recipe_name');
-        // $table->string('about');
-        // $table->string('slug')->unique();
-        // $table->string('portion');
-        // $table->string('time');
-        // $table->string('steps', 10000);
-        // $table->foreignId('country_id');
-        // $table->foreignId('category_id');
-        // $table->foreignId('user_id');
-        // $table->text('ingredients');
+
         return redirect('dashboard/recipe')->with('success', 'Recipe Is Successfully Created');
     }
 
@@ -84,7 +76,6 @@ class RecipeDashboardController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -95,7 +86,16 @@ class RecipeDashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $recipe = Recipe::findorFail($id);
+
+        return view('dashboard.recipe.edit', [
+            "active" => 'recipe',
+            'recipe' => $recipe,
+            'title' => 'Edit Recipe',
+            'category' => Category::all(),
+            'country' => Country::all(),
+
+        ]);
     }
 
     /**
@@ -105,9 +105,22 @@ class RecipeDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Recipe $recipe)
     {
-        //
+        $editRecipe = $request->validate([
+
+            'about' => 'required',
+            'portion' => 'required',
+            'time' => 'required',
+            'steps' => 'required',
+            'ingredients' => 'required',
+            'category_id' => 'required',
+            'country_id' => 'required',
+
+        ]);
+        Recipe::find($recipe->id)->update($editRecipe);
+
+        return redirect('dashboard/recipe')->with('edit', 'Data Berhasil Diperbarui!');
     }
 
     /**

@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class ReportDashboardController extends Controller
+class UserDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Recipe $recipe)
+    public function index(User $user)
     {
-        return view('dashboard.index', [
-            'title' => 'Report',
-            'active' => 'report',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
-            'view' => Recipe::where('user_id', auth()->user()->id)->get('reads')
+        return view('dashboard.user.index', [
+            'title' => 'Profile',
+            'active' => 'user',
+
         ]);
     }
 
@@ -46,10 +46,10 @@ class ReportDashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
         //
     }
@@ -57,33 +57,45 @@ class ReportDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Auth $auth, User $user)
     {
-        //
+        $user = User::findOrFail(Auth::user()->id);
+        return view('dashboard.user.edit', [
+            'user' => $user,
+            'active' => 'user',
+            'title' => 'Edit User'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,)
+    public function update(Request $request, User $user)
     {
-        //
+        $ProfileEdit = $request->validate([
+            'name' => 'required',
+            'username' => 'required'
+
+        ]);
+        User::find($user->id)->update($ProfileEdit);
+
+        return redirect('dashboard/user')->with('edit', 'Data Berhasil Diperbarui!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
         //
     }

@@ -1,5 +1,5 @@
 <style>
-    nav {
+    #navbarmain {
         background: rgb(204, 8, 11);
         background: linear-gradient(90deg, rgba(204, 8, 11, 1) 10%, rgba(242, 91, 10, 1) 25%, rgba(242, 91, 10, 1) 75%, rgba(204, 8, 11, 1) 90%);
 
@@ -10,7 +10,7 @@
     }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark  sticky-top shadow">
+<nav id="navbarmain"class="navbar navbar-expand-lg navbar-dark  sticky-top shadow">
     <div class="container">
         <a class="navbar-brand" href="/"><img src="/img/mealsuplogo.png" width="30" height="24"
                 class="d-inline-block align-text-top me-2">MEALSUP</a>

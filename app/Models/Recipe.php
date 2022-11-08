@@ -10,7 +10,36 @@ class Recipe extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['category', 'country', 'maker'];
 
+    public function scopeFilter($query, array $filters)
+    {
+
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('recipe_name', 'like', '%' . $search . '%');
+        });
+
+
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            return $query->whereHas('category', function ($query) use ($category) {
+                $query->where('name', $category);
+            });
+        });
+
+        $query->when($filters['country'] ?? false, function ($query, $country) {
+            return $query->whereHas('country', function ($query) use ($country) {
+                $query->where('name', $country);
+            });
+        });
+
+        $query->when(
+            $filters['maker'] ?? false,
+            fn ($query, $maker) => $query->whereHas(
+                'author',
+                fn ($query) => $query->where('username', $maker)
+            )
+        );
+    }
 
     public function country()
     {
@@ -35,5 +64,11 @@ class Recipe extends Model
     public function getRouteKeyName()
     {
         return 'id';
+    }
+
+    public function incrementReadCount()
+    {
+        $this->reads++;
+        return $this->save();
     }
 }

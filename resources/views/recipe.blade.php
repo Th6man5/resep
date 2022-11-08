@@ -16,7 +16,7 @@
                         <a href="#" class="btn btn-outline-warning">Save Recipe</a>
                         <a href="#" class="btn btn-outline-secondary">Share</a>
                         <a href="#" class="btn btn-outline-secondary">Print</a>
-                        <a href="#" class="btn btn-outline-secondary">Report</a>
+                        <a href="#" class="btn btn-outline-danger">Report</a>
                         <hr>
                         <h5>{{ $recipe->recipe_name }}</h5>
                         <div class="d-flex justify-content-center mb-1">
