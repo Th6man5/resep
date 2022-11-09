@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,8 +36,8 @@ class Recipe extends Model
         $query->when(
             $filters['maker'] ?? false,
             fn ($query, $maker) => $query->whereHas(
-                'author',
-                fn ($query) => $query->where('username', $maker)
+                'maker',
+                fn ($query) => $query->where('name', $maker)
             )
         );
     }

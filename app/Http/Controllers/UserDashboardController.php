@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserDashboardController extends Controller
 {
@@ -80,10 +82,14 @@ class UserDashboardController extends Controller
     public function update(Request $request, User $user)
     {
         $ProfileEdit = $request->validate([
-            'name' => 'required',
-            'username' => 'required'
+            'name' => 'required|min:3|max:255',
+            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:5|max:255'
 
         ]);
+
+        $ProfileEdit['password'] = Hash::make($ProfileEdit['password']);
         User::find($user->id)->update($ProfileEdit);
 
         return redirect('dashboard/user')->with('edit', 'Data Berhasil Diperbarui!');

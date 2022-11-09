@@ -60,7 +60,7 @@ class RecipeDashboardController extends Controller
             'category_id' => 'required',
             'country_id' => 'required',
         ]);
-        dd($CreateRecipe);
+
         $CreateRecipe['user_id'] = auth()->user()->id;
         Recipe::create($CreateRecipe);
 

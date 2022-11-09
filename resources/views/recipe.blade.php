@@ -19,8 +19,9 @@
                         <a href="#" class="btn btn-outline-danger">Report</a>
                         <hr>
                         <h5>{{ $recipe->recipe_name }}</h5>
-                        <div class="d-flex justify-content-center mb-1">
-                            <div class="me-1">{{ $recipe->maker->name }}</div>
+                        <div class="d-flex justify-content-center mb-1" style="font-size: 20px">
+                            <div class="me-1"><a href="/?maker={{ $recipe->maker->name }}">{{ $recipe->maker->name }}</a>
+                            </div>
                             <div class="text-muted">#{{ $recipe->maker->username }}</div>
                         </div>
                         <div class="me-1">{{ $recipe->about }}</div>

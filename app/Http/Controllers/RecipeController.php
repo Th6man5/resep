@@ -20,14 +20,15 @@ class RecipeController extends Controller
     public function index()
     {
         $title = '';
+
         if (request('category')) {
             $category = Category::firstWhere('name', request('category'));
             $title = ' in ' . $category->name;
         }
 
         if (request('maker')) {
-            $author = User::firstWhere('username', request('maker'));
-            $title = ' by ' . $author->name;
+            $maker = User::firstWhere('name', request('maker'));
+            $title = ' by ' . $maker->name;
         }
 
         if (request('country')) {
@@ -36,9 +37,9 @@ class RecipeController extends Controller
         }
 
         return view('home', [
-            "title" => "All Recipes" . $title,
+            "title" => "MEALSUP" . $title,
             "active" => 'home',
-            "recipe" => Recipe::latest()->filter(request(['search', 'category', 'maker', 'country']))->paginate(8)->withQueryString()
+            "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'category', 'maker', 'country']))->paginate(8)->withQueryString()
 
         ]);
     }

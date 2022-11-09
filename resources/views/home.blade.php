@@ -10,6 +10,11 @@
         #cards {
             position: absolute;
         }
+
+        #imgcard {
+            width: 100%;
+            max-width: 300px;
+        }
     </style>
     <div class="row justify-content-center">
 
@@ -30,7 +35,7 @@
         </div>
     </div>
 
-    <h2 id="meal" class="text-center">POPULAR RECIPE</h2>
+    <h2 id="meal" class="text-center">{{ $title }}</h2>
 
     @if ($recipe->count())
         <div class="container">
@@ -38,8 +43,13 @@
                 @foreach ($recipe as $resep)
                     <div class="col-md-3 mb-4">
                         <div class="card shadow-sm">
-                            <img class="" src="https://source.unsplash.com/500x500/?{{ $resep->recipe_name }}">
+                            <img id="imgcard" class=""
+                                src="https://source.unsplash.com/500x500/?{{ $resep->recipe_name }}">
                             <div id="cards" class="badge bg-primary text-center w-50 ms-auto ">
+                                <a href="/?country={{ $resep->country->name }}"
+                                    style="text-decoration: none; color: white;">{{ $resep->country->name }}</a>
+                            </div>
+                            <div id="cards" class="badge bg-primary text-center w-50 me-auto ">
                                 <a href="/?country={{ $resep->country->name }}"
                                     style="text-decoration: none; color: white;">{{ $resep->country->name }}</a>
                             </div>

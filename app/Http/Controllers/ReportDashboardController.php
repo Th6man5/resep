@@ -14,11 +14,12 @@ class ReportDashboardController extends Controller
      */
     public function index(Recipe $recipe)
     {
-        return view('dashboard.index', [
+
+        return view('dashboard.report.index', [
             'title' => 'Report',
             'active' => 'report',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
-            'view' => Recipe::where('user_id', auth()->user()->id)->get('reads')
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC'),
+
         ]);
     }
 

@@ -63,8 +63,8 @@ Route::get('/dashboard/report', function (Recipe $recipe) {
     return view('dashboard.report.index', [
         'title' => 'Report',
         'active' => 'report',
-        'recipe' =>
-        Recipe::where('user_id', auth()->user()->id)->get(),
+        'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->get(),
+        'view' => Recipe::sum('reads')
     ]);
 })->middleware('auth');
 
