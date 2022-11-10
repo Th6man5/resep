@@ -5,7 +5,12 @@
             <div class="col-md-6" style="margin-bottom: -3px">
                 <div class="position-sticky" style="top: 100px">
                     <div class="card shadow-sm" id="img">
-                        <img src="https://source.unsplash.com/500x500/?food" class="card-img-top" alt="...">
+                        @if ($recipe->image)
+                            <img src="{{ asset('storage/' . $recipe->image) }}" class="card-img-top" alt="...">
+                        @else
+                            <img src="https://source.unsplash.com/500x500/?food" class="card-img-top" alt="...">
+                        @endif
+
                     </div>
                 </div>
             </div>

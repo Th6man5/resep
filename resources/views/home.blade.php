@@ -43,8 +43,13 @@
                 @foreach ($recipe as $resep)
                     <div class="col-md-3 mb-4">
                         <div class="card shadow-sm">
-                            <img id="imgcard" class=""
-                                src="https://source.unsplash.com/500x500/?{{ $resep->recipe_name }}">
+                            @if ($resep->image)
+                                <img id="imgcard" src="{{ asset('storage/' . $resep->image) }}" alt="...">
+                            @else
+                                <img id="imgcard" class=""
+                                    src="https://source.unsplash.com/500x500/?{{ $resep->recipe_name }}">
+                            @endif
+
                             <div id="cards" class="badge bg-primary text-center w-50 ms-auto ">
                                 <a href="/?country={{ $resep->country->name }}"
                                     style="text-decoration: none; color: white;">{{ $resep->country->name }}</a>

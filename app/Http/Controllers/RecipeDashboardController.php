@@ -49,17 +49,21 @@ class RecipeDashboardController extends Controller
      */
     public function store(Request $request, Recipe $recipe)
     {
-
         $CreateRecipe = $request->validate([
-            'recipe_name' => 'required',
-            'about' => 'required',
-            'portion' => 'required',
-            'time' => 'required',
+            'image' => 'image|file|max:1024',
+            'recipe_name' => 'required|max:255',
+            'about' => 'required|max:255',
+            'portion' => 'required|max:20',
+            'time' => 'required|max:20',
             'steps' => 'required',
             'ingredients' => 'required',
             'category_id' => 'required',
             'country_id' => 'required',
         ]);
+
+        if ($request->file('image')) {
+            $CreateRecipe['image'] = $request->file('image')->store('recipes-images');
+        }
 
         $CreateRecipe['user_id'] = auth()->user()->id;
         Recipe::create($CreateRecipe);

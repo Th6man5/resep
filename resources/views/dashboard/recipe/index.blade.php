@@ -52,8 +52,14 @@
                     <div class="card mb-3 shadow-sm" style="max-width: 600px; margin: auto;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="https://source.unsplash.com/1000x1000/?{{ $resep->recipe_name }}"
-                                    class="img-fluid rounded-start" alt="...">
+                                @if ($resep->image)
+                                    <img src="{{ asset('storage/' . $resep->image) }}" class="img-fluid rounded-start"
+                                        alt="...">
+                                @else
+                                    <img src="https://source.unsplash.com/1000x1000/?{{ $resep->recipe_name }}"
+                                        class="img-fluid rounded-start" alt="...">
+                                @endif
+
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
