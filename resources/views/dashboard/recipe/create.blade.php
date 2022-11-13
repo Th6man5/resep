@@ -6,18 +6,19 @@
             <div class="row">
                 <div class="col-md-6" style="margin-bottom: -3px">
                     <div class="position-sticky" style="top: 100px">
-                        <div class="card shadow-sm" id="img" style="width: 500px; height: 500px;">
-                            <div class="mb-3">
+                        <div class="card shadow-sm" id="img">
 
-                                {{-- Image Input --}}
-                                <input class="form-control @error('image') is-invalid @enderror" type="file"
-                                    name="image" id="formFile">
-                                @error('image')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                            {{-- Image Input --}}
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
+                                id="imgInp" value="{{ old('image') }}" accept="image/png , image/jpeg" required>
+
+                            @error('image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            <img id="blah" src="#" alt="your image" />
                         </div>
                     </div>
                 </div>
@@ -132,4 +133,12 @@
     </form>
     </div>
     </div>
+    <script>
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
 @endsection

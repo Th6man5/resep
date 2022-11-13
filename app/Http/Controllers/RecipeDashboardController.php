@@ -21,7 +21,7 @@ class RecipeDashboardController extends Controller
         return view('dashboard.recipe.index', [
             'title' => 'Recipe',
             'active' => 'recipe',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->get(),
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->latest()->get(),
         ]);
     }
 
@@ -50,7 +50,7 @@ class RecipeDashboardController extends Controller
     public function store(Request $request, Recipe $recipe)
     {
         $CreateRecipe = $request->validate([
-            'image' => 'image|file|max:1024',
+            'image' => 'required|image|file|max:3072',
             'recipe_name' => 'required|max:255',
             'about' => 'required|max:255',
             'portion' => 'required|max:20',
