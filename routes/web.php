@@ -50,7 +50,7 @@ Route::get('/makers/{maker:username}', function (User $maker) {
 });
 Route::get('/dashboard', function (Recipe $recipe) {
     return view('dashboard.index', [
-        'title' => 'Home',
+        'title' => 'Dashboard',
         'active' => 'home',
     ]);
 })->middleware('auth');

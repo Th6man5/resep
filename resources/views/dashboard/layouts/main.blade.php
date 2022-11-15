@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
 
 <head>
     <!-- Required meta tags -->
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 
     <title>MealsUP | {{ $title }}</title>
-
+    @vite('resources/css/app.css')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Montserrat:wght@501&display=swap');
 
@@ -24,20 +24,8 @@
         * {
             font-family: 'Montserrat', sans-serif;
         }
-
-        a {
-            text-decoration: none;
-            color: black;
-            transition: 0.3s;
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: #cc080b;
-            transition: 0.3s;
-
-        }
     </style>
+
 </head>
 
 
@@ -67,7 +55,7 @@
                 <div class="d-flex flex-row mb-2 ms-4 me-4">
                     <div class="p-2"><a href="/dashboard">Saved</a></div>
                     <div class="p-2"><a href="/dashboard/recipe">My Recipe</a></div>
-                    <div class="ms-auto"><a href="/dashboard/recipe/create" class="btn btn-primary btn-sm">New
+                    <div class="ms-auto"><a href="/dashboard/recipe/create" class="btn btn-primary btn-md">New
                             Recipe</a></div>
                 </div>
             </div>

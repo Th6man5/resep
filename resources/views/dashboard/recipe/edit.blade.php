@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.main')
+@extends('dashboard.layouts.make')
 @section('content')
     <div class="container-sm">
         <form method="POST" action="/dashboard/recipe/{{ $recipe->id }}">

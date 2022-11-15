@@ -2,39 +2,72 @@
 @section('content')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@501&display=swap');
-
-        .h1up {
-            color: #cc080b;
-        }
-
-        #cards {
-            position: absolute;
-        }
-
-        #imgcard {
-            width: 100%;
-            max-width: 300px;
-        }
     </style>
-    <div class="row justify-content-center">
-
-        <div class="col-md-6">
-            <form action="/">
-                @if (request('category'))
-                    <input type="hidden" name="category" value="{{ request('category') }}">
-                @endif
-                @if (request('maker'))
-                    <input type="hidden" name="maker" value="{{ request('maker') }}">
-                @endif
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search..." name="search"
-                        value="{{ request('search') }}">
-                    <button class="btn btn-primary" type="button">Search</button>
+    @if ($recipe->count())
+        <main class="px-16 py-6 ">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form action="/">
+                        @if (request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
+                        @if (request('maker'))
+                            <input type="hidden" name="maker" value="{{ request('maker') }}">
+                        @endif
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search..." name="search"
+                                value="{{ request('search') }}">
+                            <button class="btn btn-primary" type="button">Search</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
+            </div>
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
+                @foreach ($recipe as $resep)
+                    <div
+                        class="bg-white rounded overflow-hidden shadow-md relative hover:bg-sky-300 hover:scale-105 transition-all">
+                        @if ($resep->image)
+                            <a href="/{{ $resep->id }}">
+                                <img src="{{ asset('storage/' . $resep->image) }}" class="w-full h-32 sm:h-48 object-cover">
+                            </a>
+                        @else
+                            <a href="/{{ $resep->id }}">
+                                <img src="https://source.unsplash.com/1000x1000/?{{ $resep->recipe_name }}"
+                                    class="w-full h-32 sm:h-48 object-cover">
+                            </a>
+                        @endif
+                        <div class="m-4">
+                            <span class="font-bold block">
+                                {{ $resep->recipe_name }}
+                            </span>
+                            <a class=" text-gray-500 text-sm hover:text-slate-600 hover:text-base transition-all"
+                                href="/?maker={{ $resep->maker->name }}">
+                                {{ $resep->maker->name }}
+                            </a>
+                        </div>
+                        <div
+                            class="bg-green-500 text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-600 hover:scale-95 transition-all">
+                            <i data-feather="eye"></i>
+                            <p>
+                                {{ $resep->reads }}
+                            </p>
+                        </div>
 
+                    </div>
+                @endforeach
+
+            </div>
+        </main>
+    @else
+        <p class="text-center fs-4">Not Found</p>
+    @endif
+
+    {{ $recipe->render() }}
+
+
+
+
+    {{--
     <h2 id="meal" class="text-center">{{ $title }}</h2>
 
     @if ($recipe->count())
@@ -70,5 +103,5 @@
         <p class="text-center fs-4">Not Found</p>
     @endif
 
-    {{ $recipe->render() }}
+    {{ $recipe->render() }} --}}
 @endsection

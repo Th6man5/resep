@@ -37,9 +37,9 @@ class RecipeController extends Controller
         }
 
         return view('home', [
-            "title" => "MEALSUP" . $title,
+            "title" => "Home" . $title,
             "active" => 'home',
-            "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'category', 'maker', 'country']))->paginate(8)->withQueryString()
+            "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'category', 'maker', 'country']))->paginate(9)->withQueryString()
 
         ]);
     }

@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345'),
         ]);
 
-        Recipe::factory(50)->create();
-        Ingredients::factory(30)->create();
+        Recipe::factory(20)->create();
+        Ingredients::factory(10)->create();
     }
 }

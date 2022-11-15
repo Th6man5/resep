@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.main')
+@extends('dashboard.layouts.make')
 @section('content')
     <form method="POST" action="/dashboard/recipe" enctype="multipart/form-data">
         @csrf
@@ -62,8 +62,7 @@
                                 </div>
 
                                 <label class="form-label mt-2">Ingredients</label>
-                                <textarea type="text" name="ingredients" rows="3" placeholder="Ingredients" id="" class="form-control"
-                                    required></textarea>
+                                <textarea type="text" name="ingredients" rows="3" placeholder="Ingredients" class="form-control" required></textarea>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop">
