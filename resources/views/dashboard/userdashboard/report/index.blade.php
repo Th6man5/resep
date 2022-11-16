@@ -25,12 +25,18 @@
                 <p class="m-0">Total: {{ $view }} </p>
             </div>
             <div>
-                <i class="bi bi-eye" style="font-size: 2rem;"></i>
+                <div
+                    class="circle bg-green-700 hover:bg-green-800 hover:scale-110 transition-all duration-1000 hover:rotate-[360deg]">
+                    <i class="bi bi-eye-fill text-white" style="font-size: 2rem;"></i>
+                </div>
                 <p class="m-0">Views</p>
                 <p class="m-0">Total: {{ $view }} </p>
             </div>
             <div>
-                <i class="bi bi-card-list" style="font-size: 2rem;"></i>
+                <div
+                    class="circle bg-green-700 hover:bg-green-800 hover:scale-110 transition-all duration-1000 hover:rotate-[360deg]">
+                    <i class="bi bi-clipboard2-fill text-white" style="font-size: 2rem;"></i>
+                </div>
                 <p class="m-0">Recipe</p>
                 <p class="m-0">Total: {{ $recipe->count() }}</p>
             </div>

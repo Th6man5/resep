@@ -3,9 +3,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@501&display=swap');
     </style>
+
+
     @if ($recipe->count())
         <main class="px-16 py-6 ">
-            <div class="row justify-content-center">
+            {{-- <div class="row justify-content-center">
                 <div class="col-md-6">
                     <form action="/">
                         @if (request('category'))
@@ -21,7 +23,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> --}}
             <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
                 @foreach ($recipe as $resep)
                     <div
@@ -41,7 +43,7 @@
                                 {{ $resep->recipe_name }}
                             </span>
                             <a class=" text-gray-500 text-sm hover:text-slate-600 hover:text-base transition-all"
-                                href="/?maker={{ $resep->maker->name }}">
+                                href="/maker/{{ $resep->maker->id }}">
                                 {{ $resep->maker->name }}
                             </a>
                         </div>

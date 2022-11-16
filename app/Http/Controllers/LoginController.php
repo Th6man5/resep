@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/');
         }
 
         return back()->with('loginError', 'Login Failed');
@@ -42,4 +42,13 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    // public function redirectPath()
+    // {
+    //     if (auth()->user()->is_admin) {
+    //         return redirect('dashboard.admindashboard.index');
+    //     }
+
+    //     return route('dashboard.userdashboard.index');
+    // }
 }

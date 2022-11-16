@@ -2,48 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
 use App\Models\User;
-use App\Models\Country;
-use App\Models\Category;
-use App\Models\Ingredients;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class RecipeController extends Controller
+class GuestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $title = '';
+        $user = User::find($id);
+        $recipe = $user->recipes()->get();
 
-        // if (request('category')) {
-        //     $category = Category::firstWhere('name', request('category'));
-        //     $title = ' in ' . $category->name;
-        // }
+        return view(
+            'guest.index',
+            [
+                "title" =>  $user->name,
+                'user' => $user,
+                'recipe' => $recipe,
+                "active" => 'home',
+            ]
+        );
 
-        // if (request('maker')) {
-        //     $maker = User::firstWhere('name', request('maker'));
-        //     $title = ' by ' . $maker->name;
-        // }
 
-        // if (request('country')) {
-        //     $country = Country::firstWhere('name', request('country'));
-        //     $title = ' in ' . $country->name;
-        // }
-
-        return view('home', [
-            "title" => "Home" . $title,
-            "active" => 'home',
-            "recipe" => Recipe::orderBy('reads', 'DESC')->paginate(9)->withQueryString()
-
-        ]);
+        dd($recipe);
     }
-    // ->filter(request(['search', 'category', 'maker', 'country']))
 
     /**
      * Show the form for creating a new resource.
@@ -72,18 +60,9 @@ class RecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show($id)
     {
-        $recipe->incrementReadCount();
-        return view(
-            'recipe',
-            compact($recipe),
-            [
-                "title" =>  $recipe->recipe_name,
-                "active" => 'home',
-                "recipe" => $recipe,
-            ]
-        );
+        //
     }
 
     /**

@@ -33,7 +33,7 @@
 
                 <div class="text-center my-3 text-lg">
                     <a class="text-green-600 hover:text-green-700"
-                        href="/?maker={{ $recipe->maker->name }}">{{ $recipe->maker->name }}</a>
+                        href="/maker/{{ $recipe->maker->id }}">{{ $recipe->maker->name }}</a>
                     <a class="text-slate-400">#{{ $recipe->maker->username }}</a>
                 </div>
                 <hr>

@@ -20,9 +20,10 @@
     </div>
     <div class="flex-none">
         <ul class="menu menu-horizontal p-0">
-            <li class="text-white"><a href="/dashboard/recipe">Recipe</a></li>
+
 
             @auth
+                <li class="text-white"><a href="/user/dashboard/recipe">Recipe</a></li>
                 <div class="dropdown dropdown-end me-3">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
@@ -33,7 +34,7 @@
                         class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-black text-white rounded-box w-52">
 
                         <li class="hover:bg-slate-500 transition-all"><a class="active:bg-slate-500 active:text-white"
-                                href="/dashboard">My
+                                href="/user/dashboard">My
                                 Dashboard</a></li>
 
                         <li class="hover:bg-red-500 transition-all">

@@ -67,6 +67,11 @@ class Recipe extends Model
         return 'id';
     }
 
+    // public function getIsAdminAttribute()
+    // {
+    //     return $this->roles()->where('name', 'user')->exists();
+    // }
+
     public function incrementReadCount()
     {
         $this->reads++;

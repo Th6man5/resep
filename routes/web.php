@@ -2,13 +2,16 @@
 
 use App\Models\User;
 use App\Models\Recipe;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RecipeDashboardController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\admin\admindashboardController;
+use App\Http\Controllers\user\RecipeDashboardController;
 
 
 
@@ -31,42 +34,56 @@ Route::get('/', function (Recipe $recipe) {
     ]);
 });
 
+Route::get('/maker/{user:id}', [GuestController::class, 'index']);
+
 Route::get('/', [RecipeController::class, 'index']);
 
-Route::get('/categories/{category:name}', function ($category) {
-    return view('recipe', [
-        'title' => " Post by Category : $category->name",
-        'active' => 'categories',
-        'recipe' => $category->recipe->load('category', 'maker'),
-    ]);
+//User Route
+
+Route::group([
+    'prefix' => 'user',
+    'as' => 'user.',
+    'middleware' => ['auth']
+], function () {
+
+    Route::get('/dashboard', function (Recipe $recipe) {
+        return view('dashboard.index', [
+            'title' => 'Dashboard',
+            'active' => 'home',
+        ]);
+    });
+
+    Route::resource('/dashboard/recipe', RecipeDashboardController::class);
+
+    Route::get('/dashboard/report', function (Recipe $recipe) {
+        return view('dashboard.userdashboard.report.index', [
+            'title' => 'Report',
+            'active' => 'report',
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->get(),
+            'view' => Recipe::where('user_id', auth()->user()->id)->sum('reads')
+        ]);
+    });
 });
 
-Route::get('/makers/{maker:username}', function (User $maker) {
-    return view('recipe', [
-        'title' => "Post By : $maker->name",
-        'active' => 'recipe',
-        'recipe' => $maker->recipe->load('category', 'maker'),
-    ]);
+//Admin Route
+
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'middleware' => ['auth', 'guest']
+
+], function () {
+    Route::get('/dashboard', function (Recipe $recipe) {
+        return view('dashboard.admindashboard.index', [
+            'title' => 'Admin',
+            'recipe' => Recipe::all(),
+            'user' => User::all(),
+            'active' => 'dashboard'
+        ]);
+    });
+    Route::resource('/dashboard/recipe', admindashboardController::class);
 });
-Route::get('/dashboard', function (Recipe $recipe) {
-    return view('dashboard.index', [
-        'title' => 'Dashboard',
-        'active' => 'home',
-    ]);
-})->middleware('auth');
 
-
-Route::resource('/dashboard/recipe', RecipeDashboardController::class)
-    ->middleware('auth');
-
-Route::get('/dashboard/report', function (Recipe $recipe) {
-    return view('dashboard.report.index', [
-        'title' => 'Report',
-        'active' => 'report',
-        'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->get(),
-        'view' => Recipe::sum('reads')
-    ]);
-})->middleware('auth');
 
 
 
@@ -82,5 +99,21 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/{recipe:id}', [RecipeController::class, 'show']);
 
-Route::resource('/dashboard/user', UserDashboardController::class)
-    ->middleware('auth');
+// Route::resource('/dashboard/user', UserDashboardController::class)
+//     ->middleware('auth');
+
+// Route::get('/makers/{maker:username}', function (User $maker) {
+//     return view('recipe', [
+//         'title' => "Post By : $maker->name",
+//         'active' => 'recipe',
+//         'recipe' => $maker->recipe->load('category', 'maker'),
+//     ]);
+// });
+
+// Route::get('/categories/{category:name}', function ($category) {
+//     return view('recipe', [
+//         'title' => " Post by Category : $category->name",
+//         'active' => 'categories',
+//         'recipe' => $category->recipe->load('category', 'maker'),
+//     ]);
+// });

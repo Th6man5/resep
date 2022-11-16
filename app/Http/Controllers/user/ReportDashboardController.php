@@ -15,7 +15,7 @@ class ReportDashboardController extends Controller
     public function index(Recipe $recipe)
     {
 
-        return view('dashboard.report.index', [
+        return view('dashboard.userdashboard.report.index', [
             'title' => 'Report',
             'active' => 'report',
             'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC'),

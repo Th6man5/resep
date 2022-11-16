@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Category;
 use App\Models\Country;
@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+
 
 class RecipeDashboardController extends Controller
 {
@@ -18,7 +20,7 @@ class RecipeDashboardController extends Controller
      */
     public function index(Recipe $recipe)
     {
-        return view('dashboard.recipe.index', [
+        return view('dashboard.userdashboard.recipe.index', [
             'title' => 'Recipe',
             'active' => 'recipe',
             'recipe' => Recipe::where('user_id', auth()->user()->id)->latest()->get(),
@@ -32,7 +34,7 @@ class RecipeDashboardController extends Controller
      */
     public function create()
     {
-        return view('dashboard.recipe.create', [
+        return view('dashboard.userdashboard.recipe.create', [
             'title' => 'Create Recipe',
             'active' => 'recipe',
             'category' => Category::all(),
@@ -69,7 +71,7 @@ class RecipeDashboardController extends Controller
         Recipe::create($CreateRecipe);
 
 
-        return redirect('dashboard/recipe')->with('success', 'Recipe Is Successfully Created');
+        return redirect('user/dashboard/recipe')->with('success', 'Recipe Is Successfully Created');
     }
 
     /**
@@ -92,7 +94,7 @@ class RecipeDashboardController extends Controller
     {
         $recipe = Recipe::findorFail($id);
 
-        return view('dashboard.recipe.edit', [
+        return view('dashboard.userdashboard.recipe.edit', [
             "active" => 'recipe',
             'recipe' => $recipe,
             'title' => 'Edit Recipe',
@@ -124,7 +126,7 @@ class RecipeDashboardController extends Controller
         ]);
         Recipe::find($recipe->id)->update($editRecipe);
 
-        return redirect('dashboard/recipe')->with('edit', 'Data Berhasil Diperbarui!');
+        return redirect('user/dashboard/recipe')->with('edit', 'Data Berhasil Diperbarui!');
     }
 
     /**
@@ -137,6 +139,6 @@ class RecipeDashboardController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
-        return redirect('dashboard/recipe')->with('delete', 'Recipe is successfully deleted');
+        return redirect('user/dashboard/recipe')->with('delete', 'Recipe is successfully deleted');
     }
 }
