@@ -7,7 +7,7 @@
     @endif
 
     @if (session()->has('edit'))
-        <div class="alert alert-warning mt-3" role="alert">
+        <div class="alert alert-success mt-3" role="alert">
             {{ session('edit') }}
         </div>
     @endif
@@ -18,7 +18,18 @@
         </div>
     @endif
 
-    <div class="grid lg:grid-cols-2  gap-10 mt-10">
+    <div class="grid grid-cols-2 m-4 ">
+        <span class="text-lg">
+            {{ $recipe->count() }} Recipe
+        </span>
+        <label class="relative block justify-self-end">
+            <input
+                class="placeholder:italic placeholder:text-slate-400 block bg-white w-auto border border-slate-300 rounded-md py-2 pl-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                placeholder="Search recipe" type="text" name="search" />
+        </label>
+    </div>
+
+    <div class="grid lg:grid-cols-2  gap-10">
         @foreach ($recipe as $resep)
             <div class="bg-base-100 border-2 rounded overflow-hidden shadow-md relative transition-all">
                 @if ($resep->image)
@@ -38,14 +49,18 @@
                         </span>
                         <div class="flex lg:ml-auto">
 
-                            <a href="/{{ $resep->id }}" class="btn btn-primary btn-sm mr-1"><i
+                            <a href="/{{ $resep->id }}"
+                                class="btn btn-primary btn-sm mr-1 hover:text-white transition-all hover:scale-105 duration-300"><i
                                     class="bi bi-eye-fill"></i></a>
-                            <a href="/user/dashboard/recipe/{{ $resep->id }}/edit" class="btn btn-accent btn-sm mr-1"><i
+                            <a href="/user/dashboard/recipe/{{ $resep->id }}/edit"
+                                class="btn btn-accent btn-sm mr-1 hover:text-white transition-all hover:scale-105 duration-300"><i
                                     class="bi bi-pencil-square"></i></a>
                             <form action="/user/dashboard/recipe/{{ $resep->id }}" method="POST">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-secondary btn-sm"><i class="bi bi-trash-fill"></i></button>
+                                <button
+                                    class="btn btn-secondary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                                        class="bi bi-trash-fill"></i></button>
                             </form>
                         </div>
                     </div>
@@ -53,7 +68,7 @@
                 </div>
                 <div
                     class="bg-green-500 text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-600 hover:scale-95 transition-all">
-                    <i data-feather="eye"></i>
+                    <i class="bi bi-eye-fill text-lg"></i>
                     <p>
                         {{ $resep->reads }}
                     </p>

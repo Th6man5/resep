@@ -11,7 +11,7 @@
                     @endif
                     <div
                         class="bg-primary text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-500 hover:scale-95 transition-all">
-                        <i data-feather="eye"></i>
+                        <i class="bi bi-eye-fill text-lg"></i>
                         <p>
                             {{ $recipe->reads }}
                         </p>

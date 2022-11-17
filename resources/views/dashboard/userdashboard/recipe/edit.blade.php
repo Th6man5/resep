@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.make')
 @section('content')
     <div class="container-sm">
-        <form method="POST" action="/dashboard/recipe/{{ $recipe->id }}">
+        <form method="POST" action="/user/dashboard/recipe/{{ $recipe->id }}">
             @csrf
             @method('PUT')
             <div class="row">
@@ -20,7 +20,7 @@
                     <div class="card mb-3 shadow-sm">
                         <div class="text-start">
                             <div class="card-body">
-                                <form method="POST" action="/dashboard/recipe">
+                                <form method="POST" action="/user/dashboard/recipe">
                                     @csrf
 
                                     <label class="form-label">Recipe Name</label>

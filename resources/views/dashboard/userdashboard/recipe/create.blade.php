@@ -2,108 +2,107 @@
 @section('content')
     <form method="POST" action="/user/dashboard/recipe" enctype="multipart/form-data">
         @csrf
-        <div class="container-sm">
-            <div class="row">
-                <div class="col-md-6" style="margin-bottom: -3px">
-                    <div class="position-sticky" style="top: 100px">
-                        <div class="card shadow-sm" id="img">
+        <main class="px-10 py-6 ">
+            <div class="grid lg:grid-cols-2 gap-10 relative">
+                <div class="rounded" style="margin-bottom: -3px">
+                    <div class="sticky top-0 shadow-md" style="top: 100px">
+                        <input type="file"
+                            class="file-input file-input-ghost rounded-none w-full max-w-xs @error('image') is-invalid @enderror"
+                            name="image" id="imgInp" value="{{ old('image') }}" accept="image/png , image/jpeg"
+                            required />
+                        @error('image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
 
-                            {{-- Image Input --}}
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
-                                id="imgInp" value="{{ old('image') }}" accept="image/png , image/jpeg" required>
-
-                            @error('image')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-
-                            <img id="blah" src="#" alt="your image" />
-                        </div>
+                        <img id="blah" src="#" />
                     </div>
                 </div>
-
-
-
-                <div class="col-md-6 text-center">
-
-                    <div class="card mb-3 shadow-sm">
-                        <div class="text-start">
-                            <div class="card-body">
-
-
-                                <label class="form-label">Recipe Name</label>
-                                <input type="text" name="recipe_name" placeholder="Example: Pineapple Pizza"
-                                    id="" class="form-control" value="{{ old('recipe_name') }}" required>
-
-                                <label class="form-label mt-2">About</label>
-                                <input type="text" name="about" placeholder="About" id="" class="form-control"
-                                    required>
-
-                            </div>
-                        </div>
+                <div class=" rounded border-2  shadow-md">
+                    <div class="block m-4 ">
+                        <span class="block text-xl ml-2 text-center text-black">
+                            Recipe Name
+                        </span>
+                        <input type="text" name="recipe_name" value="{{ old('recipe_name') }}" required
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
+                            placeholder="Example: Pineapple Pizza" />
                     </div>
-                    <div class="card mb-3 shadow-sm">
-                        <div class="text-start">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <label class="form-label">Time <i class="bi bi-clock-fill"></i></label>
-                                        <input type="text" name="time" placeholder="1 jam 20 menit"
-                                            class="form-control" required>
-                                    </div>
 
-                                    <div class="col">
-                                        <label class="form-label">Portion <i class="bi bi-person-fill"></i></label>
-                                        <input type="text" name="portion" placeholder="2 person" class="form-control"
-                                            required>
-                                    </div>
+                    <div class="block m-4 mt-4 ">
+                        <span class="block text-xl ml-2 text-black">
+                            About
+                        </span>
+                        <input type="text" name="about" placeholder="About this Recipe" required
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " />
+                    </div>
 
-                                </div>
+                    <hr class="mt-6">
 
-                                <label class="form-label mt-2">Ingredients</label>
-                                <textarea type="text" name="ingredients" rows="3" placeholder="Ingredients" class="form-control" required></textarea>
-                            </div>
+                    <div class="block m-4 mt-4 ">
+                        <div class="grid grid-cols-2 text-center">
+                            <span class="block text-lg  text-black">
+                                Time <i class="bi bi-clock-fill"></i>
+                                <input type="text" name="time" placeholder="Time" required
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " /></span>
+
+                            <span class="block text-lg ml-2 text-black">
+                                Portion <i class="bi bi-person-fill"></i>
+                                <input type="text" name="portion" placeholder="Portion" required
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " /></span>
                         </div>
                     </div>
 
-                    <div class="card mb-3 shadow-sm">
-                        <div class="text-start">
-                            <div class="card-body">
-                                <label class="form-label">Steps</label>
-                                <textarea type="text" name="steps" rows="3" placeholder="Burn for 30 minutes in the oven" id=""
-                                    class="form-control"></textarea>
-                            </div>
-                        </div>
+                    <div class="block m-4 mt-4 text-center">
+                        <span class="block text-xl ml-2 text-black">
+                            Ingredients
+                        </span>
+                        <textarea type="text" name="ingredients" placeholder="Ingredients" required
+                            class="mt-1 px-2 py-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "></textarea>
+
                     </div>
-                    <div class="card mb-3 shadow-sm">
-                        <div class="text-start">
-                            <div class="card-body">
 
-                                <label class="form-label mt-2">Country</label>
-                                <select class="form-select" name="country_id" required>
-                                    @foreach ($country as $con)
-                                        <option value="{{ $con->id }}">{{ $con->name }}</option>
-                                    @endforeach
-                                </select>
+                    <hr>
 
-                                <label class="form-label mt-2">Category</label>
-                                <select class="form-select" name="category_id" required>
+                    <div class="block m-4 mt-4 text-center">
+                        <span class="block text-xl ml-2 text-black">
+                            Steps
+                        </span>
+                        <textarea type="text" name="steps" placeholder="Burn for 30 minutes in the oven" required
+                            class="mt-1 px-2 py-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "></textarea>
+                    </div>
+
+                    <div class="block m-4 mt-4 ">
+                        <div class="grid grid-cols-2 text-center">
+                            <span class="block text-lg text-black">
+                                Category <i class="bi bi-tag-fill"></i>
+                                <select type="text" name="category_id" placeholder="category" required
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 ">
+
                                     @foreach ($category as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                     @endforeach
-                                </select>
+                                </select></span>
 
-
-                            </div>
+                            <span class="block text-lg ml-2 text-black">
+                                Country <i class="bi bi-flag-fill"></i>
+                                <select type="text" name="country_id" placeholder="Country" required
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 ">
+                                    @foreach ($country as $con)
+                                        <option value="{{ $con->id }}">{{ $con->name }}</option>
+                                    @endforeach
+                                </select></span>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-primary mt-3" value="Submit">
-
+                    <div class="text-center mb-4">
+                        <input type="submit" class="btn btn-primary mt-3 rounded-md" value="Submit">
+                    </div>
                 </div>
+            </div>
+
+
+        </main>
     </form>
-    </div>
-    </div>
     <script>
         imgInp.onchange = evt => {
             const [file] = imgInp.files

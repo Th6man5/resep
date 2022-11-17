@@ -114,7 +114,7 @@ class RecipeDashboardController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         $editRecipe = $request->validate([
-
+            'recipe_name' => 'required',
             'about' => 'required',
             'portion' => 'required',
             'time' => 'required',
@@ -126,7 +126,7 @@ class RecipeDashboardController extends Controller
         ]);
         Recipe::find($recipe->id)->update($editRecipe);
 
-        return redirect('user/dashboard/recipe')->with('edit', 'Data Berhasil Diperbarui!');
+        return redirect('/user/dashboard/recipe')->with('edit', 'Data Berhasil Diperbarui!');
     }
 
     /**

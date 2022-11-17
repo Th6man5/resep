@@ -37,7 +37,7 @@
                 <div class="md:flex-none sm:flex-1 p-2 m-3">
                     <div class="avatar">
                         <div class="w-30 rounded-full">
-                            <img src="https://placeimg.com/192/192/people" />
+                            <img src="https://placeimg.com/192/192/arch" />
                         </div>
                     </div>
                 </div>
@@ -46,11 +46,14 @@
                     <p><small class="text-muted">#{{ auth()->user()->username }}</small></p>
                 </div>
 
-                <div class="py-2 mt-5 mr-1"><a href="#" class="btn btn-accent btn-sm"><i
-                            class="bi bi-pen-fill"></i></a></div>
-                <div class="py-2 mt-5 mr-1"><a href="/user/dashboard/report" class="btn btn-primary btn-sm"><i
+                <div class="py-2 mt-5 mr-1"><a href="#"
+                        class="btn btn-accent btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                            class="bi bi-pen-fill "></i></a></div>
+                <div class="py-2 mt-5 mr-1"><a href="/user/dashboard/report"
+                        class="btn btn-primary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
                             class="bi bi-bar-chart-fill"></i></a></div>
-                <div class="py-2 mt-5 mr-1"><a href="#" class="btn btn-secondary btn-sm"><i
+                <div class="py-2 mt-5 mr-1"><a href="#"
+                        class="btn btn-secondary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
                             class="bi bi-gear-fill"></i></a></div>
             </div>
 
@@ -60,7 +63,7 @@
                 <div class="flex-1 hover:text-blue-600 transition-all"><a href="/user/dashboard/recipe">My Recipe</a>
                 </div>
                 <div class="mb-1"><a href="/user/dashboard/recipe/create"
-                        class="btn btn-primary btn-xs sm:btn-sm md:btn-sm lg:btn-sm">New
+                        class="btn btn-primary btn-xs sm:btn-sm md:btn-sm lg:btn-sm hover:text-white transition-all duration-300 hover:scale-105">New
                         Recipe</a></div>
             </div>
         </div>

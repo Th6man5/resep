@@ -23,7 +23,8 @@
 
 
             @auth
-                <li class="text-white"><a href="/user/dashboard/recipe">Recipe</a></li>
+                <li class="{{ $active === 'recipe' ? 'text-white' : '' }}"><a href="/user/dashboard/recipe">Recipe</a></li>
+                <li class="text-white"><a>{{ auth()->user()->name }}</a></li>
                 <div class="dropdown dropdown-end me-3">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
