@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Recipe;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,6 +51,11 @@ class User extends Authenticatable
     public function Recipes()
     {
         return $this->hasMany(Recipe::class);
+    }
+
+    public function editUser()
+    {
+        return view('dashboard.userdashboard.profile.edit')->with('user', Auth::user());
     }
 
     public function getRouteKeyName()

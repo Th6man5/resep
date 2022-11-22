@@ -57,11 +57,16 @@
                         <span class="block text-xl ml-2 text-black">
                             Ingredients
                         </span>
-                        <textarea type="text" name="ingredients" placeholder="Ingredients" required
-                            class="mt-1 px-2 py-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "></textarea>
-
+                        <input type="text" name="ingredients[]" placeholder="Ingredients" required
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " />
                     </div>
 
+                    {{-- <div class="ingredients"></div>
+
+                    <div class="block m-4 my-2 text-right">
+                        <a href="#" class="addIngredients btn btn-sm btn-primary  rounded-md">Add
+                            Ingredients</a>
+                    </div> --}}
                     <hr>
 
                     <div class="block m-4 mt-4 text-center">
@@ -111,4 +116,19 @@
             }
         }
     </script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.addIngredients').on('click', function() {
+            addingredients();
+        });
+
+        function addingredients() {
+            var ingredients =
+                '<div><div class="block m-4 mt-4 text-center"><input type = "text" name = "ingredients[]" placeholder = "Ingredients"required class ="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " / ></div><a href="#" class="remove btn btn-xs btn-error block m-4 rounded-md" >Delete</a></div > ';
+            $('.ingredients').append(ingredients);
+        };
+        $('.remove').live('click', function() {
+            $(this).parent().remove();
+        });
+    </script> --}}
 @endsection

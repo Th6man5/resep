@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Routing\Controller;
@@ -7,13 +8,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDashboardController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Http\Controllers\admin\admindashboardController;
 use App\Http\Controllers\user\RecipeDashboardController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -47,11 +48,23 @@ Route::group([
 ], function () {
 
     Route::get('/dashboard', function (Recipe $recipe) {
+
         return view('dashboard.index', [
             'title' => 'Dashboard',
             'active' => 'home',
         ]);
     });
+
+    Route::get('/dashboard/edit', [ProfileController::class, 'edit']);
+    Route::put('/dashboard/update', [ProfileController::class, 'update']);
+    // Route::get('/dashboard/edit', function (User $user) {
+
+    //     return view('dashboard.userdashboard.profile.index', [
+    //         'title' => 'Edit Profile',
+    //         'active' => 'home',
+    //         'user' => $user
+    //     ]);
+    // });
 
     Route::resource('/dashboard/recipe', RecipeDashboardController::class);
 
@@ -70,7 +83,7 @@ Route::group([
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => ['auth', 'guest']
+    'middleware' => ['auth']
 
 ], function () {
     Route::get('/dashboard', function (Recipe $recipe) {

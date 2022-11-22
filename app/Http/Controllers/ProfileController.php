@@ -2,32 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Recipe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// use Illuminate\Foundation\Auth\User;
+use App\Models\User;
 
-class GuestController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $user = User::find($id);
-        $recipe = $user->recipes()->get();
-
-        return view(
-            'guest.index',
-            [
-                "title" =>  $user->name,
-                'user' => $user,
-                'recipe' => $recipe,
-                "active" => 'home',
-            ]
-        );
+        //
     }
 
     /**
@@ -68,9 +57,12 @@ class GuestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('dashboard.userdashboard.profile.edit', [
+            'title' => 'Edit Recipe',
+            'active' => 'edit'
+        ]);
     }
 
     /**
@@ -80,9 +72,22 @@ class GuestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:191', 'required'],
+            'username' => ['required', 'alpha_num'],
+            'email' => ['required', 'string', 'min:3', 'max:191', 'email'],
+        ]);
+
+        //Error but working (for now)
+        auth()->user()->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+        ]);
+
+        return back()->with('message', 'you have');
     }
 
     /**
