@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="mx-6 my-14 bg-base-100 p-10  shadow-xl border-solid border-2 rounded-lg border-green-600">
+    <div class="mx-6 my-14 bg-base-100 p-10  shadow-xl border-solid border-2 rounded-lg ">
         @if (session()->has('loginError'))
             <div class="alert alert-error shadow-none rounded-lg transition-all">
                 <div>

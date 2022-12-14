@@ -32,6 +32,15 @@
 
     @include('partials.navbar')
     <main class="px-14 py-6">
+        @error('name')
+            <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+        @enderror
+        @error('username')
+            <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+        @enderror
+        @error('email')
+            <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+        @enderror
         <div class="bg-base-100 border-2 p-6 rounded-lg text-black shadow-md">
             <div class="flex">
                 <div class="md:flex-none sm:flex-1 p-2 m-3">
@@ -41,20 +50,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex-auto p-2 mt-5 mr-3">
+                <div class="flex-auto p-2 mt-20 mr-3">
                     <h3>{{ auth()->user()->name }}</h3>
                     <p><small class="text-muted">#{{ auth()->user()->username }}</small></p>
                 </div>
 
-                <div class="py-2 mt-5 mr-1"><a href="#"
-                        class="btn btn-accent btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
-                            class="bi bi-pen-fill "></i></a></div>
-                <div class="py-2 mt-5 mr-1"><a href="/user/dashboard/report"
-                        class="btn btn-primary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
-                            class="bi bi-bar-chart-fill"></i></a></div>
-                <div class="py-2 mt-5 mr-1"><a href="#"
-                        class="btn btn-secondary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
-                            class="bi bi-gear-fill"></i></a></div>
+                <div class="mt-5 mr-5">
+
+                    <hr>
+                    <div class="py-2 mr-1"><label for="my-modal-3"
+                            class="btn btn-accent btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                                class="bi bi-pen-fill "></i></label></div>
+                    <hr>
+                    <div class="py-2  mr-1"><a href="/user/dashboard/report"
+                            class="btn btn-primary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                                class="bi bi-bar-chart-fill"></i></a></div>
+                    <hr>
+                    <div class="py-2  mr-1"><a href="/user/dashboard/settings"
+                            class="btn btn-secondary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                                class="bi bi-gear-fill"></i></a></div>
+                    <hr>
+                    <div class="py-2 mr-1"><a href="/user/dashboard/recipe/create"
+                            class="btn btn-primary btn-sm hover:text-white transition-all duration-300 hover:scale-105"><i
+                                class="bi bi-plus-circle-fill"></i></a>
+                    </div>
+                    <hr>
+                </div>
+
             </div>
 
             <div class="flex flex-row mt-2 ml-4 mr-4 items-center">
@@ -62,11 +84,21 @@
                 </div>
                 <div class="flex-1 hover:text-blue-600 transition-all"><a href="/user/dashboard/recipe">My Recipe</a>
                 </div>
-                <div class="mb-1"><a href="/user/dashboard/recipe/create"
-                        class="btn btn-primary btn-xs sm:btn-sm md:btn-sm lg:btn-sm hover:text-white transition-all duration-300 hover:scale-105">New
-                        Recipe</a></div>
+
             </div>
         </div>
+        @if (session()->has('message'))
+            <div class="alert alert-success shadow-none rounded-lg transition-all mt-2">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>{{ session('message') }}</span>
+                </div>
+            </div>
+        @endif
         @yield('content')
     </main>
 
@@ -76,6 +108,45 @@
     <script>
         feather.replace()
     </script>
+    <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box relative">
+            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-lg font-bold">Edit Profile</h3>
+            <p class="py-4">
+            <form method="POST" action="/user/dashboard/update">
+                @csrf
+                @method('PUT')
+                <label class="form-label">Name</label>
+                <input type="text" name="name" placeholder="Recipe Name" class="form-control"
+                    value="{{ auth()->user()->name }}" required>
+                @error('name')
+                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                @enderror
+
+                <label class="form-label">Username</label>
+                <input type="text" name="username" placeholder="Recipe Name" class="form-control"
+                    value="{{ auth()->user()->username }}" required>
+
+                @error('username')
+                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                @enderror
+
+                <label class="form-label">Email</label>
+                <input type="email" name="email" placeholder="Recipe Name" class="form-control"
+                    value="{{ auth()->user()->email }}" required>
+
+                @error('email')
+                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                @enderror
+
+
+                <input type="submit" class="btn btn-primary mt-3" value="Submit">
+            </form>
+            </p>
+        </div>
+    </div>
+
 </body>
 
 </html>

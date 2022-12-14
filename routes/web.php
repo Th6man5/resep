@@ -55,7 +55,14 @@ Route::group([
         ]);
     });
 
-    Route::get('/dashboard/edit', [ProfileController::class, 'edit']);
+    Route::get('/dashboard/settings', function (Recipe $recipe) {
+
+        return view('dashboard.userdashboard.setting.index', [
+            'title' => 'Settings',
+            'active' => 'home',
+        ]);
+    });
+    // Route::get('/dashboard/edit', [ProfileController::class, 'edit']);
     Route::put('/dashboard/update', [ProfileController::class, 'update']);
     // Route::get('/dashboard/edit', function (User $user) {
 

@@ -114,10 +114,10 @@ class RecipeDashboardController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         $editRecipe = $request->validate([
-            'recipe_name' => 'required',
+            'recipe_name' => 'required|max:255',
             'about' => 'required',
-            'portion' => 'required',
-            'time' => 'required',
+            'portion' => 'required|max:20',
+            'time' => 'required|max:20',
             'steps' => 'required',
             'ingredients' => 'required',
             'category_id' => 'required',

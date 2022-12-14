@@ -1,5 +1,10 @@
 @extends('dashboard.layouts.make')
 @section('content')
+    @if (session()->has('message'))
+        <div class="alert alert-error mt-3" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
     <form method="POST" action="/user/dashboard/update">
         @csrf
         @method('PUT')

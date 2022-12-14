@@ -42,10 +42,10 @@
                 <hr>
                 <h1 class="mt-3 text-2xl text-center  uppercase">Ingredients</h1>
                 <div class="grid grid-cols-2 gap-2 mx-10 text-center text-lg mt-3">
-                    <span class="bg-primary rounded-full">
+                    <span class="bg-primary rounded-md">
                         <i class="bi bi-clock-fill"></i> {{ $recipe->time }} Minutes
                     </span>
-                    <span class="bg-primary rounded-full">
+                    <span class="bg-primary rounded-md">
                         <i class="bi bi-person-fill"></i> {{ $recipe->portion }} Portion
                     </span>
                 </div>

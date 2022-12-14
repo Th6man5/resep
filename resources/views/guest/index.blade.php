@@ -19,7 +19,7 @@
 
             <div class="flex flex-row mt-2 ml-4 mr-4 items-center">
 
-                <div class="flex-1 ml-2 hover:text-blue-600 transition-all"><a href="/maker/{{ $user->id }}">My
+                <div class="flex-1 ml-2 hover:text-blue-600 transition-all"><a href="/maker/{{ $user->id }}">
                         Recipe</a>
                 </div>
 

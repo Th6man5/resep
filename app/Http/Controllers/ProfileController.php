@@ -59,7 +59,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('dashboard.userdashboard.profile.edit', [
+        return view('dashboard.index', [
             'title' => 'Edit Recipe',
             'active' => 'edit'
         ]);
@@ -76,8 +76,8 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:191', 'required'],
-            'username' => ['required', 'alpha_num'],
-            'email' => ['required', 'string', 'min:3', 'max:191', 'email'],
+            'username' => ['required', 'alpha_num', 'min:3', 'max:100',],
+            'email' => ['required', 'string', 'max:191', 'email'],
         ]);
 
         //Error but working (for now)
@@ -87,7 +87,7 @@ class ProfileController extends Controller
             'email' => $request->email,
         ]);
 
-        return back()->with('message', 'you have');
+        return back()->with('message', 'User Profile Successfully updated');
     }
 
     /**
