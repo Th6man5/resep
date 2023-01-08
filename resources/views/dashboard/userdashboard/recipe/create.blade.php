@@ -16,7 +16,8 @@
                             </div>
                         @enderror
 
-                        <img id="blah" src="#" />
+                        <img id="blah" src="#" class="hidden" />
+
                     </div>
                 </div>
                 <div class=" rounded border-2  shadow-md">
@@ -99,8 +100,10 @@
                                 </select></span>
                         </div>
                     </div>
-                    <div class="text-center mb-4">
-                        <input type="submit" class="btn btn-primary mt-3 rounded-md" value="Submit">
+                    <div class="text-right mb-4 mr-4">
+                        <input type="submit"
+                            class="btn bg-green1 text-black hover:bg-green2 hover:scale-105 btn-md mt-3 rounded-md"
+                            value="Submit">
                     </div>
                 </div>
             </div>
@@ -110,6 +113,11 @@
     </form>
     <script>
         imgInp.onchange = evt => {
+            const blah = document.getElementById('blah');
+
+            blah.classList.remove('hidden');
+            blah.classList.add('block');
+
             const [file] = imgInp.files
             if (file) {
                 blah.src = URL.createObjectURL(file)

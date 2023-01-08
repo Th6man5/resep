@@ -86,6 +86,8 @@ class admindashboardController
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
+        return redirect('admin/dashboard/recipe')->with('delete', 'Recipe is successfully deleted');
     }
 }

@@ -5,9 +5,7 @@
             <h3 class="mb-10 mt-6 text-4xl">Settings</h3>
             <form class="mb-4" action="/logout" method="post">
                 @csrf
-                <a class="btn btn-secondary">
-                    <button class="" type="submit">Logout</button>
-                </a>
+                <button class="btn btn-secondary " type="submit">Logout</button>
             </form>
         </div>
     </main>

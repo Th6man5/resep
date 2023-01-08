@@ -1,10 +1,8 @@
 <!doctype html>
-<html lang="en" data-theme="cupcake">
+<html lang="en" data-theme="cupcake" class="bg-white">
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/feather-icons"></script>
     <!-- Bootstrap CSS -->
 
@@ -41,7 +39,7 @@
         @error('email')
             <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
         @enderror
-        <div class="bg-base-100 border-2 p-6 rounded-lg text-black shadow-md">
+        <div class="bg-whitep p-6 rounded-lg text-black shadow-sm">
             <div class="flex">
                 <div class="md:flex-none sm:flex-1 p-2 m-3">
                     <div class="avatar">
@@ -50,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex-auto p-2 mt-20 mr-3">
+                <div class="flex-auto p-2 mt-10 mr-3">
                     <h3>{{ auth()->user()->name }}</h3>
                     <p><small class="text-muted">#{{ auth()->user()->username }}</small></p>
                 </div>
@@ -58,20 +56,20 @@
                 <div class="mt-5 mr-5">
 
                     <hr>
-                    <div class="py-2 mr-1"><label for="my-modal-3"
-                            class="btn btn-accent btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                    <div class="py-1 mr-1"><label title="Edit Profile" for="my-modal-3"
+                            class="btn text-black bg-yellow1 btn-sm hover:text-white hover:bg-yellow1 transition-all hover:scale-105 duration-300"><i
                                 class="bi bi-pen-fill "></i></label></div>
                     <hr>
-                    <div class="py-2  mr-1"><a href="/user/dashboard/report"
-                            class="btn btn-primary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                    <div class="py-1  mr-1"><a title="Dashboard" href="/user/dashboard/report"
+                            class="btn bg-green1 text-black btn-sm hover:text-white hover:bg-green1 transition-all hover:scale-105 duration-300"><i
                                 class="bi bi-bar-chart-fill"></i></a></div>
                     <hr>
-                    <div class="py-2  mr-1"><a href="/user/dashboard/settings"
-                            class="btn btn-secondary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                    <div class="py-1  mr-1"><a title="Settings" href="/user/dashboard/settings"
+                            class="btn bg-red2 text-black btn-sm hover:text-white hover:bg-red2 transition-all hover:scale-105 duration-300"><i
                                 class="bi bi-gear-fill"></i></a></div>
                     <hr>
-                    <div class="py-2 mr-1"><a href="/user/dashboard/recipe/create"
-                            class="btn btn-primary btn-sm hover:text-white transition-all duration-300 hover:scale-105"><i
+                    <div class="py-1 mr-1"><a title="Add Recipe" href="/user/dashboard/recipe/create"
+                            class="btn bg-blue1 text-black btn-sm hover:text-white hover:bg-blue1 transition-all duration-300 hover:scale-105"><i
                                 class="bi bi-plus-circle-fill"></i></a>
                     </div>
                     <hr>
@@ -111,21 +109,22 @@
     <input type="checkbox" id="my-modal-3" class="modal-toggle" />
     <div class="modal">
         <div class="modal-box relative">
-            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <label for="my-modal-3"
+                class="btn bg-red1 text-black hover:bg-red1 btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-lg font-bold">Edit Profile</h3>
-            <p class="py-4">
+            <p class="py-2">
             <form method="POST" action="/user/dashboard/update">
                 @csrf
                 @method('PUT')
                 <label class="form-label">Name</label>
-                <input type="text" name="name" placeholder="Recipe Name" class="form-control"
+                <input type="text" name="name" placeholder="Name" class="form-control p-1 rounded-lg "
                     value="{{ auth()->user()->name }}" required>
                 @error('name')
                     <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
                 @enderror
 
                 <label class="form-label">Username</label>
-                <input type="text" name="username" placeholder="Recipe Name" class="form-control"
+                <input type="text" name="username" placeholder="Username" class="form-control"
                     value="{{ auth()->user()->username }}" required>
 
                 @error('username')
@@ -133,7 +132,7 @@
                 @enderror
 
                 <label class="form-label">Email</label>
-                <input type="email" name="email" placeholder="Recipe Name" class="form-control"
+                <input type="email" name="email" placeholder="Example@gmail.com" class="form-control"
                     value="{{ auth()->user()->email }}" required>
 
                 @error('email')
@@ -141,7 +140,7 @@
                 @enderror
 
 
-                <input type="submit" class="btn btn-primary mt-3" value="Submit">
+                <input type="submit" class="btn btn-primary btn-sm mt-3" value="Submit">
             </form>
             </p>
         </div>

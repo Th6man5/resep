@@ -50,9 +50,10 @@
         </label>
     </div>
 
-    <div class="grid lg:grid-cols-2  gap-10">
+    <div class="grid lg:grid-cols-2  gap-10 ">
         @foreach ($recipe as $resep)
-            <div class="bg-base-100 border-2 rounded overflow-hidden shadow-md relative transition-all">
+            <div
+                class="bg-white hover:bg-whitep hover:text-black rounded overflow-hidden shadow-md hover:shadow-lg relative  transition-all">
                 @if ($resep->image)
                     <a href="/{{ $resep->id }}">
                         <img src="{{ asset('storage/' . $resep->image) }}" class="w-full h-32 sm:h-48 object-cover">
@@ -63,24 +64,24 @@
                             class="w-full h-32 sm:h-48 object-cover">
                     </a>
                 @endif
-                <div class="m-4">
-                    <div class="grid lg:grid-cols-2 items-center">
+                <div class="m-4 ">
+                    <div class="grid lg:grid-cols-2 items-center ">
                         <span class="font-bold block">
                             {{ $resep->recipe_name }}
                         </span>
                         <div class="flex lg:ml-auto">
 
                             <a href="/{{ $resep->id }}"
-                                class="btn btn-primary btn-sm mr-1 hover:text-white transition-all hover:scale-105 duration-300"><i
+                                class="btn bg-blue1 text-black btn-sm mr-1 hover:text-white hover:bg-blue1 transition-all hover:scale-105 duration-300"><i
                                     class="bi bi-eye-fill"></i></a>
                             <a href="/user/dashboard/recipe/{{ $resep->id }}/edit"
-                                class="btn btn-accent btn-sm mr-1 hover:text-white transition-all hover:scale-105 duration-300"><i
+                                class="btn bg-yellow1 text-black btn-sm mr-1 hover:text-white hover:bg-yellow1 transition-all hover:scale-105 duration-300"><i
                                     class="bi bi-pencil-square"></i></a>
                             <form action="/user/dashboard/recipe/{{ $resep->id }}" method="POST">
                                 @method('delete')
                                 @csrf
                                 <button
-                                    class="btn btn-secondary btn-sm hover:text-white transition-all hover:scale-105 duration-300"><i
+                                    class="btn bg-red1 text-black btn-sm mr-1 hover:text-white hover:bg-red1 transition-all hover:scale-105 duration-300"><i
                                         class="bi bi-trash-fill"></i></button>
                             </form>
                         </div>
@@ -88,7 +89,7 @@
 
                 </div>
                 <div
-                    class="bg-green-500 text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-600 hover:scale-95 transition-all">
+                    class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-95 transition-all">
                     <i class="bi bi-eye-fill text-lg"></i>
                     <p>
                         {{ $resep->reads }}

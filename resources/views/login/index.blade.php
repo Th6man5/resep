@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="mx-6 my-14 bg-base-100 p-10  shadow-xl border-solid border-2 rounded-lg ">
+    <div class="mx-6 my-14 bg-white p-10  shadow-lg rounded-lg ">
         @if (session()->has('loginError'))
             <div class="alert alert-error shadow-none rounded-lg transition-all">
                 <div>
@@ -57,14 +57,13 @@
 
                     <div class="flex justify-between items-center mb-6">
                         <a href="#!"
-                            class="text-green-600 hover:text-green-700 focus:text-green-700 active:text-green-800 duration-200 transition ease-in-out">Forgot
+                            class="text-green1 hover:text-green2 focus:text-green-700 active:text-green-800 duration-200 transition ease-in-out">Forgot
                             password?</a>
                     </div>
 
                     <!-- Submit button -->
                     <button type="submit"
-                        class="inline-block px-7 py-3 bg-green-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-                        data-mdb-ripple="true" data-mdb-ripple-color="light">
+                        class="inline-block px-7 py-3 bg-green1 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-green2 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green2 active:shadow-lg transition duration-150 ease-in-out w-full">
                         Sign in
                     </button>
                     <p class="text-sm font-semibold mt-2 pt-1 mb-0">

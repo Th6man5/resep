@@ -15,6 +15,7 @@ use App\Http\Controllers\UserDashboardController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Http\Controllers\admin\admindashboardController;
 use App\Http\Controllers\user\RecipeDashboardController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,16 +63,8 @@ Route::group([
             'active' => 'home',
         ]);
     });
-    // Route::get('/dashboard/edit', [ProfileController::class, 'edit']);
-    Route::put('/dashboard/update', [ProfileController::class, 'update']);
-    // Route::get('/dashboard/edit', function (User $user) {
 
-    //     return view('dashboard.userdashboard.profile.index', [
-    //         'title' => 'Edit Profile',
-    //         'active' => 'home',
-    //         'user' => $user
-    //     ]);
-    // });
+    Route::put('/dashboard/update', [ProfileController::class, 'update']);
 
     Route::resource('/dashboard/recipe', RecipeDashboardController::class);
 
@@ -101,7 +94,10 @@ Route::group([
             'active' => 'dashboard'
         ]);
     });
-    Route::resource('/dashboard/recipe', admindashboardController::class);
+
+    Route::resource('/dashboard/recipe', admindashboardController::class)->except(['show', 'update', 'edit', 'store', 'create']);
+
+    // Route::resource('/dashboard/users', admindashboardUserController::class);
 });
 
 

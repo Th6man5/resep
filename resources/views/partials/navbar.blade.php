@@ -14,7 +14,7 @@
     } */
 </style>
 
-<div class="navbar bg-green-400 sticky top-0 z-50 shadow" id="navbar ">
+<div class="navbar sticky top-0 z-50 shadow" id="navbar " style="background-color: #24F577">
     <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl" href="/">Mealsup</a>
     </div>
@@ -23,7 +23,10 @@
 
 
             @auth
-                <li class="{{ $active === 'recipe' ? 'text-white' : '' }}"><a href="/user/dashboard/recipe">Recipe</a></li>
+                <li class="rounded-lg {{ $active === 'recipe' ? 'text-white' : '' }}"><a
+                        href="/user/dashboard/recipe">Recipe</a></li>
+                <li class="rounded-lg {{ $active === 'recipe' ? 'text-white' : '' }}"><a
+                        href="/admin/dashboard/recipe">admin</a></li>
                 <li class="text-white"><a>{{ auth()->user()->name }}</a></li>
                 <div class="dropdown dropdown-end me-3">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -48,7 +51,8 @@
                 </div>
             @else
                 <li class="nav-item">
-                    <a href="/login" class="nav-link {{ $active === 'login' ? 'active' : '' }}"> Login</a>
+                    <a href="/login" class="nav-link rounded-lg{{ $active === 'login' ? 'text-white bg-green1 ' : '' }}">
+                        Login</a>
                 </li>
             </ul>
         @endauth

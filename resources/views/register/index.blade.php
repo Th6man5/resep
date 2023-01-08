@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="mx-6 my-14 bg-base-100 p-10  shadow-xl border-solid border-2 rounded-lg">
+    <div class="mx-6 my-14 bg-white p-10  shadow-lg rounded-lg">
         @if (session()->has('loginError'))
             <div class="alert alert-error shadow-none rounded-lg transition-all">
                 <div>
@@ -61,7 +61,7 @@
                             class="form-control block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
                             placeholder="Password" required value="{{ old('password') }}" />
                         @error('password')
-                            <div class="invalid-feedback">
+                            <div class="text-gray-700">
                                 {{ $message }}
                             </div>
                         @enderror
@@ -69,7 +69,7 @@
 
                     <!-- Submit button -->
                     <button type="submit"
-                        class="inline-block px-7 py-3 bg-green-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                        class="inline-block px-7 py-3 bg-green1 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-green2 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green2 active:shadow-lg transition duration-150 ease-in-out w-full"
                         data-mdb-ripple="true" data-mdb-ripple-color="light">
                         Sign up
                     </button>

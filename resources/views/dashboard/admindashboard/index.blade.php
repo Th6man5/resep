@@ -1,20 +1,56 @@
 @extends('dashboard.layouts.admin.main')
-
 @section('container')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Welcome back, {{ auth()->user()->name }}</h1>
-        <form action="/logout" method="post">
-            @csrf
-            <button type="submit" class="nav-link px-3 bg-dark border-0 text-light">Logout <span data-feather="log-out"
-                    class="align-text-bottom"></span></button>
-        </form>
-    </div>
-    <div class="container">
-        <h1>
-            Number of User: {{ $user->count() }}
-        </h1>
-        <h1>
-            Number of Recipes: {{ $recipe->count() }}
-        </h1>
+    <div id="content" class="bg-black col-span-8 rounded-lg p-6">
+        <div>
+            <h1 class="font-bold py-4 uppercase">Dashboard</h1>
+            <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <i class="bi bi-people text-3xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-indigo-300 text-sm font-medium uppercase leading-4">Users</p>
+                            <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $user->count() }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <i class="bi bi-card-text text-3xl"></i>
+                        </div>
+                        <div>
+                            <p
+                                class="text-teal-300
+                                text-sm font-medium uppercase leading-4">
+                                Total Recipes</p>
+                            <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $recipe->count() }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <i class="bi bi-exclamation-octagon text-3xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-red-400
+                                text-sm font-medium uppercase leading-4">
+                                Reports</p>
+                            <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>Belum</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 @endsection

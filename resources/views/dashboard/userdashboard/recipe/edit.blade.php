@@ -98,7 +98,7 @@
                             <span class="block text-xl ml-2 text-black">
                                 Steps
                             </span>
-                            <textarea type="text" name="steps" placeholder="Burn for 30 minutes in the oven" required
+                            <textarea type="text" name="steps" rows="10" placeholder="Burn for 30 minutes in the oven" required
                                 class="mt-1 px-2 py-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 ">{{ $recipe->steps }}</textarea>
                         </div>
 

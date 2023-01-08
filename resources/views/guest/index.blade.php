@@ -11,7 +11,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex-auto p-2 mt-5 mr-3">
+                <div class="flex-auto p-2 mt-10 mr-3">
                     <h3>{{ $user->name }}</h3>
                     <p><small class="text-muted">#{{ $user->username }}</small></p>
                 </div>

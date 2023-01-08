@@ -1,43 +1,51 @@
 <!doctype html>
 <html lang="en">
 
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- component -->
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    @vite('resources/css/app.css')
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @supports (font-variation-settings: normal) {
+            :root {
+                font-family: 'Inter var', sans-serif;
+            }
+        }
+    </style>
+
+
     <title>MealsUP | {{ $title }}</title>
+    @vite('resources/css/app.css')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-
-    <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-    @include('dashboard.layouts.admin.header')
-
-    <div class="container-fluid">
-        <div class="row">
+    <div class="antialiased w-full min-h-screen text-slate-300 relative py-4" style="background-color: #DAEEFA">
+        <div class="grid grid-cols-12 mx-auto gap-2   max-w-7xl px-2">
             @include('dashboard.layouts.admin.sidebar')
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                @yield ('container')
-            </main>
+            @yield('container')
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
 
-    <script src="/js/dashboard.js"></script>
 </body>
 
 </html>
