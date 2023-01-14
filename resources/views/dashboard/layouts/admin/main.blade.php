@@ -33,8 +33,8 @@
 
 <body>
 
-    <div class="antialiased w-full min-h-screen text-slate-300 relative py-4" style="background-color: #DAEEFA">
-        <div class="grid grid-cols-12 mx-auto gap-2   max-w-7xl px-2">
+    <div class="antialiased w-full min-h-screen text-slate-300 relative " style="background-color: #DAEEFA">
+        <div class="grid grid-cols-12 min-h-screen">
             @include('dashboard.layouts.admin.sidebar')
 
             @yield('container')

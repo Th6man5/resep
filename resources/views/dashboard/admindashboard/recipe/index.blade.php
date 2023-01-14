@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.admin.main')
 @section('container')
-    <div id="content" class="bg-black col-span-8 rounded-lg p-6">
+    <div id="content" class="bg-black col-span-9  p-6">
         <div>
             <h1 class="font-bold py-4 uppercase">Recipes Data</h1>
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -38,11 +38,11 @@
         </div>
         <div class="py-6">
 
-            <div id="last-users">
+            <div>
                 <h1 class="font-bold py-4 uppercase">Recipes</h1>
-                <div class="overflow-x-scroll">
+                <div class="overflow-x-auto">
                     <table class="w-full whitespace-nowrap">
-                        <thead class="bg-white/10">
+                        <thead class="bg-white/10 ">
                             <th class="text-left py-3 px-2 rounded-l-lg">#</th>
                             <th class="text-left py-3 px-2">Recipe Name</th>
                             <th class="text-left py-3 px-2">Username</th>
@@ -84,6 +84,7 @@
 
 
                     </table>
+                    {{ $recipe->links() }}
                 </div>
             </div>
         </div>

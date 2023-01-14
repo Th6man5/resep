@@ -13,9 +13,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Montserrat:wght@501&display=swap');
 
-        .h1up {
-            color: #cc080b;
-        }
 
         * {
             font-family: 'Montserrat', sans-serif;

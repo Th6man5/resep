@@ -9,7 +9,7 @@ use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Storage;
 
 class RecipeDashboardController extends Controller
 {
@@ -113,9 +113,10 @@ class RecipeDashboardController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        $editRecipe = $request->validate([
+        $rules = [
+            'image' => 'required|image|file|max:3072',
             'recipe_name' => 'required|max:255',
-            'about' => 'required',
+            'about' => 'required|max:255',
             'portion' => 'required|max:20',
             'time' => 'required|max:20',
             'steps' => 'required',
@@ -123,9 +124,23 @@ class RecipeDashboardController extends Controller
             'category_id' => 'required',
             'country_id' => 'required',
 
-        ]);
-        Recipe::find($recipe->id)->update($editRecipe);
+        ];
 
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('recipes-images');
+        }
+
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Recipe::where('id', $recipe->id)
+            ->update($validatedData);
+
+
+
+        // Recipe::find($recipe->id)->update($EditRecipe);
+        // dd($EditRecipe);
         return redirect('/user/dashboard/recipe')->with('edit', 'Data Berhasil Diperbarui!');
     }
 

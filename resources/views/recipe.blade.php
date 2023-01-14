@@ -24,8 +24,8 @@
             <div class="grid grid-cols-4 gap-2 mx-10 p-6 ">
                 <button
                     class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">Save</button>
-                <button
-                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">Print</button>
+                <a href="" @click.prevent="printme" target="_blank"
+                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">Print</a>
                 <button onclick="copyText()"
                     class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">Share</button>
                 <button class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">
@@ -53,13 +53,13 @@
 
             <h1 class="mt-3 text-2xl text-center  uppercase">Ingredients</h1>
 
-            <div class="grid grid-cols-2 mx-10 text-center text-lg mt-3 p-1 border-2 border-black rounded-md">
+            <div class="grid grid-cols-2 mx-10 text-center text-lg mt-3 p-1 rounded-md">
 
-                <span class=" rounded-l-md p-1 bg-skin">
+                <span class=" rounded-l-md p-1 bg-black text-white">
                     <i class="bi bi-clock-fill"></i> {{ $recipe->time }} Minutes
                 </span>
 
-                <span class="bg-skin rounded-r-md p-1">
+                <span class="rounded-r-md p-1 bg-black text-white">
                     <i class="bi bi-person-fill"></i> {{ $recipe->portion }} Portion
                 </span>
             </div>
@@ -78,69 +78,22 @@
                     navigator.clipboard.writeText("http://127.0.0.1:8000/{{ $recipe->id }}");
                     alert("Text Copied!");
                 }
+
+                const app = new Vue({
+                    el: '#app',
+                    router,
+                    data: {
+                        search: ''
+                    },
+                    methods: {
+                        searchit: _.debounce(() => {
+                            Fire.$emit('searching');
+                        }, 1000),
+
+                        printme() {
+                            window.print();
+                        }
+                    },
+                });
             </script>
-
-
-
-            {{-- <div class="container-sm">
-        <div class="row">
-            <div class="col-md-6" style="margin-bottom: -3px">
-                <div class="position-sticky" style="top: 100px">
-                    <div class="card shadow-sm" id="img">
-                        @if ($recipe->image)
-                            <img src="{{ asset('storage/' . $recipe->image) }}" class="card-img-top" alt="...">
-                        @else
-                            <img src="https://source.unsplash.com/500x500/?food" class="card-img-top" alt="...">
-                        @endif
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 text-center">
-                <div class="card rounded-0 mb-3 shadow-sm ">
-                    <div class="card-body">
-                        <a href="#" class="btn btn-outline-warning">Save Recipe</a>
-                        <a href="#" class="btn btn-outline-secondary">Share</a>
-                        <a href="#" class="btn btn-outline-secondary">Print</a>
-                        <a href="#" class="btn btn-outline-danger">Report</a>
-                        <hr>
-                        <h5>{{ $recipe->recipe_name }}</h5>
-                        <div class="d-flex justify-content-center mb-1" style="font-size: 20px">
-                            <div class="me-1"><a href="/?maker={{ $recipe->maker->name }}">{{ $recipe->maker->name }}</a>
-                            </div>
-                            <div class="text-muted">#{{ $recipe->maker->username }}</div>
-                        </div>
-                        <div class="me-1">{{ $recipe->about }}</div>
-                    </div>
-
-
-                </div>
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-body">
-                        <h5>Ingredients</h5>
-                        <div class="d-flex justify-content-center">
-                            <p class="me-5"><i class="bi bi-clock-fill"></i> {{ $recipe->time }}</p>
-                            <p><i class="bi bi-person-fill"></i> {{ $recipe->portion }} Portion</p>
-                        </div>
-
-                        <p class="text-start">{{ $recipe->ingredients }}</p>
-                    </div>
-                </div>
-
-
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-body">
-                        <h5>Steps</h5>
-
-                        <p class="text-start">{{ $recipe->steps }}</p>
-                    </div>
-                </div>
-
-
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-body">
-                        <h5>coba</h5>
-
-                        {{-- <p class="text-start">{{ $ingredients->na }}</p> --}}
         @endsection

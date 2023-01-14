@@ -16,7 +16,7 @@
 
         <div class="grid grid-cols-3  mb-10 gap-4 text-center mt-5">
             <div>
-                <div class="circle bg-green-700 hover:bg-green-800 ">
+                <div class="circle bg-green1 hover:bg-green3 ">
                     <i class="bi bi-bookmark-fill text-white" style="font-size: 2rem;"></i>
                 </div>
 
@@ -24,14 +24,14 @@
                 <p class="m-0">Total: {{ $view }} </p>
             </div>
             <div>
-                <div class="circle bg-green-700 hover:bg-green-800 ]">
+                <div class="circle bg-green1 hover:bg-green3">
                     <i class="bi bi-eye-fill text-white" style="font-size: 2rem;"></i>
                 </div>
                 <p class="m-0">Views</p>
                 <p class="m-0">Total: {{ $view }} </p>
             </div>
             <div>
-                <div class="circle bg-green-700 hover:bg-green-800 ">
+                <div class="circle bg-green1 hover:bg-green3 ">
                     <i class="bi bi-clipboard2-fill text-white" style="font-size: 2rem;"></i>
                 </div>
                 <p class="m-0">Recipe</p>
@@ -43,7 +43,7 @@
         <hr class="mb-5">
         {{-- Throphies Icon --}}
         <div class="text-center">
-            <div class="circle bg-green-700 hover:bg-green-800 ">
+            <div class="circle bg-green1 hover:bg-green3 ">
                 <i class="bi bi-trophy-fill" style="font-size: 2rem; color: white;"></i>
             </div>
             <p class="text-xl uppercase mb-5 mt-1">Top 3</p>
@@ -74,7 +74,7 @@
 
                     </div>
                     <div
-                        class="bg-green-500 text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-600 hover:scale-95 transition-all">
+                        class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all">
                         <i class="bi bi-eye-fill text-lg"></i>
                         <p>
                             {{ $recipe[0]->reads }}
@@ -106,7 +106,7 @@
                         </a>
                     </div>
                     <div
-                        class="bg-green-500 text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-600 hover:scale-95 transition-all">
+                        class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all">
                         <i class="bi bi-eye-fill text-lg"></i>
                         <p>
                             {{ $recipe[1]->reads }}
@@ -139,7 +139,7 @@
 
                     </div>
                     <div
-                        class="bg-green-500 text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-600 hover:scale-95 transition-all">
+                        class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all">
                         <i class="bi bi-eye-fill text-lg"></i>
                         <p>
                             {{ $recipe[2]->reads }}
@@ -179,7 +179,7 @@
 
                         </div>
                         <div
-                            class="bg-green-500 text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-green-600 hover:scale-95 transition-all">
+                            class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all">
                             <i class="bi bi-eye-fill text-lg"></i>
                             <p>
                                 {{ $resep->reads }}

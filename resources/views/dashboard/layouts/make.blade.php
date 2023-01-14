@@ -32,8 +32,9 @@
 
     @include('partials.navbar')
 
-
-    @yield('content')
+    <main class="px-16 py-6 ">
+        @yield('content')
+    </main>
 
 
     <script>

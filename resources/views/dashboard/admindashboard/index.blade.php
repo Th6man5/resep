@@ -1,7 +1,10 @@
 @extends('dashboard.layouts.admin.main')
 @section('container')
-    <div id="content" class="bg-black col-span-8 rounded-lg p-6">
+    <div id="content" class="bg-black col-span-9  p-6">
         <div>
+            {{-- <div class="ml-auto">
+                <a class="btn btn-primary" href="/">Home</a>
+            </div> --}}
             <h1 class="font-bold py-4 uppercase">Dashboard</h1>
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white/10 p-6 rounded-lg">

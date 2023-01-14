@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class UserDashboardController extends Controller
+class admindashboardUserController
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,10 @@ class UserDashboardController extends Controller
      */
     public function index(User $user)
     {
-        return view('dashboard.user.index', [
-            'title' => 'Profile',
-            'active' => 'user',
+        return view('dashboard.admindashboard.user.index', [
+            'title' => 'User List',
+            'user' => User::all(),
+            'active' => 'user'
 
         ]);
     }
@@ -62,14 +61,9 @@ class UserDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Auth $auth, User $user)
+    public function edit($id)
     {
-        $user = User::findOrFail(Auth::user()->id);
-        return view('dashboard.user.edit', [
-            'user' => $user,
-            'active' => 'user',
-            'title' => 'Edit User'
-        ]);
+        //
     }
 
     /**
@@ -79,20 +73,9 @@ class UserDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $ProfileEdit = $request->validate([
-            'name' => 'required|min:3|max:255',
-            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255'
-
-        ]);
-
-        $ProfileEdit['password'] = Hash::make($ProfileEdit['password']);
-        User::find($user->id)->update($ProfileEdit);
-
-        return redirect('dashboard/user')->with('edit', 'Data Berhasil Diperbarui!');
+        //
     }
 
     /**
@@ -103,6 +86,8 @@ class UserDashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('admin/dashboard/user')->with('delete', 'User is successfully deleted');
     }
 }

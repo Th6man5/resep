@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Recipe::class);
     }
 
+    public function maker()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function editUser()
     {
         return view('dashboard.userdashboard.profile.edit')->with('user', Auth::user());

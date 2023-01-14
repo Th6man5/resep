@@ -17,7 +17,7 @@ class admindashboardController
     {
         return view('dashboard.admindashboard.recipe.index', [
             'title' => 'Recipe List',
-            'recipe' => Recipe::orderBy('reads', 'DESC')->get(),
+            'recipe' => Recipe::orderBy('reads', 'DESC')->paginate(10)->onEachSide(1)->fragment('recipe'),
             'active' => 'recipe'
 
         ]);

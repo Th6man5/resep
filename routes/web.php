@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDashboardController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Http\Controllers\admin\admindashboardController;
+use App\Http\Controllers\admin\admindashboardUserController;
 use App\Http\Controllers\user\RecipeDashboardController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -96,6 +97,8 @@ Route::group([
     });
 
     Route::resource('/dashboard/recipe', admindashboardController::class)->except(['show', 'update', 'edit', 'store', 'create']);
+
+    Route::resource('/dashboard/user', admindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
     // Route::resource('/dashboard/users', admindashboardUserController::class);
 });
