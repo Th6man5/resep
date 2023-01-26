@@ -19,27 +19,12 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $title = '';
 
-        if (request('category')) {
-            $category = Category::firstWhere('name', request('category'));
-            $title = ' in ' . $category->name;
-        }
-
-        if (request('maker')) {
-            $maker = User::firstWhere('name', request('maker'));
-            $title = ' by ' . $maker->name;
-        }
-
-        if (request('country')) {
-            $country = Country::firstWhere('name', request('country'));
-            $title = ' in ' . $country->name;
-        }
 
         return view('home', [
-            "title" => "Home" . $title,
+            "title" => "Home",
             "active" => 'home',
-            "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'category', 'maker', 'country']))->paginate(18)->withQueryString()->onEachSide(2)->fragment('recipe'),
+            "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'maker']))->paginate(18)->withQueryString()->onEachSide(2)->fragment('recipe'),
 
         ]);
     }

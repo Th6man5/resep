@@ -12,24 +12,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDashboardController;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Http\Controllers\admin\admindashboardController;
 use App\Http\Controllers\admin\admindashboardUserController;
+use App\Http\Controllers\admin\admindashboardCategoryController;
 use App\Http\Controllers\user\RecipeDashboardController;
 use App\Models\Category;
 use App\Models\Country;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function (Recipe $recipe) {
     return view('home', [
@@ -104,7 +94,7 @@ Route::group([
 
     Route::resource('/dashboard/user', admindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
-    // Route::resource('/dashboard/users', admindashboardUserController::class);
+    Route::resource('/dashboard/category', admindashboardCategoryController::class)->except(['show', 'update', 'edit']);
 });
 
 
@@ -121,22 +111,3 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/{recipe:id}', [RecipeController::class, 'show']);
-
-// Route::resource('/dashboard/user', UserDashboardController::class)
-//     ->middleware('auth');
-
-// Route::get('/makers/{maker:username}', function (User $maker) {
-//     return view('recipe', [
-//         'title' => "Post By : $maker->name",
-//         'active' => 'recipe',
-//         'recipe' => $maker->recipe->load('category', 'maker'),
-//     ]);
-// });
-
-// Route::get('/categories/{category:name}', function ($category) {
-//     return view('recipe', [
-//         'title' => " Post by Category : $category->name",
-//         'active' => 'categories',
-//         'recipe' => $category->recipe->load('category', 'maker'),
-//     ]);
-// });

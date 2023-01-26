@@ -26,7 +26,7 @@
 
 
     @include('partials.navbar')
-    <main class="sm:px-24 sm:py-10 ">
+    <main class="sm:px-24 sm:py-10">
         @error('name')
             <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
         @enderror

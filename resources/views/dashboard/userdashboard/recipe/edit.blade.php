@@ -118,7 +118,8 @@
                                     @foreach ($category as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                     @endforeach
-                                </select></span>
+                                </select>
+                            </span>
 
                             <span class="block text-lg ml-2 text-black">
                                 Country <i class="bi bi-flag-fill"></i>

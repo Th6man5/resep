@@ -23,7 +23,7 @@ class RecipeDashboardController extends Controller
         return view('dashboard.userdashboard.recipe.index', [
             'title' => 'Recipe Dashboard',
             'active' => 'recipe',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->latest()->paginate(10)->onEachSide(1)->fragment('recipe'),
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->filter(request(['search']))->latest()->paginate(10)->onEachSide(1)->fragment('recipe'),
         ]);
     }
 

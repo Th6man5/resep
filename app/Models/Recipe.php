@@ -3,46 +3,31 @@
 namespace App\Models;
 
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Country;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Recipe extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['category', 'country', 'maker'];
+
 
     public function scopeFilter($query, array $filters)
     {
-
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('recipe_name', 'iLike', '%' . $search . '%')->orWhere('ingredients', 'ilike', '%' . $search . '%');
+            $query->where('recipe_name', 'iLike', '%' . $search . '%')
+                ->orWhere('ingredients', 'iLike', '%' . $search . '%')
+                ->orWhereHas('maker', function ($query) use ($search) {
+                    $query->where('name', 'iLike', '%' . $search . '%')->orWhere('username', 'iLike', '%' . $search . '%');
+                });
         });
-
-
-        $query->when($filters['category'] ?? false, function ($query, $category) {
-            return $query->whereHas('category', function ($query) use ($category) {
-                $query->where('name', $category);
-            });
-        });
-
-        $query->when($filters['country'] ?? false, function ($query, $country) {
-            return $query->whereHas('country', function ($query) use ($country) {
-                $query->where('name', $country);
-            });
-        });
-
-        $query->when(
-            $filters['maker'] ?? false,
-            fn ($query, $maker) =>
-            $query->whereHas(
-                'maker',
-                fn ($query) =>
-                $query->where('name', $maker)
-            )
-        );
     }
+
+
 
     public function country()
     {

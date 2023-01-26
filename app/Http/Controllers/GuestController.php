@@ -17,7 +17,7 @@ class GuestController extends Controller
     public function index($id)
     {
         $user = User::find($id);
-        $recipe = $user->recipes()->latest()->paginate(10)->onEachSide(1)->fragment('recipe');
+        $recipe = $user->recipes()->filter(request(['search']))->latest()->paginate(10)->onEachSide(1)->fragment('recipe');
 
         return view(
             'guest.index',

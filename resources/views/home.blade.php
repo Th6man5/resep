@@ -120,12 +120,7 @@
     @if ($recipe->count())
         <div class="justify-center mb-10">
             <form action="/">
-                @if (request('category'))
-                    <input type="hidden" name="category" value="{{ request('category') }}">
-                @endif
-                @if (request('maker'))
-                    <input type="hidden" name="maker" value="{{ request('maker') }}">
-                @endif
+
                 <div class="input-group mb-3 justify-center">
                     <label class="relative block ">
                         <input type="text" placeholder="Search..." name="search"
@@ -133,6 +128,8 @@
                     </label>
                     <button class="btn bg-green1 text-white border-none hover:bg-green3 " type="submit">Search</button>
                 </div>
+
+
             </form>
         </div>
 
@@ -172,23 +169,15 @@
 
         </div>
     @else
+        {{-- Not Found View --}}
+
         <div class="justify-center">
             <form action="/">
-                @if (request('category'))
-                    <input type="hidden" name="category" value="{{ request('category') }}">
-                @endif
-                @if (request('maker'))
-                    <input type="hidden" name="maker" value="{{ request('maker') }}">
-                @endif
-                @if (request('country'))
-                    <input type="hidden" name="country" value="{{ request('country') }}">
-                @endif
                 @if (request('search'))
                     <div class="input-group mb-3 justify-center">
                         <label class="relative block ">
                             <input type="text" placeholder="Search..." name="search"
-                                class="input input-bordered rounded-none w-full max-w-xs"
-                                value="{{ request('search') }}" />
+                                class="input input-bordered rounded-none w-full max-w-xs" value="{{ request('search') }}" />
                         </label>
                         <button class="btn bg-green1 text-white border-none hover:bg-green3" type="button">Search</button>
                     </div>
@@ -198,7 +187,7 @@
 
         <p class="text-center text-xl">Not Found...</p>
 
-        <svg width="400" height="350" viewBox="0 0 798 835" class="m-auto mt-20" fill="none"
+        <svg viewBox="0 0 798 835" class="m-auto mt-20 md:w-3/12 w-8/12 h-full" fill="none"
             xmlns="http://www.w3.org/2000/svg">
 
             <path id="below"

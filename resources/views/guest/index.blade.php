@@ -28,46 +28,54 @@
         <span class="text-lg">
             {{ $recipe->total() }} Recipe
         </span>
-        <label class="relative block justify-self-end">
-            <input type="text" placeholder="Type here" class="input input-bordered rounded-md w-full max-w-xs" />
-        </label>
+        <form action="/maker/{{ $user->id }}" class="relative block justify-self-end">
+            <label>
+                <input type="text" name="search" placeholder="Search"
+                    class="input input-bordered rounded-md w-full max-w-xs" value="{{ request('search') }}" />
+            </label>
+        </form>
     </div>
-
-    <div class="grid lg:grid-cols-2  gap-10 ">
-        @foreach ($recipe as $resep)
-            <div
-                class="bg-white hover:bg-whitep hover:text-black rounded overflow-hidden shadow-md hover:shadow-lg relative  transition-all">
-                @if ($resep->image)
-                    <a href="/{{ $resep->id }}">
-                        <img src="{{ asset('storage/' . $resep->image) }}" class="w-full h-32 sm:h-48 object-cover">
-                    </a>
-                @else
-                    <a href="/{{ $resep->id }}">
-                        <img src="https://source.unsplash.com/1000x1000/?{{ $resep->recipe_name }}"
-                            class="w-full h-32 sm:h-48 object-cover">
-                    </a>
-                @endif
-                <div class="m-4 ">
-                    <div class="grid lg:grid-cols-2 items-center ">
-                        <span class="font-bold block">
-                            {{ $resep->recipe_name }}
-                        </span>
-                    </div>
-                </div>
+    @if ($recipe->count())
+        <div class="grid lg:grid-cols-2  gap-10 ">
+            @foreach ($recipe as $resep)
                 <div
-                    class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center 
+                    class="bg-white hover:bg-whitep hover:text-black rounded overflow-hidden shadow-md hover:shadow-lg relative  transition-all">
+                    @if ($resep->image)
+                        <a href="/{{ $resep->id }}">
+                            <img src="{{ asset('storage/' . $resep->image) }}" class="w-full h-32 sm:h-48 object-cover">
+                        </a>
+                    @else
+                        <a href="/{{ $resep->id }}">
+                            <img src="https://source.unsplash.com/1000x1000/?{{ $resep->recipe_name }}"
+                                class="w-full h-32 sm:h-48 object-cover">
+                        </a>
+                    @endif
+                    <div class="m-4 ">
+                        <div class="grid lg:grid-cols-2 items-center ">
+                            <span class="font-bold block">
+                                {{ $resep->recipe_name }}
+                            </span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center 
                      hover:bg-skin2 hover:scale-95 transition-all">
-                    <i class="bi bi-eye-fill text-lg"></i>
-                    <p>
-                        {{ $resep->reads }}
-                    </p>
+                        <i class="bi bi-eye-fill text-lg"></i>
+                        <p>
+                            {{ $resep->reads }}
+                        </p>
+                    </div>
+
                 </div>
+            @endforeach
 
-            </div>
-        @endforeach
-
-    </div>
-    {{ $recipe->links() }}
+        </div>
+        <div class="mt-5 mb-10">
+            {{ $recipe->render() }}
+        </div>
+    @else
+        <p class="text-center sm:text-2xl font-bold">No Recipe Found</p>
+    @endif
 
 
 
