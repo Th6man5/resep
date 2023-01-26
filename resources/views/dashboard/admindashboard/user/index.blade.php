@@ -41,7 +41,7 @@
 
             <div id="last-users">
                 <h1 class="font-bold py-4 uppercase">Recipes</h1>
-                <div class="overflow-x-scroll">
+                <div class="overflow-x-auto">
                     <table class="w-full whitespace-nowrap mb-5">
                         <thead class="bg-white/10">
                             <th class="text-left py-3 px-2 rounded-l-lg">#</th>
@@ -81,9 +81,8 @@
                                         </form>
                                     </div>
                         @endforeach
-
-
                     </table>
+                    {{ $user->links() }}
                 </div>
             </div>
         </div>

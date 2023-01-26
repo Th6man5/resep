@@ -14,7 +14,7 @@
                                 text-sm font-medium uppercase leading-4">
                                 Total Recipes</p>
                             <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
-                                <span>{{ $recipe->count() }}</span>
+                                <span>{{ $recipe->total() }}</span>
                             </p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
 
             <div>
                 <h1 class="font-bold py-4 uppercase">Recipes</h1>
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto overflow-hidden">
                     <table class="w-full whitespace-nowrap">
                         <thead class="bg-white/10 ">
                             <th class="text-left py-3 px-2 rounded-l-lg">#</th>
@@ -52,7 +52,7 @@
                         @foreach ($recipe as $resep)
                             <tr class="border-b border-gray-700">
                                 <td class="py-3 px-2 font-bold">
-                                    {{ $loop->iteration }}
+                                    {{ $loop->iteration + $recipe->firstItem() - 1 }}
                                 </td>
                                 <td class="py-3 px-2">{{ $resep->recipe_name }}</td>
                                 <td class="py-3 px-2">{{ $resep->maker->username }}</td>
@@ -90,29 +90,3 @@
         </div>
     </div>
 @endsection
-
-{{-- <h1 class="mb-5">
-    Number of Recipes: {{ $recipe->count() }}
-</h1>
-<div class="table-responsive ">
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Recipe Name</th>
-                <th scope="col">Username</th>
-                <th scope="col">Reads</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            @foreach ($recipe as $resep)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $resep->recipe_name }}</td>
-                    <td>{{ $resep->maker->username }}</td>
-                    <td>{{ $resep->reads }}</td>
-
-
-        </tbody>
-    </table>
-</div> --}}

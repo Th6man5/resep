@@ -26,7 +26,7 @@
 
     <div class="grid grid-cols-2 m-4 items-center">
         <span class="text-lg">
-            {{ $recipe->count() }} Recipe
+            {{ $recipe->total() }} Recipe
         </span>
         <label class="relative block justify-self-end">
             <input type="text" placeholder="Type here" class="input input-bordered rounded-md w-full max-w-xs" />
@@ -67,6 +67,7 @@
         @endforeach
 
     </div>
+    {{ $recipe->links() }}
 
 
 

@@ -17,7 +17,7 @@ class Recipe extends Model
     {
 
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('recipe_name', 'like', '%' . $search . '%');
+            return $query->where('recipe_name', 'iLike', '%' . $search . '%')->orWhere('ingredients', 'ilike', '%' . $search . '%');
         });
 
 
@@ -35,9 +35,11 @@ class Recipe extends Model
 
         $query->when(
             $filters['maker'] ?? false,
-            fn ($query, $maker) => $query->whereHas(
+            fn ($query, $maker) =>
+            $query->whereHas(
                 'maker',
-                fn ($query) => $query->where('name', $maker)
+                fn ($query) =>
+                $query->where('name', $maker)
             )
         );
     }
@@ -57,10 +59,7 @@ class Recipe extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // public function ingredient()
-    // {
-    //     return $this->belongsToMany(Ingredients::class);
-    // }
+
 
     public function getRouteKeyName()
     {

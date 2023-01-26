@@ -1,5 +1,190 @@
 @extends('layouts.main')
 @section('content')
+    <style>
+        #arm1 {
+            animation: arm 5s ease-in-out infinite alternate;
+            transform-origin: top;
+            transform-box: fill-box;
+
+
+        }
+
+        #shoulder1 {
+            animation: arm 5s ease-in-out infinite alternate;
+            transform-origin: top;
+            transform-box: fill-box;
+        }
+
+        @keyframes arm {
+            from {
+                transform: rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateZ(8deg);
+            }
+        }
+
+        #shoulder2 {
+            animation: arm2 3s ease-in-out infinite alternate;
+            transform-origin: top;
+            transform-box: fill-box;
+        }
+
+        #arm2 {
+            animation: arm2 3s ease-in-out infinite alternate;
+            transform-origin: top;
+            transform-box: fill-box;
+        }
+
+        @keyframes arm2 {
+            from {
+                transform: rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateZ(6deg);
+            }
+        }
+
+        #hair {
+            animation: hair 2s ease-in-out infinite alternate;
+            transform-origin: top;
+            transform-box: fill-box;
+        }
+
+        @keyframes hair {
+            from {
+                transform: rotateZ(-4deg);
+            }
+
+            to {
+                transform: rotateZ(-6deg);
+            }
+        }
+
+        #head {
+            animation: head 2s ease-in-out infinite alternate;
+            transform-origin: bottom;
+            transform-box: fill-box;
+        }
+
+        #neck {
+            animation: head 2s ease-in-out infinite alternate;
+            transform-origin: bottom;
+            transform-box: fill-box;
+        }
+
+        @keyframes head {
+            from {
+                transform: rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateZ(-2deg);
+            }
+        }
+
+        #skirt {
+            animation: skirt 3s ease-in-out infinite alternate;
+            transform-origin: top;
+            transform-box: fill-box;
+        }
+
+        @keyframes skirt {
+            from {
+                transform: rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateZ(-2deg);
+            }
+        }
+
+        #back {
+            transition: all 1s ease-in-out;
+        }
+
+        #back:hover {
+            transform: scale(105%) rotateZ(1deg);
+        }
+
+        #phone {
+            animation: phone 3s ease-in-out infinite alternate;
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        @keyframes phone {
+            from {
+                transform: scale(95%);
+            }
+
+            to {
+                transform: scale(100%);
+            }
+        }
+
+        #kecap {
+            animation: kecap 6s ease-in-out infinite alternate;
+            transform-origin: center;
+            transform-box: fill-box;
+
+        }
+
+        #egg {
+            animation: kecap 6s ease-in-out infinite alternate;
+            transform-origin: center;
+            transform-box: fill-box;
+
+        }
+
+        @keyframes kecap {
+            from {
+                transform: rotateZ(-10deg);
+            }
+
+            to {
+                transform: rotateZ(20deg);
+            }
+        }
+
+        #Bookmarkbar {
+            animation: bar 1s ease-in-out infinite alternate;
+            transform-origin: center;
+            transform-box: fill-box;
+
+        }
+
+        #Bookmarkbar_2 {
+            animation: bar 1s ease-in-out infinite alternate;
+            transform-origin: center;
+            transform-box: fill-box;
+
+        }
+
+        #Printerbar {
+            animation: bar 1s ease-in-out infinite alternate;
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        #Printerbar_2 {
+            animation: bar 1s ease-in-out infinite alternate;
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        @keyframes bar {
+            from {
+                transform: scale(100%);
+            }
+
+            to {
+                transform: scale(110%);
+            }
+        }
+    </style>
     <div class="mx-6 my-14 bg-white p-10  shadow-lg rounded-lg">
         @if (session()->has('loginError'))
             <div class="alert alert-error shadow-none rounded-lg transition-all">
@@ -15,7 +200,7 @@
         @endif
         <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-5">
-                <svg width="600" height="430" id="back" viewBox="0 0 676 728" fill="none"
+                <svg class="w-full h-full" id="back" viewBox="0 0 676 728" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <g id="recipelogs">
                         <path id="arm2"

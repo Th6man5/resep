@@ -29,7 +29,7 @@
                             <p
                                 class="text-teal-300
                                 text-sm font-medium uppercase leading-4">
-                                Total Recipes</p>
+                                Recipes</p>
                             <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
                                 <span>{{ $recipe->count() }}</span>
                             </p>
@@ -47,6 +47,38 @@
                                 Reports</p>
                             <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
                                 <span>Belum</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <i class="bi bi-tag text-3xl"></i>
+                        </div>
+                        <div>
+                            <p
+                                class="text-blue-400
+                                text-sm font-medium uppercase leading-4">
+                                Category</p>
+                            <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $category->count() }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <i class="bi bi-flag text-3xl"></i>
+                        </div>
+                        <div>
+                            <p
+                                class="text-yellow-400
+                                text-sm font-medium uppercase leading-4">
+                                Country</p>
+                            <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $country->count() }}</span>
                             </p>
                         </div>
                     </div>

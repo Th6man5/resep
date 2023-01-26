@@ -34,7 +34,7 @@
 
             <hr>
 
-            <h1 class="mt-3 text-2xl text-center uppercase bold">{{ $recipe->recipe_name }}</h1>
+            <h1 class="mt-3 text-2xl text-center bold">{{ $recipe->recipe_name }}</h1>
 
             <div class="text-center my-3 text-lg">
                 <a class="text-green1 hover:text-green2 transition-all"
@@ -50,9 +50,6 @@
             <div class="mx-4 my-3">{{ $recipe->about }}</div>
 
             <hr>
-
-            <h1 class="mt-3 text-2xl text-center  uppercase">Ingredients</h1>
-
             <div class="grid grid-cols-2 mx-10 text-center text-lg mt-3 p-1 rounded-md">
 
                 <span class=" rounded-l-md p-1 bg-black text-white">
@@ -63,8 +60,9 @@
                     <i class="bi bi-person-fill"></i> {{ $recipe->portion }} Portion
                 </span>
             </div>
+            <h1 class="mt-3 text-2xl text-center  uppercase">Ingredients</h1>
 
-            <div class="mx-4 my-4">{{ $recipe->ingredients }}</div>
+            <div class="mx-4 my-4">{!! $recipe->ingredients !!}</div>
 
             <hr>
 

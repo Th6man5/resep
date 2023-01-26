@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class ReportDashboardController extends Controller
 {
@@ -18,7 +19,7 @@ class ReportDashboardController extends Controller
         return view('dashboard.userdashboard.report.index', [
             'title' => 'Report',
             'active' => 'report',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC'),
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->paginate(10)->onEachSide(1)->fragment('recipe'),
 
         ]);
     }

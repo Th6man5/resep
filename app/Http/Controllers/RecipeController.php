@@ -21,29 +21,29 @@ class RecipeController extends Controller
     {
         $title = '';
 
-        // if (request('category')) {
-        //     $category = Category::firstWhere('name', request('category'));
-        //     $title = ' in ' . $category->name;
-        // }
+        if (request('category')) {
+            $category = Category::firstWhere('name', request('category'));
+            $title = ' in ' . $category->name;
+        }
 
-        // if (request('maker')) {
-        //     $maker = User::firstWhere('name', request('maker'));
-        //     $title = ' by ' . $maker->name;
-        // }
+        if (request('maker')) {
+            $maker = User::firstWhere('name', request('maker'));
+            $title = ' by ' . $maker->name;
+        }
 
-        // if (request('country')) {
-        //     $country = Country::firstWhere('name', request('country'));
-        //     $title = ' in ' . $country->name;
-        // }
+        if (request('country')) {
+            $country = Country::firstWhere('name', request('country'));
+            $title = ' in ' . $country->name;
+        }
 
         return view('home', [
             "title" => "Home" . $title,
             "active" => 'home',
-            "recipe" => Recipe::orderBy('reads', 'DESC')->paginate(9)->withQueryString()
+            "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'category', 'maker', 'country']))->paginate(18)->withQueryString()->onEachSide(2)->fragment('recipe'),
 
         ]);
     }
-    // ->filter(request(['search', 'category', 'maker', 'country']))
+
 
     /**
      * Show the form for creating a new resource.

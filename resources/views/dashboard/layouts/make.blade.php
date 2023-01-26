@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="cupcake">
+<html lang="en" data-theme="cupcake" class="bg-white">
 
 <head>
     <!-- Required meta tags -->
@@ -32,7 +32,7 @@
 
     @include('partials.navbar')
 
-    <main class="px-16 py-6 ">
+    <main class="sm:px-24 sm:py-10 px-14 py-6">
         @yield('content')
     </main>
 

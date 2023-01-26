@@ -16,6 +16,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Http\Controllers\admin\admindashboardController;
 use App\Http\Controllers\admin\admindashboardUserController;
 use App\Http\Controllers\user\RecipeDashboardController;
+use App\Models\Category;
+use App\Models\Country;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /*
@@ -73,7 +75,7 @@ Route::group([
         return view('dashboard.userdashboard.report.index', [
             'title' => 'Report',
             'active' => 'report',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->get(),
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->paginate(15)->onEachSide(1)->fragment('recipe'),
             'view' => Recipe::where('user_id', auth()->user()->id)->sum('reads')
         ]);
     });
@@ -92,6 +94,8 @@ Route::group([
             'title' => 'Admin',
             'recipe' => Recipe::all(),
             'user' => User::all(),
+            'category' => Category::all(),
+            'country' => Country::all(),
             'active' => 'dashboard'
         ]);
     });

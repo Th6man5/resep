@@ -41,14 +41,14 @@
 
     <div class="grid grid-cols-2 m-4 items-center">
         <span class="text-lg">
-            {{ $recipe->count() }} Recipe
+            {{ $recipe->total() }} Recipe
         </span>
         <label class="relative block justify-self-end">
             <input type="text" placeholder="Type here" class="input input-bordered rounded-md w-full max-w-xs" />
         </label>
     </div>
 
-    <div class="grid lg:grid-cols-2  gap-10 ">
+    <div class="grid lg:grid-cols-2  gap-10 mx-4">
         @foreach ($recipe as $resep)
             <div
                 class="bg-white hover:bg-whitep hover:text-black rounded overflow-hidden shadow-md hover:shadow-lg relative  transition-all">
@@ -98,6 +98,7 @@
         @endforeach
 
     </div>
+    {{ $recipe->render() }}
 @endsection
 
 {{-- <div class="container mt-3">

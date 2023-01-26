@@ -21,9 +21,9 @@ class RecipeDashboardController extends Controller
     public function index(Recipe $recipe)
     {
         return view('dashboard.userdashboard.recipe.index', [
-            'title' => 'Recipe',
+            'title' => 'Recipe Dashboard',
             'active' => 'recipe',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->latest()->get(),
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->latest()->paginate(10)->onEachSide(1)->fragment('recipe'),
         ]);
     }
 

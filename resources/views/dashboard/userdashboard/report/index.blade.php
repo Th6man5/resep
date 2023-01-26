@@ -9,7 +9,7 @@
             width: 50px;
         }
     </style>
-    <main class="px-10 py-6 ">
+    <main>
 
 
         <h3 class="text-center my-3 text-4xl">Recipe Reports</h3>

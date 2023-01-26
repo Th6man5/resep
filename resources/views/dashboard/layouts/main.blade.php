@@ -26,7 +26,7 @@
 
 
     @include('partials.navbar')
-    <main class="px-14 py-6">
+    <main class="sm:px-24 sm:py-10 ">
         @error('name')
             <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
         @enderror
@@ -36,7 +36,7 @@
         @error('email')
             <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
         @enderror
-        <div class="bg-whitep p-6 rounded-lg text-black shadow-sm">
+        <div class="bg-whitep p-4 rounded-lg text-black shadow-sm ">
             <div class="flex">
                 <div class="md:flex-none sm:flex-1 p-2 m-3">
                     <div class="avatar">
@@ -77,7 +77,9 @@
             <div class="flex flex-row mt-2 ml-4 mr-4 items-center">
                 <div class="ml-2 flex-none mr-5 hover:text-blue-600 transition-all"><a href="/user/dashboard">Saved</a>
                 </div>
-                <div class="flex-1 hover:text-blue-600 transition-all"><a href="/user/dashboard/recipe">My Recipe</a>
+                <div
+                    class="flex-1 hover:text-blue-600 transition-all {{ Request::is('user/dashboard/recipe') ? 'text-blue-600  ' : '' }}">
+                    <a href="/user/dashboard/recipe">My Recipe</a>
                 </div>
 
             </div>
@@ -144,6 +146,8 @@
     </div>
 
 </body>
+
+
 
 </html>
 {{-- <div class="container mt-4">

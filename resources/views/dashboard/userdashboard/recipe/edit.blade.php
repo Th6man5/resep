@@ -89,9 +89,8 @@
                         <span class="block text-xl ml-2 text-black">
                             Ingredients
                         </span>
-                        <input type="text" name="ingredients" placeholder="Ingredients" required
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
-                            value="{{ $recipe->ingredients }}" />
+                        <textarea type="text" name="ingredients" id="ingredients" placeholder="Ingredients" required
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 ">{{ $recipe->ingredients }}</textarea>
                         @error('ingredients')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -154,5 +153,15 @@
                 blah.src = URL.createObjectURL(file)
             }
         }
+    </script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#ingredients'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 @endsection

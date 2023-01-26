@@ -17,7 +17,7 @@ class admindashboardUserController
     {
         return view('dashboard.admindashboard.user.index', [
             'title' => 'User List',
-            'user' => User::all(),
+            'user' => User::paginate(10)->onEachSide(1)->fragment('user'),
             'active' => 'user'
 
         ]);

@@ -31,22 +31,18 @@ class DatabaseSeeder extends Seeder
 
         Country::create([
             'name' => 'Internasional',
-            'slug' => 'internasional'
         ]);
 
         Country::create([
             'name' => 'Local',
-            'slug' => 'local'
         ]);
 
         Category::create([
             'name' => 'Bekal',
-            'slug' => 'bekal'
         ]);
 
         Category::create([
             'name' => 'Murah',
-            'slug' => 'murah'
         ]);
 
         User::create([
