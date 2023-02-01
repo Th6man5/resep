@@ -32,7 +32,7 @@
 
     @include('partials.navbar')
 
-    <main class="sm:px-24 sm:py-10 px-14 py-6">
+    <main class="container mx-auto py-6 px-4">
         @yield('content')
     </main>
 

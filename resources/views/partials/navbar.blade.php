@@ -10,8 +10,11 @@
                 <li class="rounded-lg active:bg-green3  {{ $active === 'recipe' ? 'text-white' : '' }}"><a
                         href="/user/dashboard/recipe">Recipe</a></li>
 
-                <li class="rounded-lg {{ $active === 'recipe' ? 'text-white' : '' }}"><a
-                        href="/admin/dashboard/recipe">admin</a></li>
+
+                @if (auth()->user()->is_admin)
+                    <li class="rounded-lg {{ $active === 'recipe' ? 'text-white' : '' }}"><a
+                            href="/admin/dashboard/recipe">admin</a></li>
+                @endif
 
                 <div class="dropdown dropdown-end me-3">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">

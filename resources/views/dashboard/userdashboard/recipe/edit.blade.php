@@ -18,8 +18,6 @@
                             </div>
                         @enderror
 
-                        {{-- <input type="hidden" name="oldImage" value="{{ $recipe->image }}"> --}}
-
                         @if ($recipe->image)
                             <img src="{{ asset('storage/' . $recipe->image) }}" id="blah" class=" object-cover">
                         @else
@@ -33,7 +31,8 @@
                         <span class="block text-xl ml-2 text-center text-black">
                             Recipe Name
                         </span>
-                        <input type="text" name="recipe_name" value="{{ $recipe->recipe_name }}" required
+                        <input type="text" name="recipe_name" value="{{ old('recipe_name', $recipe->recipe_name) }}"
+                            required
                             class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
                             placeholder="Example: Pineapple Pizza" />
                         @error('name')

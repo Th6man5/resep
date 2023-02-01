@@ -23,12 +23,12 @@
         <div class="bg-white rounded border-2  shadow-md">
             <div class="grid grid-cols-4 gap-2 mx-10 p-6 ">
                 <button
-                    class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">Save</button>
+                    class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">Save</button>
                 <a href="" @click.prevent="printme" target="_blank"
-                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">Print</a>
+                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Print</a>
                 <button onclick="copyText()"
-                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">Share</button>
-                <button class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 sm:text-xs lg:text-sm">
+                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Share</button>
+                <button class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">
                     Report</button>
             </div>
 

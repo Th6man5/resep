@@ -76,7 +76,7 @@ Route::group([
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => ['auth']
+    'middleware' => ['auth', 'admin']
 
 ], function () {
     Route::get('/dashboard', function (Recipe $recipe) {
