@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Ingredients;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RecipeController extends Controller
 {
@@ -27,6 +28,12 @@ class RecipeController extends Controller
             "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'maker']))->paginate(18)->withQueryString()->onEachSide(2)->fragment('recipe'),
 
         ]);
+    }
+
+    public function downloadPDF()
+    {
+        $pdf = Pdf::loadView('pdf.invoice');
+        return $pdf->download('invoice.pdf');
     }
 
 

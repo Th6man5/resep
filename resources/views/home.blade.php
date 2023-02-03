@@ -133,6 +133,7 @@
             </form>
         </div>
 
+
         <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mb-5">
             @foreach ($recipe as $resep)
                 <div

@@ -98,8 +98,6 @@ Route::group([
 });
 
 
-
-
 //login
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

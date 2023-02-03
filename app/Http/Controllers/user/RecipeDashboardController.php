@@ -23,7 +23,7 @@ class RecipeDashboardController extends Controller
         return view('dashboard.userdashboard.recipe.index', [
             'title' => 'Recipe Dashboard',
             'active' => 'recipe',
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->filter(request(['search']))->latest()->paginate(10)->onEachSide(1)->fragment('recipe'),
+            'recipe' => Recipe::where('user_id', auth()->user()->id)->filter(request(['search']))->orderBy('updated_at', 'DESC')->paginate(10)->onEachSide(1)->fragment('recipe'),
         ]);
     }
 
@@ -71,7 +71,7 @@ class RecipeDashboardController extends Controller
         Recipe::create($CreateRecipe);
 
 
-        return redirect('user/dashboard/recipe')->with('success', 'Recipe Is Successfully Created');
+        return redirect('user/dashboard/recipe')->with('success', 'Recipe Is Successfully Created!');
     }
 
     /**
@@ -141,7 +141,7 @@ class RecipeDashboardController extends Controller
 
         // Recipe::find($recipe->id)->update($EditRecipe);
         // dd($EditRecipe);
-        return redirect('/user/dashboard/recipe')->with('edit', 'Data Berhasil Diperbarui!');
+        return redirect('/user/dashboard/recipe')->with('edit', 'Recipe <strong class="text-white">' . $recipe->recipe_name . '</strong> is succesfully Updated!');
     }
 
     /**
@@ -154,6 +154,6 @@ class RecipeDashboardController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
-        return redirect('user/dashboard/recipe')->with('delete', 'Recipe is successfully deleted');
+        return redirect('user/dashboard/recipe')->with('delete', 'Recipe <strong class="text-white">  ' . $recipe->recipe_name . '</strong> is successfully Deleted!');
     }
 }

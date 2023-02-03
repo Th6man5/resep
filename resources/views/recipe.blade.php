@@ -24,7 +24,7 @@
             <div class="grid grid-cols-4 gap-2 mx-10 p-6 ">
                 <button
                     class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">Save</button>
-                <a href="" @click.prevent="printme" target="_blank"
+                <a href="" onclick="printPDF()" target="_blank"
                     class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Print</a>
                 <button onclick="copyText()"
                     class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Share</button>
@@ -77,21 +77,8 @@
                     alert("Text Copied!");
                 }
 
-                const app = new Vue({
-                    el: '#app',
-                    router,
-                    data: {
-                        search: ''
-                    },
-                    methods: {
-                        searchit: _.debounce(() => {
-                            Fire.$emit('searching');
-                        }, 1000),
-
-                        printme() {
-                            window.print();
-                        }
-                    },
-                });
+                function printPDF() {
+                    window.print('invoice.blade.pdf');
+                }
             </script>
         @endsection

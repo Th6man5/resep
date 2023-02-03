@@ -52,7 +52,8 @@
                     @endif
                     <div class="m-4 ">
                         <div class="grid lg:grid-cols-2 items-center ">
-                            <span class="font-bold block">
+                            <span class="font-bold block"
+                                style=" overflow: hidden;  white-space: nowrap; text-overflow: ellipsis;">
                                 {{ $resep->recipe_name }}
                             </span>
                         </div>

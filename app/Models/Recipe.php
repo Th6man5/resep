@@ -23,6 +23,10 @@ class Recipe extends Model
                 ->orWhere('ingredients', 'iLike', '%' . $search . '%')
                 ->orWhereHas('maker', function ($query) use ($search) {
                     $query->where('name', 'iLike', '%' . $search . '%')->orWhere('username', 'iLike', '%' . $search . '%');
+                })->orWhereHas('country', function ($query) use ($search) {
+                    $query->where('name', 'iLike', '%' . $search . '%');
+                })->orWhereHas('category', function ($query) use ($search) {
+                    $query->where('name', 'iLike', '%' . $search . '%');
                 });
         });
     }

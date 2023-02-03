@@ -72,7 +72,9 @@
                                                         User</a></li>
                                             </ul>
                                         </div>
-                                        <form action="/admin/dashboard/user/{{ $use->id }}" method="POST">
+                                        <form action="/admin/dashboard/user/{{ $use->id }}"
+                                            onsubmit="return confirm('are you sure you want to delete this?');"
+                                            method="POST">
                                             @method('delete')
                                             @csrf
                                             <button title="Delete" class="hover:text-red-400">

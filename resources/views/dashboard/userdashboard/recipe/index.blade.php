@@ -8,7 +8,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{ session('success') }}</span>
+                <span>{!! session('success') !!}</span>
             </div>
         </div>
     @endif
@@ -21,20 +21,20 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{ session('edit') }}</span>
+                <span>{!! session('edit') !!}</span>
             </div>
         </div>
     @endif
 
     @if (session()->has('delete'))
-        <div class="alert alert-error shadow-none rounded-lg transition-all mt-2">
+        <div class="alert alert-error bg-red1 shadow-none rounded-lg transition-all mt-2">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{ session('delete') }}</span>
+                <span>{!! session('delete') !!}</span>
             </div>
         </div>
     @endif
@@ -67,22 +67,24 @@
                     @endif
                     <div class="m-4 ">
                         <div class="grid lg:grid-cols-2 items-center ">
-                            <span class="font-bold block">
+                            <span class="font-bold block"
+                                style=" overflow: hidden;  white-space: nowrap; text-overflow: ellipsis;">
                                 {{ $resep->recipe_name }}
                             </span>
-                            <div class="flex lg:ml-auto">
+                            <div class="flex lg:ml-auto lg:mt-0 mt-2">
 
                                 <a href="/{{ $resep->id }}"
-                                    class="btn bg-blue1 text-black btn-sm mr-1 hover:text-white hover:bg-blue1 transition-all hover:scale-105 duration-300"><i
+                                    class="btn bg-blue1 border-none text-black btn-sm mr-1 hover:text-white hover:bg-blue1 transition-all duration-300"><i
                                         class="bi bi-eye-fill"></i></a>
                                 <a href="/user/dashboard/recipe/{{ $resep->id }}/edit"
-                                    class="btn bg-yellow1 text-black btn-sm mr-1 hover:text-white hover:bg-yellow1 transition-all hover:scale-105 duration-300"><i
+                                    class="btn bg-yellow1 border-none text-black btn-sm mr-1 hover:text-white hover:bg-yellow1 transition-all  duration-300"><i
                                         class="bi bi-pencil-square"></i></a>
-                                <form action="/user/dashboard/recipe/{{ $resep->id }}" method="POST">
+                                <form action="/user/dashboard/recipe/{{ $resep->id }}"
+                                    onsubmit="return confirm('are you sure you want to delete this?');" method="POST">
                                     @method('delete')
                                     @csrf
                                     <button
-                                        class="btn bg-red1 text-black btn-sm mr-1 hover:text-white hover:bg-red1 transition-all hover:scale-105 duration-300"><i
+                                        class="btn bg-red1 border-none text-black btn-sm mr-1 hover:text-white hover:bg-red1 transition-all  duration-300"><i
                                             class="bi bi-trash-fill"></i></button>
                                 </form>
                             </div>

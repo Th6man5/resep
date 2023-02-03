@@ -54,19 +54,19 @@
 
                     <hr>
                     <div class="py-1 mr-1"><label title="Edit Profile" for="my-modal-3"
-                            class="btn text-black bg-yellow1 btn-sm hover:text-white hover:bg-yellow1 transition-all hover:scale-105 duration-300"><i
+                            class="btn text-black border-none bg-yellow1 btn-sm hover:text-white hover:bg-yellow1 transition-all  duration-300"><i
                                 class="bi bi-pen-fill "></i></label></div>
                     <hr>
                     <div class="py-1  mr-1"><a title="Dashboard" href="/user/dashboard/report"
-                            class="btn bg-green1 text-black btn-sm hover:text-white hover:bg-green1 transition-all hover:scale-105 duration-300"><i
+                            class="btn bg-green1 border-none text-black btn-sm hover:text-white hover:bg-green1 transition-all  duration-300"><i
                                 class="bi bi-bar-chart-fill"></i></a></div>
                     <hr>
                     <div class="py-1  mr-1"><a title="Settings" href="/user/dashboard/settings"
-                            class="btn bg-red2 text-black btn-sm hover:text-white hover:bg-red2 transition-all hover:scale-105 duration-300"><i
+                            class="btn bg-red2 border-none text-black btn-sm hover:text-white hover:bg-red2 transition-all  duration-300"><i
                                 class="bi bi-gear-fill"></i></a></div>
                     <hr>
                     <div class="py-1 mr-1"><a title="Add Recipe" href="/user/dashboard/recipe/create"
-                            class="btn bg-blue1 text-black btn-sm hover:text-white hover:bg-blue1 transition-all duration-300 hover:scale-105"><i
+                            class="btn bg-blue1 border-none text-black btn-sm hover:text-white hover:bg-blue1 transition-all duration-300 "><i
                                 class="bi bi-plus-circle-fill"></i></a>
                     </div>
                     <hr>

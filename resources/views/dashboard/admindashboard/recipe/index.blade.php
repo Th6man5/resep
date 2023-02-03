@@ -72,7 +72,8 @@
                                                         Recipe</a></li>
                                             </ul>
                                         </div>
-                                        <form action="/admin/dashboard/recipe/{{ $resep->id }}" method="POST">
+                                        <form onsubmit="return confirm('are you sure you want to delete this?');"
+                                            action="/admin/dashboard/recipe/{{ $resep->id }}" method="POST">
                                             @method('delete')
                                             @csrf
                                             <button title="Delete" class="hover:text-red-400">
