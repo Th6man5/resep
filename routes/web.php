@@ -21,13 +21,6 @@ use App\Models\Country;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
-Route::get('/', function (Recipe $recipe) {
-    return view('home', [
-        'title' => 'Home',
-        'active' => 'home',
-        'recipe' => Recipe::all(),
-    ]);
-});
 
 Route::get('/maker/{user:id}', [GuestController::class, 'index']);
 
@@ -76,7 +69,7 @@ Route::group([
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => ['auth', 'admin']
+    'middleware' => ['admin']
 
 ], function () {
     Route::get('/dashboard', function (Recipe $recipe) {
@@ -94,7 +87,7 @@ Route::group([
 
     Route::resource('/dashboard/user', admindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
-    Route::resource('/dashboard/category', admindashboardCategoryController::class)->except(['show', 'update', 'edit']);
+    Route::resource('/dashboard/category', admindashboardCategoryController::class);
 });
 
 

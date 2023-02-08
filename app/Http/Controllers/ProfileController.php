@@ -61,7 +61,7 @@ class ProfileController extends Controller
     {
         return view('dashboard.index', [
             'title' => 'Edit Recipe',
-            'active' => 'edit'
+
         ]);
     }
 

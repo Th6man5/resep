@@ -11,9 +11,16 @@ class admindashboardCategoryController
     {
         return view('dashboard.admindashboard.category.index', [
             'title' => 'User List',
-            'user' => Category::paginate(10)->onEachSide(1)->fragment('category'),
+            'category' => Category::paginate(10)->onEachSide(1)->fragment('category'),
             'active' => 'user'
 
+        ]);
+    }
+
+    public function create()
+    {
+        return view('dashboard.admindashboard.category.index', [
+            'category' => Category::all(),
         ]);
     }
 }

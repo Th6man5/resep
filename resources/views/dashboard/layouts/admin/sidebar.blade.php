@@ -95,7 +95,7 @@
              <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                  <div>
                      <i
-                         class="bi bi-gear text-2xl group-hover:text-green3 {{ Request::is('admin/dashboard/category*') ? ' text-green1 ' : '' }}"></i>
+                         class="bi bi-gear text-2xl group-hover:text-green3 {{ Request::is('admin/dashboard/    ') ? ' text-green1 ' : '' }}"></i>
                  </div>
                  <div>
                      <p
