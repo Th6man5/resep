@@ -75,7 +75,9 @@
             </div>
 
             <div class="flex flex-row mt-2 ml-4 mr-4 items-center">
-                <div class="ml-2 flex-none mr-5 hover:text-blue-600 transition-all"><a href="/user/dashboard">Saved</a>
+                <div
+                    class="ml-2 flex-none mr-5 hover:text-blue-600 transition-all {{ Request::is('user/dashboard') ? 'text-blue-600  ' : '' }}">
+                    <a href="/user/dashboard">Saved</a>
                 </div>
                 <div
                     class="flex-1 hover:text-blue-600 transition-all {{ Request::is('user/dashboard/recipe') ? 'text-blue-600  ' : '' }}">

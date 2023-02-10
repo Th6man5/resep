@@ -22,9 +22,25 @@
         </div>
         <div class="bg-white rounded border-2  shadow-md">
             <div class="grid grid-cols-4 gap-2 mx-10 p-6 ">
-                <button
-                    class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">Save</button>
-                <a href="" onclick="printPDF()" target="_blank"
+
+                @if ($isBookmarked)
+                    <form action="{{ route('recipes.unbookmark', $recipe) }}" method="POST"
+                        class="btn bg-yellow2 hover:bg-yellow1 text-black border-none hover:scale-105 text-xs md:text-sm">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">Saved</button>
+                    </form>
+                @else
+                    <form action="{{ route('recipes.bookmark', $recipe) }}" method="POST"
+                        class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">
+                        @csrf
+                        <button type="submit">
+                            Save
+                        </button>
+                    </form>
+                @endif
+
+                <a href="{{ route('generate_pdf', $recipe->id) }}" target="_blank"
                     class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Print</a>
                 <button onclick="copyText()"
                     class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Share</button>
@@ -68,17 +84,18 @@
 
             <h1 class="mt-3 text-2xl text-center  uppercase">Steps</h1>
             <div class="mx-4 my-4">{{ $recipe->steps }}</div>
+        </div>
 
-            <script>
-                function copyText() {
+        <script>
+            function copyText() {
 
-                    /* Copy text into clipboard */
-                    navigator.clipboard.writeText("http://127.0.0.1:8000/{{ $recipe->id }}");
-                    alert("Text Copied!");
-                }
+                /* Copy text into clipboard */
+                navigator.clipboard.writeText("http://127.0.0.1:8000/{{ $recipe->id }}");
+                alert("Text Copied!");
+            }
 
-                function printPDF() {
-                    window.print('invoice.blade.pdf');
-                }
-            </script>
-        @endsection
+            function printPDF() {
+                window.print('invoice.blade.pdf');
+            }
+        </script>
+    @endsection

@@ -48,17 +48,17 @@ class Recipe extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+
 
 
     public function getRouteKeyName()
     {
         return 'id';
     }
-
-    // public function getIsAdminAttribute()
-    // {
-    //     return $this->roles()->where('name', 'user')->exists();
-    // }
 
     public function incrementReadCount()
     {

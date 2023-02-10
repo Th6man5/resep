@@ -9,6 +9,13 @@ class Bookmark extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-    public $guarded = [];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class);
+    }
 }

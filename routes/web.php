@@ -10,21 +10,21 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\admin\admindashboardController;
 use App\Http\Controllers\admin\admindashboardUserController;
 use App\Http\Controllers\admin\admindashboardCategoryController;
 use App\Http\Controllers\user\RecipeDashboardController;
+use App\Http\Controllers\user\DashboardController;
 use App\Models\Category;
 use App\Models\Country;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
-
 Route::get('/maker/{user:id}', [GuestController::class, 'index']);
 
 Route::get('/', [RecipeController::class, 'index']);
+
 
 //User Route
 
@@ -34,13 +34,10 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
 
-    Route::get('/dashboard', function (Recipe $recipe) {
+    Route::delete('/dashboard/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
 
-        return view('dashboard.index', [
-            'title' => 'Dashboard',
-            'active' => 'home',
-        ]);
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
 
     Route::get('/dashboard/settings', function (Recipe $recipe) {
 
@@ -69,7 +66,7 @@ Route::group([
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => ['admin']
+    'middleware' => ['auth', 'admin']
 
 ], function () {
     Route::get('/dashboard', function (Recipe $recipe) {
@@ -102,3 +99,13 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/{recipe:id}', [RecipeController::class, 'show']);
+Route::group(
+    [
+        'middleware' => ['auth']
+    ],
+    function () {
+        Route::post('/{recipe:id}', [RecipeController::class, 'bookmark'])->name('recipes.bookmark');
+        Route::delete('/{recipe:id}/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
+        Route::get('/{recipe:id}/generate_pdf', [RecipeController::class, 'downloadPDF'])->name('generate_pdf');
+    }
+);

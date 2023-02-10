@@ -22,7 +22,7 @@ class RecipeFactory extends Factory
             'about' => $this->faker->paragraph(10),
             'portion' => mt_rand(1, 4),
             'time' => mt_rand(1, 100),
-            'user_id' => mt_rand(1, 3),
+            'user_id' => mt_rand(1, 2),
             'country_id' => mt_rand(1, 2),
             'category_id' => mt_rand(1, 2),
             'steps' => $this->faker->paragraph(20),

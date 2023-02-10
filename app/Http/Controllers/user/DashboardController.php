@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -14,9 +15,13 @@ class DashboardController extends Controller
      */
     public function index(Recipe $recipe)
     {
+        $save = auth()->user()->bookmarks;
+        $saved = $save->load('recipe');
+
         return view('dashboard.index', [
             'title' => 'Dashboard',
-            'active' => 'Dashboard',
+            'active' => 'home',
+            'saved' => $saved,
         ]);
     }
 

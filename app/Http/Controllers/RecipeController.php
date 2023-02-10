@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
 use App\Models\User;
+use App\Models\Recipe;
 use App\Models\Country;
+use App\Models\Bookmark;
 use App\Models\Category;
 use App\Models\Ingredients;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class RecipeController extends Controller
 {
@@ -30,13 +33,39 @@ class RecipeController extends Controller
         ]);
     }
 
-    public function downloadPDF()
+    public function downloadPDF($id)
     {
-        $pdf = Pdf::loadView('pdf.invoice');
-        return $pdf->download('invoice.pdf');
+
+        $recipe = Recipe::findOrFail($id);
+        $pdf = Pdf::loadView('pdf.invoice', [
+            'recipe' => $recipe
+        ]);
+
+        return $pdf->download(Str::slug($recipe->recipe_name) . '.pdf');
     }
 
+    public function bookmark(Recipe $recipe, Bookmark $bookmark)
+    {
+        $bookmark = new Bookmark;
+        $bookmark->user_id = auth()->user()->id;
+        $bookmark->recipe_id = $recipe->id;
+        $bookmark->save();
 
+        return back();
+    }
+
+    public function unbookmark(Recipe $recipe)
+    {
+        $bookmark = Bookmark::where('recipe_id', $recipe->id)
+            ->where('user_id', auth()->user()->id)
+            ->first();
+
+        if ($bookmark) {
+            $bookmark->delete();
+        }
+
+        return back()->with('success', 'Recipe successfully Unbookmarked');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -66,6 +95,13 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
+        $isBookmarked = false;
+
+        if (Auth::check()) {
+            $bookmarks = auth()->user()->bookmarks;
+            $isBookmarked = $bookmarks->contains('recipe_id', $recipe->id);
+        }
+
         $recipe->incrementReadCount();
         return view(
             'recipe',
@@ -74,6 +110,7 @@ class RecipeController extends Controller
                 "title" =>  $recipe->recipe_name,
                 "active" => 'home',
                 "recipe" => $recipe,
+                'isBookmarked' => $isBookmarked,
             ]
         );
     }

@@ -4,9 +4,8 @@
         class="grid grid-cols-1 lg:grid-cols-2 gap-4 relative">
         @csrf
         <div class="mb-4 lg:mb-0 px-2 py-2">
-            <div class="rounded shadow">
-                <input type="file"
-                    class="file-input file-input-ghost rounded-none w-full @error('image') is-invalid @enderror"
+            <div class="shadow">
+                <input type="file" class="file-input border-none rounded-none w-full @error('image') is-invalid @enderror"
                     name="image" id="imgInp" value="{{ old('image') }}" accept="image/png , image/jpeg" required />
                 @error('image')
                     <div class="invalid-feedback">
