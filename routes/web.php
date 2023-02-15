@@ -38,7 +38,6 @@ Route::group([
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-
     Route::get('/dashboard/settings', function (Recipe $recipe) {
 
         return view('dashboard.userdashboard.setting.index', [

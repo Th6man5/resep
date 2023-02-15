@@ -6,7 +6,7 @@
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
-                        <div id="stats-1">
+                        <div>
                             <i class="bi bi-card-text text-3xl"></i>
                         </div>
                         <div>
@@ -21,7 +21,6 @@
                 </div>
 
 
-
                 @if (session()->has('delete'))
                     <div class="bg-red-500 p-6 rounded-lg">
                         <div class="flex flex-row space-x-4 items-center m-auto">
@@ -32,14 +31,35 @@
                                 {{ session('delete') }}
                             </div>
                         </div>
+                    </div>
                 @endif
+
+                @if (session()->has('success'))
+                    <div class="bg-green-500 p-6 rounded-lg">
+                        <div class="flex flex-row space-x-4 items-center m-auto">
+                            <div id="stats-1">
+                                <i class="bi bi-check-circle text-3xl"></i>
+                            </div>
+                            <div>
+                                {{ session('success') }}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
             </div>
 
         </div>
         <div class="py-6">
 
             <div>
-                <h1 class="font-bold py-4 uppercase">Recipes</h1>
+                <div class="grid grid-cols-2 place-items-start">
+                    <h1 class="font-bold py-4 items-center uppercase">Recipes</h1>
+                    <label for="add-category" href="#addcategory"
+                        class="btn btn-md py-4 justify-self-end text-xs bg-blue1 text-white hover:bg-blue-800">Add
+                        Category</label>
+                </div>
+
                 <div class="overflow-x-auto overflow-hidden">
                     <table class="w-full whitespace-nowrap">
                         <thead class="bg-white/10 ">
@@ -53,21 +73,41 @@
                                     {{ $loop->iteration + $category->firstItem() - 1 }}
                                 </td>
                                 <td class="text-center py-3 px-2">{{ $cat->name }}</td>
-                                <td class="text-center py-3 px-2">
-
-                                    <div class="inline-flex items-center text-center space-x-1">
-                                        <div class="dropdown dropdown-left">
-                                            <i tabindex="0" title="Edit"
-                                                class="hover:text-indigo-400
-                                                bi bi-pencil w-5 h-5"></i>
-                                        </div>
-                                    </div>
+                                <td class="text-center py-3 px-2"> <label for="edit-category"><i tabindex="0"
+                                            title="Edit"
+                                            class="hover:text-indigo-400
+                                                bi bi-pencil w-5 h-5"></i></label>
                                 </td>
                             </tr>
                         @endforeach
 
 
                     </table>
+
+                    <input type="checkbox" id="add-category" class="modal-toggle" />
+                    <div class="modal">
+                        <div class="modal-box relative bg-slate-900">
+                            <label for="add-category" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <h3 class="font-bold text-lg">Add Category </h3>
+                            <p class="py-4">
+                            <form method="POST" action="/admin/dashboard/category">
+                                @csrf
+
+                                <label class="form-label">Name</label>
+                                <input type="text" name="name" placeholder="Name" class="form-control p-1 rounded-lg "
+                                    value="{{ old('name') }}" required>
+                                @error('name')
+                                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                                @enderror
+
+
+                                <div class="modal-action">
+                                    <input type="submit" class="btn btn-primary btn-md mt-3" value="Submit">
+                                </div>
+                            </form>
+                            </p>
+                        </div>
+                    </div>
                     {{ $category->links() }}
                 </div>
             </div>

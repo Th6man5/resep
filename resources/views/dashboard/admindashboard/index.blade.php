@@ -38,7 +38,7 @@
                 </div>
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
-                        <div id="stats-1">
+                        <div>
                             <i class="bi bi-exclamation-octagon text-3xl"></i>
                         </div>
                         <div>

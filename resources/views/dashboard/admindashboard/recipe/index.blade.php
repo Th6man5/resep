@@ -6,7 +6,7 @@
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
-                        <div id="stats-1">
+                        <div>
                             <i class="bi bi-card-text text-3xl"></i>
                         </div>
                         <div>

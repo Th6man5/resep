@@ -215,7 +215,7 @@
 
         <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-5">
-                <svg class="w-full h-full" id="back" viewBox="0 0 676 728" fill="none"
+                <svg class="w-10/12 m-auto" id="back" viewBox="0 0 676 728" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <g id="recipelogs">
                         <path id="arm2"

@@ -11,6 +11,11 @@
     .page-break {
         page-break-after: always;
     }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
 </style>
 <div style="text-align: center;">
     <img src="{{ public_path('storage/' . $recipe->image) }}" style="width: 100%; height: 50%;">
