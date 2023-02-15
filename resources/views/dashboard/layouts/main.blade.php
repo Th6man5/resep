@@ -27,15 +27,7 @@
 
     @include('partials.navbar')
     <main class="sm:px-24 sm:py-10">
-        @error('name')
-            <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-        @enderror
-        @error('username')
-            <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-        @enderror
-        @error('email')
-            <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-        @enderror
+
         <div class="bg-whitep p-4 rounded-lg text-black shadow-sm ">
             <div class="flex">
                 <div class="md:flex-none sm:flex-1 p-2 m-3">
@@ -120,25 +112,14 @@
                 <label class="form-label">Name</label>
                 <input type="text" name="name" placeholder="Name" class="form-control p-1 rounded-lg "
                     value="{{ auth()->user()->name }}" required>
-                @error('name')
-                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-                @enderror
+
 
                 <label class="form-label">Username</label>
                 <input type="text" name="username" placeholder="Username" class="form-control"
                     value="{{ auth()->user()->username }}" required>
 
-                @error('username')
-                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-                @enderror
 
-                <label class="form-label">Email</label>
-                <input type="email" name="email" placeholder="Example@gmail.com" class="form-control"
-                    value="{{ auth()->user()->email }}" required>
 
-                @error('email')
-                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-                @enderror
 
 
                 <input type="submit" class="btn btn-primary btn-sm mt-3" value="Submit">

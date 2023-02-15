@@ -59,10 +59,6 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('dashboard.index', [
-            'title' => 'Edit Recipe',
-
-        ]);
     }
 
     /**
@@ -77,15 +73,17 @@ class ProfileController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:191', 'required'],
             'username' => ['required', 'alpha_num', 'min:3', 'max:100',],
-            'email' => ['required', 'string', 'max:191', 'email'],
+            // 'email' => ['required', 'string', 'max:191', 'email'],
         ]);
 
-        //Error but working (for now)
-        auth()->user()->update([
+
+        $user_id = auth()->id();
+        User::where('id', $user_id)->update([
             'name' => $request->name,
             'username' => $request->username,
-            'email' => $request->email,
+            // 'email' => $request->email,
         ]);
+
 
         return back()->with('message', 'User Profile Successfully updated');
     }

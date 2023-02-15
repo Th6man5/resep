@@ -36,31 +36,26 @@ class admindashboardCategoryController
         return redirect('admin/dashboard/category')->with('success', 'Category is successfully created!');
     }
 
-    public function edit($id)
-    {
-        $category = Category::findorFail($id);
+    // public function edit($id)
+    // {
+    //     $category = Category::findorFail($id);
 
-        return view('dashboard.userdashboard.recipe.edit', [
-            'category' => $category,
+    //     return view('dashboard.admindashboard.category.index', [
+    //         'category' => $category,
+    //     ]);
+    // }
+
+    public function update(Request $request)
+    {
+        $category = Category::findOrFail($request->input('category_id'));
+
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:191', 'required'],
         ]);
-    }
 
-    public function update(Request $request, Category $category)
-    {
-        $rules = [
-            'name' => 'required|max:255',
-        ];
+        $category->name = $request->name;
+        $category->save();
 
-        $validatedData = $request->validate($rules);
-
-
-        Category::where('id', $category->id)
-            ->update($validatedData);
-
-
-
-        // Recipe::find($recipe->id)->update($EditRecipe);
-        // dd($EditRecipe);
-        return redirect('/admin/dashboard/category')->with('edit', 'Category <strong class="text-white">' . $category->name . '</strong> is succesfully Updated!');
+        return back()->with('success', 'Category <strong class="text-slate-600">' . $category->name . '</strong> is succesfully Updated!');
     }
 }

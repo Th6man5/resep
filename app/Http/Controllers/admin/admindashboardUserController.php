@@ -84,9 +84,9 @@ class admindashboardUserController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
+        $user->Recipes()->delete();
         $user->delete();
         return redirect('admin/dashboard/user')->with('delete', 'User is successfully deleted');
     }

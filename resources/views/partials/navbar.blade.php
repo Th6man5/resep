@@ -9,11 +9,11 @@
             @auth
                 @if (!auth()->user()->is_admin)
                     <li class="rounded-lg active:bg-green3  {{ $active === 'recipe' ? 'text-white' : '' }}"><a
-                            href="/user/dashboard/recipe">Recipe</a></li>
+                            href="/user/dashboard/recipe" class="active:bg-green3 ">Recipe</a></li>
                 @endif
                 @if (auth()->user()->is_admin)
-                    <li class="rounded-lg {{ $active === 'recipe' ? 'text-white' : '' }}"><a
-                            href="/admin/dashboard/recipe">admin</a></li>
+                    <li class="rounded-lg {{ $active === 'recipe' ? 'text-white' : '' }}"><a href="/admin/dashboard/recipe"
+                            class="active:bg-green3">admin</a></li>
                 @endif
 
                 <div class="dropdown dropdown-end me-3">
@@ -25,8 +25,8 @@
                     <ul tabindex="0"
                         class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-black text-white rounded-box w-52">
 
-                        <li class="hover:bg-slate-500 transition-all"><a class=" active:text-white w-full"
-                                href="/user/dashboard">My
+                        <li class="hover:bg-slate-500 transition-all "><a
+                                class="active:bg-slate-500 active:text-white w-full" href="/user/dashboard">My
                                 Dashboard</a></li>
 
                         <li class="hover:bg-red-500 transition-all ">

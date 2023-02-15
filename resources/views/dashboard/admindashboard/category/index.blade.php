@@ -21,18 +21,18 @@
                 </div>
 
 
-                @if (session()->has('delete'))
+                @error('name')
                     <div class="bg-red-500 p-6 rounded-lg">
                         <div class="flex flex-row space-x-4 items-center m-auto">
                             <div id="stats-1">
                                 <i class="bi bi-exclamation-octagon text-3xl"></i>
                             </div>
                             <div>
-                                {{ session('delete') }}
+                                {{ $message }}
                             </div>
                         </div>
                     </div>
-                @endif
+                @enderror
 
                 @if (session()->has('success'))
                     <div class="bg-green-500 p-6 rounded-lg">
@@ -41,7 +41,7 @@
                                 <i class="bi bi-check-circle text-3xl"></i>
                             </div>
                             <div>
-                                {{ session('success') }}
+                                {!! session('success') !!}
                             </div>
                         </div>
                     </div>
@@ -73,13 +73,44 @@
                                     {{ $loop->iteration + $category->firstItem() - 1 }}
                                 </td>
                                 <td class="text-center py-3 px-2">{{ $cat->name }}</td>
-                                <td class="text-center py-3 px-2"> <label for="edit-category"><i tabindex="0"
-                                            title="Edit"
-                                            class="hover:text-indigo-400
-                                                bi bi-pencil w-5 h-5"></i></label>
+                                <td class="text-center py-3 px-2">
+                                    <label for="edit-category-{{ $cat->id }}">
+                                        <i tabindex="0" title="Edit"
+                                            class="hover:text-indigo-400 bi bi-pencil w-5 h-5"></i>
+                                    </label>
+
+                                    {{-- Modal for the edit --}}
+
+                                    <input type="checkbox" id="edit-category-{{ $cat->id }}" class="modal-toggle" />
+                                    <div class="modal text-start">
+                                        <div class="modal-box relative bg-slate-900">
+                                            <label for="edit-category-{{ $cat->id }}"
+                                                class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                            <h3 class="font-bold text-lg">Edit Category </h3>
+                                            <p class="py-4">
+                                            <form method="POST" action="/admin/dashboard/category/update">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="category_id" value="{{ $cat->id }}" />
+                                                <label class="form-label">Name</label>
+                                                <input type="text" name="name" placeholder="Name"
+                                                    class="form-control p-1 rounded-lg "
+                                                    value="{{ old('name', $cat->name) }}" required>
+                                                @error('name')
+                                                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                                                @enderror
+                                                <div class="modal-action">
+                                                    <input type="submit" class="btn btn-primary btn-md mt-3"
+                                                        value="Submit">
+                                                </div>
+                                            </form>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
+
 
 
                     </table>
@@ -108,6 +139,8 @@
                             </p>
                         </div>
                     </div>
+
+
                     {{ $category->links() }}
                 </div>
             </div>

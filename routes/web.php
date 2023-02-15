@@ -84,6 +84,7 @@ Route::group([
     Route::resource('/dashboard/user', admindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
     Route::resource('/dashboard/category', admindashboardCategoryController::class);
+    Route::put('/dashboard/category/update', [admindashboardCategoryController::class, 'update']);
 });
 
 
