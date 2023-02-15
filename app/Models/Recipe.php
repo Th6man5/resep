@@ -3,15 +3,19 @@
 namespace App\Models;
 
 
-use App\Models\Country;
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Country;
+use App\Models\Bookmark;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Recipe extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['recipe_name', 'about', 'image', 'portion', 'time', 'steps', 'ingredients', 'category_id', 'country_id', 'user_id'];
 
     protected $guarded = ['id'];
 
@@ -31,7 +35,19 @@ class Recipe extends Model
         });
     }
 
+    public function deleteImage()
+    {
+        Storage::delete($this->image);
+    }
 
+    protected static function booted()
+    {
+        static::deleted(function ($recipe) {
+            if ($recipe->image) {
+                Storage::delete($recipe->image);
+            }
+        });
+    }
 
     public function country()
     {
@@ -53,7 +69,10 @@ class Recipe extends Model
         return $this->hasMany(Bookmark::class);
     }
 
-
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function getRouteKeyName()
     {

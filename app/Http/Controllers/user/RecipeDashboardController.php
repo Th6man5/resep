@@ -104,6 +104,7 @@ class RecipeDashboardController extends Controller
         ]);
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -123,26 +124,24 @@ class RecipeDashboardController extends Controller
             'ingredients' => 'required',
             'category_id' => 'required',
             'country_id' => 'required',
-
         ];
 
         $validatedData = $request->validate($rules);
 
         if ($request->file('image')) {
+            if ($recipe->image) {
+                Storage::delete($recipe->image);
+            }
             $validatedData['image'] = $request->file('image')->store('recipes-images');
         }
 
         $validatedData['user_id'] = auth()->user()->id;
 
-        Recipe::where('id', $recipe->id)
-            ->update($validatedData);
+        $recipe->update($validatedData);
 
-
-
-        // Recipe::find($recipe->id)->update($EditRecipe);
-        // dd($EditRecipe);
-        return redirect('/user/dashboard/recipe')->with('edit', 'Recipe <strong class="text-white">' . $recipe->recipe_name . '</strong> is succesfully Updated!');
+        return redirect('/user/dashboard/recipe')->with('edit', 'Recipe <strong class="text-white">' . $recipe->recipe_name . '</strong> is successfully updated!');
     }
+
 
     /**
      * Remove the specified resource from storage.

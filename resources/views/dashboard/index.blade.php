@@ -51,7 +51,8 @@
                             </a>
                         </div>
                         <div class="ml-auto mr-5 my-auto">
-                            <form action="{{ route('recipes.unbookmark', $book->recipe->id) }}" method="post">
+                            <form action="{{ route('recipes.unbookmark', $book->recipe->id) }}" method="post"
+                                onsubmit="return confirm('are you sure you want to unboomark this?');">
                                 @csrf
                                 @method('delete')
                                 <button type="submit"> <i

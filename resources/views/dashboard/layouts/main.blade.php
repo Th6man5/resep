@@ -30,12 +30,16 @@
 
         <div class="bg-whitep p-4 rounded-lg text-black shadow-sm ">
             <div class="flex">
-                <div class="md:flex-none sm:flex-1 p-2 m-3">
-                    <div class="avatar">
+                <div class="md:flex-1 sm:flex-1 p-2 m-3">
+                    <label class="avatar">
                         <div class="w-30 rounded-full">
-                            <img src="https://placeimg.com/192/192/arch" />
+                            @if (auth()->user()->profile_picture)
+                                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="w-30" />
+                            @else
+                                <img src="https://placeimg.com/192/192/arch" />
+                            @endif
                         </div>
-                    </div>
+                    </label>
                 </div>
                 <div class="flex-auto p-2 mt-10 mr-3">
                     <h3>{{ auth()->user()->name }}</h3>
@@ -106,9 +110,16 @@
                 class="btn bg-red1 text-black hover:bg-red1 btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-lg font-bold">Edit Profile</h3>
             <p class="py-2">
-            <form method="POST" action="/user/dashboard/update">
+            <form method="POST" action="/user/dashboard/update" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <div class="form-group">
+                    <label for="profile_picture">Profile Picture</label>
+                    <input type="file" name="profile_picture" id="profile_picture " accept="image/png , image/jpeg">
+                </div>
+                @error('profile_picture')
+                    {{ $message }}
+                @enderror
                 <label class="form-label">Name</label>
                 <input type="text" name="name" placeholder="Name" class="form-control p-1 rounded-lg "
                     value="{{ auth()->user()->name }}" required>

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use Illuminate\Foundation\Auth\User;
+use App\Models\Recipe;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class ProfileController extends Controller
@@ -68,25 +69,36 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Recipe $recipe)
     {
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:191', 'required'],
-            'username' => ['required', 'alpha_num', 'min:3', 'max:100',],
-            // 'email' => ['required', 'string', 'max:191', 'email'],
+            'username' => ['required', 'alpha_num', 'min:3', 'max:100'],
+            'profile_picture' => ['image', 'max:2000'], // Limit file size to 2MB
         ]);
-
 
         $user_id = auth()->id();
-        User::where('id', $user_id)->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            // 'email' => $request->email,
-        ]);
+        $user = User::findOrFail($user_id);
 
+        $user->name = $request->name;
+        $user->username = $request->username;
+
+        if ($request->hasFile('profile_picture')) {
+            // Remove old profile picture if exists
+            if ($user->profile_picture) {
+                Storage::delete($user->profile_picture);
+            }
+
+            // Store new profile picture
+            $file = $request->file('profile_picture')->store('profile_pictures');
+            $user->profile_picture = $file;
+        }
+
+        $user->save();
 
         return back()->with('message', 'User Profile Successfully updated');
     }
+
 
     /**
      * Remove the specified resource from storage.

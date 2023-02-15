@@ -20,6 +20,7 @@ module.exports = {
                 yellow1: "#FCBA4C",
                 yellow2: "#FCD24C",
                 blue1: "#337AFF",
+                white1: "#F5F5F5",
             },
             fontFamily: {
                 montserrat: ["Montserrat"],

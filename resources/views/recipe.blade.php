@@ -28,13 +28,13 @@
                         class="btn bg-yellow2 hover:bg-yellow1 text-black border-none hover:scale-105 text-xs md:text-sm">
                         @csrf
                         @method('delete')
-                        <button type="submit">Saved</button>
+                        <button type="submit" class="uppercase">Saved</button>
                     </form>
                 @else
                     <form action="{{ route('recipes.bookmark', $recipe) }}" method="POST"
                         class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">
                         @csrf
-                        <button type="submit">
+                        <button type="submit" class="uppercase">
                             Save
                         </button>
                     </form>
@@ -85,17 +85,50 @@
             <h1 class="mt-3 text-2xl text-center  uppercase">Steps</h1>
             <div class="mx-4 my-4">{{ $recipe->steps }}</div>
         </div>
+    </div>
+    <form method="POST" action="{{ route('comments.store', ['recipe' => $recipe->id]) }}">
+        @csrf
+        <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+        <textarea class="textarea textarea-bordered rounded w-full" name="body" placeholder="Give a comment"></textarea>
+        <button class="btn mb-5 rounded-md" type="submit">Submit</button>
+    </form>
 
-        <script>
-            function copyText() {
+    <div class="bg-white1 w-full rounded-lg p-4 shadow-md">
+        <h1 class="text-4xl text-center font-bold uppercase text-black">Comments</h1>
+        @if ($recipe->comments->count())
+            <hr class="border-black border-2 bg-black rounded-md m-3">
+            <div class="m-2">
+                @foreach ($recipe->comments as $comment)
+                    <div class="m-2 bg-white1 p-5 rounded-lg">
+                        <div class="flex flex-row items-center">
+                            <h4 class="text-xl flex-none mr-1 leading-none">{{ $comment->user->name }}
+                                <h4 class="text-sm text-slate-500">#{{ $comment->user->username }}</h4>
+                        </div>
+                        <p class="text-xs text-slate-400">Posted {{ $comment->created_at->diffForHumans() }}</p>
+                        <p class="text-md mt-2 m-2">{{ $comment->body }}</p>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="flex items-center justify-center my-5">
+                <p class="text-center ">No Comments Yet</p>
+                <p class="text-center font-bold ml-1 underline">Be the First!</p>
+            </div>
+        @endif
+    </div>
 
-                /* Copy text into clipboard */
-                navigator.clipboard.writeText("http://127.0.0.1:8000/{{ $recipe->id }}");
-                alert("Text Copied!");
-            }
 
-            function printPDF() {
-                window.print('invoice.blade.pdf');
-            }
-        </script>
-    @endsection
+
+    <script>
+        function copyText() {
+
+            /* Copy text into clipboard */
+            navigator.clipboard.writeText("http://127.0.0.1:8000/{{ $recipe->id }}");
+            alert("Text Copied!");
+        }
+
+        function printPDF() {
+            window.print('invoice.blade.pdf');
+        }
+    </script>
+@endsection

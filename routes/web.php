@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\admin\admindashboardController;
 use App\Http\Controllers\admin\admindashboardUserController;
@@ -105,6 +106,7 @@ Route::group(
     ],
     function () {
         Route::post('/{recipe:id}', [RecipeController::class, 'bookmark'])->name('recipes.bookmark');
+        Route::resource('/{recipe:id}/comments', CommentController::class)->only(['store']);
         Route::delete('/{recipe:id}/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
         Route::get('/{recipe:id}/generate_pdf', [RecipeController::class, 'downloadPDF'])->name('generate_pdf');
     }
