@@ -2,19 +2,20 @@
 @section('container')
     <div id="content" class="bg-black col-span-9  p-6">
         <div>
-            <h1 class="font-bold py-4 uppercase">Categories Data</h1>
+            <h1 class="font-bold py-4 uppercase">Country Data</h1>
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
                         <div>
-                            <i class="bi bi-tags text-3xl"></i>
+                            <i class="bi bi-flag text-3xl"></i>
                         </div>
                         <div>
-                            <p class="text-blue-400
+                            <p
+                                class="text-yellow-400
                                 text-sm font-medium uppercase leading-4">
-                                Total Category</p>
+                                Total Country</p>
                             <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
-                                <span>{{ $category->total() }}</span>
+                                <span>{{ $country->total() }}</span>
                             </p>
                         </div>
                     </div>
@@ -55,9 +56,9 @@
             <div>
                 <div class="grid grid-cols-2 place-items-start">
                     <h1 class="font-bold py-4 items-center uppercase">Recipes</h1>
-                    <label for="add-category" href="#addcategory"
+                    <label for="add-country" href="#addcountry"
                         class="btn btn-md py-4 justify-self-end text-xs bg-blue1 text-white hover:bg-blue-800">Add
-                        Category</label>
+                        country</label>
                 </div>
 
                 <div class="overflow-x-auto overflow-hidden">
@@ -67,31 +68,31 @@
                             <th class="text-center py-3 px-2">Name</th>
                             <th class="text-center py-3 px-2 rounded-r-lg">Actions</th>
                         </thead>
-                        @foreach ($category as $cat)
+                        @foreach ($country as $cat)
                             <tr class="border-b border-gray-700">
                                 <td class="py-3 px-2 font-bold">
-                                    {{ $loop->iteration + $category->firstItem() - 1 }}
+                                    {{ $loop->iteration + $country->firstItem() - 1 }}
                                 </td>
                                 <td class="text-center py-3 px-2">{{ $cat->name }}</td>
                                 <td class="text-center py-3 px-2">
-                                    <label for="edit-category-{{ $cat->id }}">
+                                    <label for="edit-country-{{ $cat->id }}">
                                         <i tabindex="0" title="Edit"
                                             class="hover:text-indigo-400 bi bi-pencil w-5 h-5"></i>
                                     </label>
 
                                     {{-- Modal for the edit --}}
 
-                                    <input type="checkbox" id="edit-category-{{ $cat->id }}" class="modal-toggle" />
+                                    <input type="checkbox" id="edit-country-{{ $cat->id }}" class="modal-toggle" />
                                     <div class="modal text-start">
                                         <div class="modal-box relative bg-slate-900">
-                                            <label for="edit-category-{{ $cat->id }}"
+                                            <label for="edit-country-{{ $cat->id }}"
                                                 class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                            <h3 class="font-bold text-lg">Edit Category </h3>
+                                            <h3 class="font-bold text-lg">Edit country </h3>
                                             <p class="py-4">
-                                            <form method="POST" action="/admin/dashboard/category/update">
+                                            <form method="POST" action="/admin/dashboard/country/update">
                                                 @csrf
                                                 @method('PUT')
-                                                <input type="hidden" name="category_id" value="{{ $cat->id }}" />
+                                                <input type="hidden" name="country_id" value="{{ $cat->id }}" />
                                                 <label class="form-label">Name</label>
                                                 <input type="text" name="name" placeholder="Name"
                                                     class="form-control p-1 rounded-lg "
@@ -115,13 +116,13 @@
 
                     </table>
 
-                    <input type="checkbox" id="add-category" class="modal-toggle" />
+                    <input type="checkbox" id="add-country" class="modal-toggle" />
                     <div class="modal">
                         <div class="modal-box relative bg-slate-900">
-                            <label for="add-category" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                            <h3 class="font-bold text-lg">Add Category </h3>
+                            <label for="add-country" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <h3 class="font-bold text-lg">Add country </h3>
                             <p class="py-4">
-                            <form method="POST" action="/admin/dashboard/category">
+                            <form method="POST" action="/admin/dashboard/country">
                                 @csrf
 
                                 <label class="form-label">Name</label>
@@ -141,7 +142,7 @@
                     </div>
 
 
-                    {{ $category->links() }}
+                    {{ $country->links() }}
                 </div>
             </div>
         </div>

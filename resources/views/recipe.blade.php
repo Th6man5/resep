@@ -21,29 +21,29 @@
 
         </div>
         <div class="bg-white rounded border-2  shadow-md">
-            <div class="grid grid-cols-4 gap-2 mx-10 p-6 ">
+            <div class="grid grid-cols-4  gap-2 mx-10 p-6 ">
 
                 @if ($isBookmarked)
                     <form action="{{ route('recipes.unbookmark', $recipe) }}" method="POST"
-                        class="btn bg-yellow2 hover:bg-yellow1 text-black border-none hover:scale-105 text-xs md:text-sm">
+                        class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">
                         @csrf
                         @method('delete')
                         <button type="submit" class="uppercase">Saved</button>
                     </form>
                 @else
                     <form action="{{ route('recipes.bookmark', $recipe) }}" method="POST"
-                        class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">
+                        class="btn bg-yellow2 hover:bg-yellow1 text-black border-none hover:scale-105 text-xs md:text-sm">
                         @csrf
                         <button type="submit" class="uppercase">
                             Save
                         </button>
                     </form>
                 @endif
-
+                <a class="hidden" href="{{ route('recipe', ['recipe' => $recipe->id]) }}">Example Link</a>
                 <a href="{{ route('generate_pdf', $recipe->id) }}" target="_blank"
                     class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Print</a>
-                <button onclick="copyText()"
-                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Share</button>
+                <button class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"
+                    id="copy-link-btn">Share</button>
                 <button class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">
                     Report</button>
             </div>
@@ -99,14 +99,19 @@
             <hr class="border-black border-2 bg-black rounded-md m-3">
             <div class="m-2">
                 @foreach ($recipe->comments as $comment)
-                    <div class="m-2 bg-white1 p-5 rounded-lg">
+                    <div class="m-2 bg-white1 p-2 rounded-lg">
                         <div class="flex flex-row items-center">
-                            <h4 class="text-xl flex-none mr-1 leading-none">{{ $comment->user->name }}
-                                <h4 class="text-sm text-slate-500">#{{ $comment->user->username }}</h4>
+                            @if (auth()->user()->username == $comment->user->username)
+                                <h4 class="text-xl flex-none mr-1 leading-none text-red-600">{{ $comment->user->name }}
+                                @else
+                                    <h4 class="text-xl flex-none mr-1 leading-none">{{ $comment->user->name }}
+                            @endif
+                            <h4 class="text-sm text-slate-500">#{{ $comment->user->username }}</h4>
                         </div>
                         <p class="text-xs text-slate-400">Posted {{ $comment->created_at->diffForHumans() }}</p>
                         <p class="text-md mt-2 m-2">{{ $comment->body }}</p>
                     </div>
+                    <hr class="border-black">
                 @endforeach
             </div>
         @else
@@ -120,12 +125,18 @@
 
 
     <script>
-        function copyText() {
+        const copyLinkBtn = document.querySelector('#copy-link-btn');
+        const link = "{{ route('recipe', ['recipe' => $recipe->id]) }}";
 
-            /* Copy text into clipboard */
-            navigator.clipboard.writeText("http://127.0.0.1:8000/{{ $recipe->id }}");
-            alert("Text Copied!");
-        }
+        copyLinkBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(link)
+                .then(() => {
+                    alert('Link copied to clipboard');
+                })
+                .catch(err => {
+                    alert('Failed to copy link: ', err);
+                });
+        });
 
         function printPDF() {
             window.print('invoice.blade.pdf');

@@ -29,12 +29,12 @@
     <main class="sm:px-24 sm:py-10">
 
         <div class="bg-whitep p-4 rounded-lg text-black shadow-sm ">
-            <div class="flex">
-                <div class="md:flex-1 sm:flex-1 p-2 m-3">
+            <div class="flex mb-5">
+                <div class="md:flex-none sm:flex-1 p-2 m-3">
                     <label class="avatar">
-                        <div class="w-30 rounded-full">
+                        <div class="lg:w-56 w-44 rounded-full">
                             @if (auth()->user()->profile_picture)
-                                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="w-30" />
+                                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" />
                             @else
                                 <img src="https://placeimg.com/192/192/arch" />
                             @endif
@@ -113,10 +113,18 @@
             <form method="POST" action="/user/dashboard/update" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="form-group">
-                    <label for="profile_picture">Profile Picture</label>
-                    <input type="file" name="profile_picture" id="profile_picture " accept="image/png , image/jpeg">
+                <div class="grid grid-cols-2 items-center">
+                    <div class="form-group">
+                        <label for="profile_picture">Profile Picture</label>
+                        <input type="file" name="profile_picture" id="imgInp" accept="image/png , image/jpeg">
+                    </div>
+                    <div class="avatar mt-4 ml-auto">
+                        <div class="rounded-full w-24">
+                            <img id="blah" src="#" class="hidden " />
+                        </div>
+                    </div>
                 </div>
+
                 @error('profile_picture')
                     {{ $message }}
                 @enderror
@@ -124,14 +132,9 @@
                 <input type="text" name="name" placeholder="Name" class="form-control p-1 rounded-lg "
                     value="{{ auth()->user()->name }}" required>
 
-
                 <label class="form-label">Username</label>
                 <input type="text" name="username" placeholder="Username" class="form-control"
                     value="{{ auth()->user()->username }}" required>
-
-
-
-
 
                 <input type="submit" class="btn btn-primary btn-sm mt-3" value="Submit">
             </form>
@@ -142,6 +145,19 @@
 </body>
 
 
+<script>
+    imgInp.onchange = evt => {
+        const blah = document.getElementById('blah');
+
+        blah.classList.remove('hidden');
+        blah.classList.add('block');
+
+        const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 
 </html>
 {{-- <div class="container mt-4">

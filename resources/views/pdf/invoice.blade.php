@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <head>
-
+    @vite('resources/css/app.css')
 </head>
 <style>
     * {

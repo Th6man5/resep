@@ -7,10 +7,10 @@
 
 
             @auth
-                @if (!auth()->user()->is_admin)
-                    <li class="rounded-lg active:bg-green3  {{ $active === 'recipe' ? 'text-white' : '' }}"><a
-                            href="/user/dashboard/recipe" class="active:bg-green3 ">Recipe</a></li>
-                @endif
+
+                <li class="rounded-lg active:bg-green3  {{ $active === 'recipe' ? 'text-white' : '' }}"><a
+                        href="/user/dashboard/recipe" class="active:bg-green3 ">Recipe</a></li>
+
                 @if (auth()->user()->is_admin)
                     <li class="rounded-lg {{ $active === 'recipe' ? 'text-white' : '' }}"><a href="/admin/dashboard/recipe"
                             class="active:bg-green3">admin</a></li>

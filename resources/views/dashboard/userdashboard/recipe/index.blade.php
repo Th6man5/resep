@@ -73,12 +73,12 @@
                         </a>
                     @endif
                     <div class="m-4 ">
-                        <div class="grid lg:grid-cols-2 items-center ">
+                        <div class="grid grid-cols-2 items-center ">
                             <span class="font-bold block"
                                 style=" overflow: hidden;  white-space: nowrap; text-overflow: ellipsis;">
                                 {{ $resep->recipe_name }}
                             </span>
-                            <div class="flex lg:ml-auto lg:mt-0 mt-2">
+                            <div class="flex ml-auto mt-0 ">
 
                                 <a href="/{{ $resep->id }}"
                                     class="btn bg-blue1 border-none text-black btn-sm mr-1 hover:text-white hover:bg-blue1 transition-all duration-300"><i

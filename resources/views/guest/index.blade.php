@@ -3,11 +3,15 @@
     <div class="bg-whitep p-6 rounded-lg text-black shadow-sm">
         <div class="flex">
             <div class="md:flex-none sm:flex-1 p-2 m-3">
-                <div class="avatar">
-                    <div class="w-30 rounded-full">
-                        <img src="https://placeimg.com/192/192/people" />
+                <label class="avatar">
+                    <div class="lg:w-56 w-44 rounded-full">
+                        @if (auth()->user()->profile_picture)
+                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" />
+                        @else
+                            <img src="https://placeimg.com/192/192/arch" />
+                        @endif
                     </div>
-                </div>
+                </label>
             </div>
             <div class="flex-auto p-2 mt-10 mr-3">
                 <h3>{{ $user->name }}</h3>

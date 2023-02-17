@@ -21,7 +21,7 @@
                 </div>
 
                 <p class="m-0">Saved</p>
-                <p class="m-0">Total: {{ $view }} </p>
+                <p class="m-0">Total: {{ $saved->count() }} </p>
             </div>
             <div>
                 <div class="circle bg-green1 hover:bg-green3">

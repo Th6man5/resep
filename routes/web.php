@@ -13,6 +13,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\admin\admindashboardController;
+use App\Http\Controllers\admin\admindashboardCountryController;
 use App\Http\Controllers\admin\admindashboardUserController;
 use App\Http\Controllers\admin\admindashboardCategoryController;
 use App\Http\Controllers\user\RecipeDashboardController;
@@ -52,9 +53,12 @@ Route::group([
     Route::resource('/dashboard/recipe', RecipeDashboardController::class);
 
     Route::get('/dashboard/report', function (Recipe $recipe) {
+        $save = auth()->user()->bookmarks;
+        $saved = $save->load('recipe');
         return view('dashboard.userdashboard.report.index', [
             'title' => 'Report',
             'active' => 'report',
+            'saved' => $saved,
             'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->paginate(15)->onEachSide(1)->fragment('recipe'),
             'view' => Recipe::where('user_id', auth()->user()->id)->sum('reads')
         ]);
@@ -86,6 +90,9 @@ Route::group([
 
     Route::resource('/dashboard/category', admindashboardCategoryController::class);
     Route::put('/dashboard/category/update', [admindashboardCategoryController::class, 'update']);
+
+    Route::resource('/dashboard/country', admindashboardCountryController::class);
+    Route::put('/dashboard/country/update', [admindashboardCountryController::class, 'update']);
 });
 
 
@@ -99,7 +106,9 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/{recipe:id}', [RecipeController::class, 'show']);
+Route::get('/{recipe:id}', [RecipeController::class, 'show'])->name('recipe');
+
+
 Route::group(
     [
         'middleware' => ['auth']

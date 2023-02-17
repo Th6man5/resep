@@ -34,7 +34,7 @@
                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
                     placeholder="Example: Pineapple Pizza" />
                 @error('name')
-                    <div class="invalid-feedback">
+                    <div class="text-red-500 text-sm">
                         {{ $message }}
                     </div>
                 @enderror
@@ -48,7 +48,7 @@
                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
                     value="{{ old('about', $recipe->about) }}" />
                 @error('about')
-                    <div class="invalid-feedback">
+                    <div class="text-red-500 text-sm">
                         {{ $message }}
                     </div>
                 @enderror
@@ -64,7 +64,7 @@
                             class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
                             value="{{ old('time', $recipe->time) }} " /></span>
                     @error('time')
-                        <div class="invalid-feedback">
+                        <div class="text-red-500 text-sm">
                             {{ $message }}
                         </div>
                     @enderror
@@ -75,7 +75,7 @@
                             class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
                             value="{{ old('portion', $recipe->portion) }}" /></span>
                     @error('portion')
-                        <div class="invalid-feedback">
+                        <div class="text-red-500 text-sm">
                             {{ $message }}
                         </div>
                     @enderror
@@ -89,7 +89,7 @@
                 <textarea type="text" name="ingredients" id="ingredients" placeholder="Ingredients" required
                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 ">{{ old('ingredients', $recipe->ingredients) }}</textarea>
                 @error('ingredients')
-                    <div class="invalid-feedback">
+                    <div class="text-red-500 text-sm">
                         {{ $message }}
                     </div>
                 @enderror
