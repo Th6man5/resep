@@ -74,37 +74,49 @@
                                 </td>
                                 <td class="text-center py-3 px-2">{{ $cat->name }}</td>
                                 <td class="text-center py-3 px-2">
-                                    <label for="edit-category-{{ $cat->id }}">
-                                        <i tabindex="0" title="Edit"
-                                            class="hover:text-indigo-400 bi bi-pencil w-5 h-5"></i>
-                                    </label>
+                                    <div class="inline-flex items-center space-x-1">
+                                        <label for="edit-category-{{ $cat->id }}">
+                                            <i tabindex="0" title="Edit"
+                                                class="hover:text-indigo-400 bi bi-pencil w-5 h-5"></i>
+                                        </label>
+                                        <form action="/admin/dashboard/category/{{ $cat->id }}"
+                                            onsubmit="return confirm('are you sure you want to delete this?');"
+                                            method="POST">
+                                            @method('delete')
+                                            @csrf
+                                            <button title="Delete" class="hover:text-red-400">
+                                                <i class="bi bi-x-circle w-5 h-5"></i>
+                                            </button>
+                                        </form>
 
-                                    {{-- Modal for the edit --}}
+                                        {{-- Modal for the edit --}}
 
-                                    <input type="checkbox" id="edit-category-{{ $cat->id }}" class="modal-toggle" />
-                                    <div class="modal text-start">
-                                        <div class="modal-box relative bg-slate-900">
-                                            <label for="edit-category-{{ $cat->id }}"
-                                                class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                            <h3 class="font-bold text-lg">Edit Category </h3>
-                                            <p class="py-4">
-                                            <form method="POST" action="/admin/dashboard/category/update">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="category_id" value="{{ $cat->id }}" />
-                                                <label class="form-label">Name</label>
-                                                <input type="text" name="name" placeholder="Name"
-                                                    class="form-control p-1 rounded-lg "
-                                                    value="{{ old('name', $cat->name) }}" required>
-                                                @error('name')
-                                                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-                                                @enderror
-                                                <div class="modal-action">
-                                                    <input type="submit" class="btn btn-primary btn-md mt-3"
-                                                        value="Submit">
-                                                </div>
-                                            </form>
-                                            </p>
+                                        <input type="checkbox" id="edit-category-{{ $cat->id }}"
+                                            class="modal-toggle" />
+                                        <div class="modal text-start">
+                                            <div class="modal-box relative bg-slate-900">
+                                                <label for="edit-category-{{ $cat->id }}"
+                                                    class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                                <h3 class="font-bold text-lg">Edit Category </h3>
+                                                <p class="py-4">
+                                                <form method="POST" action="/admin/dashboard/category/update">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="category_id" value="{{ $cat->id }}" />
+                                                    <label class="form-label">Name</label>
+                                                    <input type="text" name="name" placeholder="Name"
+                                                        class="form-control p-1 rounded-lg "
+                                                        value="{{ old('name', $cat->name) }}" required>
+                                                    @error('name')
+                                                        <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                                                    @enderror
+                                                    <div class="modal-action">
+                                                        <input type="submit" class="btn btn-primary btn-md mt-3"
+                                                            value="Submit">
+                                                    </div>
+                                                </form>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>

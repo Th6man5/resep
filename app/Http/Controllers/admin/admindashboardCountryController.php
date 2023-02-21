@@ -41,4 +41,10 @@ class admindashboardCountryController
 
         return back()->with('success', 'country <strong class="text-slate-600">' . $country->name . '</strong> is succesfully Updated!');
     }
+
+    public function destroy(Country $country)
+    {
+        $country->delete();
+        return redirect('admin/dashboard/country')->with('delete', 'Country is successfully deleted');
+    }
 }

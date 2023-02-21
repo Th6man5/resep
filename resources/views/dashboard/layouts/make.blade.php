@@ -5,10 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <script src="https://unpkg.com/feather-icons"></script>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
     <title>MealsUP | {{ $title }}</title>
     @vite('resources/css/app.css')
@@ -22,17 +20,22 @@
         * {
             font-family: 'Montserrat', sans-serif;
         }
+
+        body {
+            max-width: 100%;
+            min-height: 100vh;
+        }
     </style>
 
 </head>
 
 
-<body>
+<body class="bg-white1">
 
 
     @include('partials.navbar')
 
-    <main class="container mx-auto py-6 px-4">
+    <main class="sm:px-24 sm:py-10 px-6 py-6">
         @yield('content')
     </main>
 

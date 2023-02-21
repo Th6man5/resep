@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="en" data-theme="cupcake" class="bg-white">
+<html lang="en" data-theme="cupcake">
 
 <head>
-    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/feather-icons"></script>
-    <!-- Bootstrap CSS -->
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
     <title>MealsUP | {{ $title }}</title>
     @vite('resources/css/app.css')
@@ -17,12 +16,20 @@
         * {
             font-family: 'Montserrat', sans-serif;
         }
+
+        body {
+            background-blend-mode: multiply;
+            background-image: url("{{ asset('img/pattern.png') }}");
+            background-repeat: repeat;
+            max-width: 100%;
+            min-height: 100vh;
+        }
     </style>
 
 </head>
 
 
-<body>
+<body class="bg-white1">
 
 
     @include('partials.navbar')
@@ -54,7 +61,7 @@
                                 class="bi bi-pen-fill "></i></label></div>
                     <hr>
                     <div class="py-1  mr-1"><a title="Dashboard" href="/user/dashboard/report"
-                            class="btn bg-green1 border-none text-black btn-sm hover:text-white hover:bg-green1 transition-all  duration-300"><i
+                            class="btn bg-success border-none text-black btn-sm hover:text-white hover:bg-success transition-all  duration-300"><i
                                 class="bi bi-bar-chart-fill"></i></a></div>
                     <hr>
                     <div class="py-1  mr-1"><a title="Settings" href="/user/dashboard/settings"

@@ -186,32 +186,33 @@
             }
         }
     </style>
-    <div class="mx-6 my-14 bg-white p-10  shadow-lg rounded-lg ">
-        @if (session()->has('loginError'))
-            <div class="alert alert-error shadow-none rounded-lg transition-all">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                    <span>{{ session('loginError') }}</span>
-                </div>
+    @if (session()->has('loginError'))
+        <div class="alert alert-error shadow-none rounded-lg transition-all">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <span>{{ session('loginError') }}</span>
             </div>
-        @endif
+        </div>
+    @endif
 
-        @if (session()->has('success'))
-            <div class="alert alert-success shadow-none rounded-lg transition-all">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{{ session('success') }}</span>
-                </div>
+    @if (session()->has('success'))
+        <div class="alert alert-success shadow-none rounded-lg transition-all">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('success') }}</span>
             </div>
-        @endif
+        </div>
+    @endif
+
+    <div class=" bg-white p-10  shadow-lg rounded-lg border-2 border-white1">
 
         <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-5">
@@ -233,7 +234,7 @@
                             fill="#2F2E41" />
                         <path id="shoulder2"
                             d="M649.009 309.859C636.914 311.542 628.54 318.166 625.129 331.38L602.896 290.33C601.578 287.721 601.244 284.725 601.955 281.89C602.667 279.055 604.376 276.571 606.77 274.894C609.31 273.113 612.435 272.372 615.505 272.821C618.575 273.27 621.356 274.877 623.28 277.31L649.009 309.859Z"
-                            fill="#24F577" />
+                            fill="#E53935" />
                         <path id="skirt"
                             d="M672.307 570.412C618.249 594.33 562.927 597.273 506.497 581.847C527.103 501.926 551.434 429.659 551.285 370.296L606.555 365.531L615.065 379.022C635.255 411.031 649.192 446.579 656.136 483.782L672.307 570.412Z"
                             fill="#2F2E41" />
@@ -245,13 +246,13 @@
                             fill="#A0616A" />
                         <path id="Vector_5"
                             d="M609.414 370.296L570.786 371.384L551.285 374.107C541.712 342.486 533.653 310.937 553.19 284.531L576.061 261.661L610.367 260.708L610.821 260.968C616.269 264.089 620.491 268.973 622.792 274.815C625.093 280.658 625.335 287.109 623.478 293.107C614.965 320.772 609.496 346.896 609.414 370.296Z"
-                            fill="#24F577" />
+                            fill="#E53935" />
                         <path id="arm1"
                             d="M550.332 458.919L547.936 491.665C547.807 493.419 547.05 495.068 545.802 496.307C544.554 497.547 542.901 498.294 541.146 498.411V498.411C540.135 498.478 539.121 498.334 538.169 497.988C537.216 497.642 536.346 497.101 535.615 496.4C534.883 495.698 534.305 494.853 533.919 493.916C533.532 492.979 533.345 491.972 533.369 490.959L534.132 458.919L557.955 368.39L558.908 313.119L585.59 312.167L583.684 376.013L550.332 458.919Z"
                             fill="#A0616A" />
                         <path id="shoulder1"
                             d="M588.449 316.931C577.137 312.331 566.571 313.872 557.002 323.602L558.313 276.936C558.478 274.018 559.69 271.257 561.725 269.159C563.76 267.061 566.484 265.767 569.396 265.514V265.514C572.486 265.245 575.563 266.168 577.995 268.094C580.427 270.02 582.03 272.803 582.477 275.873L588.449 316.931Z"
-                            fill="#24F577" />
+                            fill="#E53935" />
                         <path id="hair"
                             d="M642.29 345.996H554.62C575.072 291.839 581.667 241.457 554.62 198.291C555.084 185.326 571.713 174.086 584.627 175.328C599.879 176.794 620.374 188.002 623.231 203.055L642.29 345.996Z"
                             fill="#2F2E41" />
@@ -266,7 +267,7 @@
                             <g id="kecap">
                                 <path id="Vector_9"
                                     d="M190.619 136.549H171.179C170.496 136.549 169.84 136.82 169.357 137.303C168.873 137.787 168.602 138.442 168.602 139.126V147.659C168.602 148.342 168.873 148.998 169.357 149.481C169.84 149.965 170.496 150.236 171.179 150.236H174.401V163.021H187.398V150.236H190.619C191.303 150.236 191.959 149.965 192.442 149.481C192.925 148.998 193.197 148.342 193.197 147.659V139.126C193.197 138.442 192.925 137.787 192.442 137.303C191.959 136.82 191.303 136.549 190.619 136.549Z"
-                                    fill="#24F577" />
+                                    fill="#E53935" />
                                 <path id="Vector_10"
                                     d="M210.091 214.641C198.185 197.22 192.099 176.477 192.703 155.385C192.714 154.898 192.556 154.423 192.256 154.04C191.957 153.656 191.533 153.388 191.058 153.282V149.595H170.527V153.23H170.244C169.967 153.231 169.693 153.286 169.438 153.392C169.182 153.498 168.95 153.654 168.755 153.849C168.56 154.045 168.405 154.278 168.299 154.533C168.194 154.789 168.139 155.063 168.14 155.34C168.14 155.391 168.142 155.442 168.146 155.493C169.763 178.041 164.301 198.261 151.76 216.154C151.038 217.182 150.67 218.417 150.709 219.672L152.954 289.117C153.008 290.666 153.658 292.134 154.769 293.215C155.879 294.296 157.365 294.907 158.914 294.919H205.353C206.921 294.906 208.421 294.282 209.535 293.179C210.649 292.076 211.289 290.582 211.317 289.014L212.182 221.589C212.208 219.115 211.478 216.691 210.091 214.641V214.641Z"
                                     fill="#3F3D56" />
@@ -275,7 +276,7 @@
                                     fill="black" />
                                 <path id="Vector_12"
                                     d="M202.74 237.709H197.116C196.579 234.225 194.813 231.048 192.138 228.754C189.462 226.459 186.054 225.197 182.529 225.197C179.004 225.197 175.596 226.459 172.92 228.754C170.245 231.048 168.479 234.225 167.942 237.709H162.318C161.72 237.709 161.128 237.838 160.585 238.088C160.041 238.338 159.558 238.702 159.168 239.157C158.779 239.611 158.492 240.144 158.328 240.719C158.163 241.294 158.125 241.898 158.216 242.49L164.324 282.194H199.399L206.818 242.624C206.931 242.024 206.91 241.407 206.757 240.817C206.604 240.227 206.322 239.678 205.933 239.208C205.544 238.739 205.055 238.362 204.504 238.102C203.952 237.843 203.349 237.709 202.74 237.709V237.709Z"
-                                    fill="#24F577" />
+                                    fill="#E53935" />
                             </g>
                             <path id="Vector_13" d="M304.445 407.234H58.4446V618.234H304.445V407.234Z" fill="#E6E6E6" />
                             <g id="egg">
@@ -289,7 +290,7 @@
                             <g id="Bookmarkbar">
                                 <path id="Vector_16"
                                     d="M131.945 365.234C142.162 365.234 150.445 357.175 150.445 347.234C150.445 337.293 142.162 329.234 131.945 329.234C121.727 329.234 113.445 337.293 113.445 347.234C113.445 357.175 121.727 365.234 131.945 365.234Z"
-                                    fill="#24F577" />
+                                    fill="#E53935" />
                                 <path id="Bookmark"
                                     d="M139 356L132 351L125 356V340C125 339.47 125.211 338.961 125.586 338.586C125.961 338.211 126.47 338 127 338H137C137.53 338 138.039 338.211 138.414 338.586C138.789 338.961 139 339.47 139 340V356Z"
                                     fill="white" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -298,7 +299,7 @@
                             <g id="Bookmarkbar_2">
                                 <path id="Vector_17"
                                     d="M131.5 662C141.717 662 150 653.941 150 644C150 634.059 141.717 626 131.5 626C121.283 626 113 634.059 113 644C113 653.941 121.283 662 131.5 662Z"
-                                    fill="#24F577" />
+                                    fill="#E53935" />
                                 <path id="Bookmark_2"
                                     d="M138.555 652.766L131.555 647.766L124.555 652.766V636.766C124.555 636.236 124.766 635.727 125.141 635.352C125.516 634.977 126.025 634.766 126.555 634.766H136.555C137.086 634.766 137.594 634.977 137.97 635.352C138.345 635.727 138.555 636.236 138.555 636.766V652.766Z"
                                     fill="white" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -307,7 +308,7 @@
                             <g id="Printerbar">
                                 <path id="Vector_18"
                                     d="M225.5 365C235.717 365 244 356.941 244 347C244 337.059 235.717 329 225.5 329C215.283 329 207 337.059 207 347C207 356.941 215.283 365 225.5 365Z"
-                                    fill="#24F577" />
+                                    fill="#E53935" />
                                 <g id="printer">
                                     <g id="Vector_19">
                                         <path d="M220 344V337H232V344" fill="white" />
@@ -330,7 +331,7 @@
                             <g id="Printerbar_2">
                                 <path id="Vector_22"
                                     d="M225.5 662C235.717 662 244 653.941 244 644C244 634.059 235.717 626 225.5 626C215.283 626 207 634.059 207 644C207 653.941 215.283 662 225.5 662Z"
-                                    fill="#24F577" />
+                                    fill="#E53935" />
                                 <g id="printer_2">
                                     <g id="Vector_23">
                                         <path d="M220 641V634H232V641" fill="white" />
@@ -362,7 +363,7 @@
                     <!-- Email input -->
                     <div class="mb-6">
                         <input type="email" name="email"
-                            class="form-control block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none @error('email') is-invalid @enderror"
+                            class="form-control block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red1 focus:outline-none @error('email') is-invalid @enderror"
                             placeholder="Email address" autofocus required />
                         @error('email')
                             <div class="invalid-feedback">
@@ -374,25 +375,25 @@
                     <!-- Password input -->
                     <div class="mb-6">
                         <input type="password" name="password"
-                            class="form-control block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                            class="form-control block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red1 focus:outline-none"
                             placeholder="Password" required />
                     </div>
 
                     <div class="flex justify-between items-center mb-6">
                         <a href="#!"
-                            class="text-green1 hover:text-green2 focus:text-green-700 active:text-green-800 duration-200 transition ease-in-out">Forgot
+                            class="text-primary1 hover:text-secondary1 focus:text-green-700 active:text-green-800 duration-200 transition ease-in-out">Forgot
                             password?</a>
                     </div>
 
                     <!-- Submit button -->
                     <button type="submit"
-                        class="inline-block px-7 py-3 bg-green1 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-green2 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green2 active:shadow-lg transition duration-150 ease-in-out w-full">
+                        class="inline-block px-7 py-3 bg-primary1 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-secondary1 hover:shadow-lg focus:bg-secondary1 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-secondary1 active:shadow-lg transition duration-150 ease-in-out w-full">
                         Sign in
                     </button>
                     <p class="text-sm font-semibold mt-2 pt-1 mb-0">
                         Don't have an account?
                         <a href="/register"
-                            class="text-green-600 hover:text-green-700 focus:text-green-700 transition duration-200 ease-in-out">Register</a>
+                            class="text-red1 hover:text-secondary1 focus:text-secondary1 transition duration-200 ease-in-out">Register</a>
                     </p>
                 </form>
             </div>

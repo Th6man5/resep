@@ -11,9 +11,12 @@
      <div
          class="flex flex-col space-y-2 md:space-y-0 md:flex-row mb-5 items-center md:space-x-2 hover:bg-white/10 group transition duration-150 ease-linear rounded-lg group w-full py-3 px-2">
          <div>
-             <img class="rounded-full w-10 h-10 relative object-cover"
-                 src="https://static.jojowiki.com/images/7/76/latest/20200816174510/Gyro_Zeppeli_Infobox_Manga.png"
-                 alt="">
+             @if (auth()->user()->profile_picture)
+                 <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                     class="rounded-full w-10 h-10 relative object-cover" />
+             @else
+                 <img src="https://placeimg.com/192/192/arch" class="rounded-full w-10 h-10 relative object-cover" />
+             @endif
          </div>
          <div>
              <p class="font-medium group-hover:text-indigo-400 leading-4">{{ auth()->user()->name }}</p>

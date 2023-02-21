@@ -68,54 +68,61 @@
                             <th class="text-center py-3 px-2">Name</th>
                             <th class="text-center py-3 px-2 rounded-r-lg">Actions</th>
                         </thead>
-                        @foreach ($country as $cat)
+                        @foreach ($country as $cou)
                             <tr class="border-b border-gray-700">
                                 <td class="py-3 px-2 font-bold">
                                     {{ $loop->iteration + $country->firstItem() - 1 }}
                                 </td>
-                                <td class="text-center py-3 px-2">{{ $cat->name }}</td>
+                                <td class="text-center py-3 px-2">{{ $cou->name }}</td>
                                 <td class="text-center py-3 px-2">
-                                    <label for="edit-country-{{ $cat->id }}">
-                                        <i tabindex="0" title="Edit"
-                                            class="hover:text-indigo-400 bi bi-pencil w-5 h-5"></i>
-                                    </label>
+                                    <div class="inline-flex items-center space-x-1">
+                                        <label for="edit-country-{{ $cou->id }}">
+                                            <i tabindex="0" title="Edit"
+                                                class="hover:text-indigo-400 bi bi-pencil w-5 h-5"></i>
+                                        </label>
+                                        <form action="/admin/dashboard/country/{{ $cou->id }}"
+                                            onsubmit="return confirm('are you sure you want to delete this?');"
+                                            method="POST">
+                                            @method('delete')
+                                            @csrf
+                                            <button title="Delete" class="hover:text-red-400">
+                                                <i class="bi bi-x-circle w-5 h-5"></i>
+                                            </button>
+                                        </form>
 
-                                    {{-- Modal for the edit --}}
+                                        {{-- Modal for the edit --}}
 
-                                    <input type="checkbox" id="edit-country-{{ $cat->id }}" class="modal-toggle" />
-                                    <div class="modal text-start">
-                                        <div class="modal-box relative bg-slate-900">
-                                            <label for="edit-country-{{ $cat->id }}"
-                                                class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                            <h3 class="font-bold text-lg">Edit country </h3>
-                                            <p class="py-4">
-                                            <form method="POST" action="/admin/dashboard/country/update">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="country_id" value="{{ $cat->id }}" />
-                                                <label class="form-label">Name</label>
-                                                <input type="text" name="name" placeholder="Name"
-                                                    class="form-control p-1 rounded-lg "
-                                                    value="{{ old('name', $cat->name) }}" required>
-                                                @error('name')
-                                                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-                                                @enderror
-                                                <div class="modal-action">
-                                                    <input type="submit" class="btn btn-primary btn-md mt-3"
-                                                        value="Submit">
-                                                </div>
-                                            </form>
-                                            </p>
+                                        <input type="checkbox" id="edit-country-{{ $cou->id }}" class="modal-toggle" />
+                                        <div class="modal text-start">
+                                            <div class="modal-box relative bg-slate-900">
+                                                <label for="edit-country-{{ $cou->id }}"
+                                                    class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                                <h3 class="font-bold text-lg">Edit country </h3>
+                                                <p class="py-4">
+                                                <form method="POST" action="/admin/dashboard/country/update">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="country_id" value="{{ $cou->id }}" />
+                                                    <label class="form-label">Name</label>
+                                                    <input type="text" name="name" placeholder="Name"
+                                                        class="form-control p-1 rounded-lg "
+                                                        value="{{ old('name', $cou->name) }}" required>
+                                                    @error('name')
+                                                        <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                                                    @enderror
+                                                    <div class="modal-action">
+                                                        <input type="submit" class="btn btn-primary btn-md mt-3"
+                                                            value="Submit">
+                                                    </div>
+                                                </form>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
-
-
-
                     </table>
-
                     <input type="checkbox" id="add-country" class="modal-toggle" />
                     <div class="modal">
                         <div class="modal-box relative bg-slate-900">
@@ -124,15 +131,12 @@
                             <p class="py-4">
                             <form method="POST" action="/admin/dashboard/country">
                                 @csrf
-
                                 <label class="form-label">Name</label>
                                 <input type="text" name="name" placeholder="Name" class="form-control p-1 rounded-lg "
                                     value="{{ old('name') }}" required>
                                 @error('name')
                                     <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
                                 @enderror
-
-
                                 <div class="modal-action">
                                     <input type="submit" class="btn btn-primary btn-md mt-3" value="Submit">
                                 </div>
@@ -140,7 +144,6 @@
                             </p>
                         </div>
                     </div>
-
 
                     {{ $country->links() }}
                 </div>

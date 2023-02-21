@@ -53,4 +53,10 @@ class admindashboardCategoryController
 
         return back()->with('success', 'Category <strong class="text-slate-600">' . $category->name . '</strong> is succesfully Updated!');
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect('admin/dashboard/category')->with('delete', 'Category is successfully deleted');
+    }
 }

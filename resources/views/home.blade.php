@@ -124,9 +124,11 @@
                 <div class="input-group mb-3 justify-center">
                     <label class="relative block ">
                         <input type="text" placeholder="Search..." name="search"
-                            class="input input-bordered rounded-none w-full max-w-xs" value="{{ request('search') }}" />
+                            class="input input-bordered rounded-none rounded-l-2xl w-full max-w-xs"
+                            value="{{ request('search') }}" />
                     </label>
-                    <button class="btn bg-green1 text-white border-none hover:bg-green3 " type="submit">Search</button>
+                    <button class="btn bg-primary1 text-white border-none hover:bg-secondary1 "
+                        type="submit">Search</button>
                 </div>
 
 
@@ -137,7 +139,7 @@
         <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mb-5">
             @foreach ($recipe as $resep)
                 <div
-                    class="bg-whitep rounded overflow-hidden shadow-md relative hover:bg-red1  transition-all hover:text-white">
+                    class="bg-whitep shadow-2xl rounded-xl overflow-hidden  relative hover:bg-red1  transition-all hover:text-white">
                     @if ($resep->image)
                         <a href="/{{ $resep->id }}">
                             <img src="{{ asset('storage/' . $resep->image) }}" class="w-full h-32 sm:h-48 object-cover">
@@ -180,7 +182,8 @@
                             <input type="text" placeholder="Search..." name="search"
                                 class="input input-bordered rounded-none w-full max-w-xs" value="{{ request('search') }}" />
                         </label>
-                        <button class="btn bg-green1 text-white border-none hover:bg-green3" type="button">Search</button>
+                        <button class="btn bg-primary1 text-white border-none hover:bg-secondary1"
+                            type="button">Search</button>
                     </div>
                 @endif
             </form>
@@ -211,7 +214,7 @@
             <g id="arm2">
                 <path id="Vector"
                     d="M197.17 328.482C197.17 328.482 173.466 395.204 184.001 418.908C194.537 442.612 211.217 465.438 211.217 465.438C211.217 465.438 205.072 332.872 197.17 328.482Z"
-                    fill="#24F577" />
+                    fill="#E53935" />
                 <path id="Vector_2" opacity="0.1"
                     d="M196.868 329C196.868 329 173.164 395.722 183.699 419.426C194.234 443.13 210.915 465.956 210.915 465.956C210.915 465.956 204.769 333.39 196.868 329Z"
                     fill="black" />
@@ -230,14 +233,14 @@
                 fill="#FFB8B8" />
             <path id="Vector_6"
                 d="M312.617 280.635C312.617 280.635 259.942 251.664 254.674 252.542C249.407 253.42 193.22 302.583 194.098 322.776C194.975 342.968 201.999 376.329 201.999 376.329C201.999 376.329 204.633 469.389 209.9 470.267C215.168 471.145 209.022 486.947 210.778 486.947C212.534 486.947 333.687 486.947 334.565 484.314C335.443 481.68 312.617 280.635 312.617 280.635Z"
-                fill="#24F577" />
+                fill="#E53935" />
             <g id="arm1">
                 <path id="Vector_7"
                     d="M342.028 489.142C342.028 489.142 358.708 540.062 344.661 538.306C330.615 536.55 324.469 494.41 324.469 494.41L342.028 489.142Z"
                     fill="#FFB8B8" />
                 <path id="Vector_8"
                     d="M297.254 277.563C297.254 277.563 264.77 284.586 270.038 328.482C275.306 372.378 284.963 416.275 284.963 416.275L317.446 487.386L320.958 500.555L344.661 494.41L327.103 392.571C327.103 392.571 320.958 283.708 313.056 280.196C308.074 278.072 302.656 277.169 297.254 277.563Z"
-                    fill="#24F577" />
+                    fill="#E53935" />
                 <path id="shadow" opacity="0.1" d="M277.5 414.958L317.885 486.947L283.86 411.09L277.5 414.958Z"
                     fill="black" />
             </g>

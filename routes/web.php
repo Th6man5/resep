@@ -3,23 +3,23 @@
 
 use App\Models\User;
 use App\Models\Recipe;
+use App\Models\Country;
+use App\Models\Category;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\UserDashboardController;
-use App\Http\Controllers\admin\admindashboardController;
-use App\Http\Controllers\admin\admindashboardCountryController;
-use App\Http\Controllers\admin\admindashboardUserController;
-use App\Http\Controllers\admin\admindashboardCategoryController;
-use App\Http\Controllers\user\RecipeDashboardController;
+use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\user\DashboardController;
-use App\Models\Category;
-use App\Models\Country;
+use App\Http\Controllers\admin\admindashboardController;
+use App\Http\Controllers\user\RecipeDashboardController;
+use App\Http\Controllers\admin\admindashboardUserController;
+use App\Http\Controllers\admin\admindashboardCountryController;
+use App\Http\Controllers\admin\admindashboardCategoryController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -40,13 +40,9 @@ Route::group([
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-    Route::get('/dashboard/settings', function (Recipe $recipe) {
-
-        return view('dashboard.userdashboard.setting.index', [
-            'title' => 'Settings',
-            'active' => 'home',
-        ]);
-    });
+    Route::get('/dashboard/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::get('/dashboard/settings/change-password', [SettingsController::class, 'show'])->name('password.show');
+    Route::post('/dashboard/settings/change-password', [SettingsController::class, 'update'])->name('password.update');
 
     Route::put('/dashboard/update', [ProfileController::class, 'update']);
 

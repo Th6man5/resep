@@ -17,7 +17,7 @@
             <img id="blah" src="#" class="hidden mt-4 sticky top-24" />
         </div>
 
-        <div class="rounded border-2 shadow-md">
+        <div class="rounded  shadow-md bg-white">
             <div class="block m-4 ">
                 <span class="block text-xl ml-2 text-center text-black">
                     Recipe Name
@@ -136,7 +136,8 @@
             </div>
             <div class="text-right mb-4 mr-4">
                 <input type="submit"
-                    class="btn bg-green1 text-black hover:bg-green2 hover:scale-105 btn-md mt-3 rounded-md" value="Submit">
+                    class="btn bg-success text-black hover:bg-green3 hover:scale-105 btn-md mt-3 rounded-md border-none"
+                    value="Submit">
             </div>
         </div>
     </form>

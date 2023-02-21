@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Recipe;
-use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\Recipe;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -72,8 +73,11 @@ class ProfileController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:191', 'required'],
-            'username' => ['required', 'alpha_num', 'min:3', 'max:100'],
+            'name' => ['required', 'string', 'min:3', 'max:191'],
+            'username' => [
+                'required', 'alpha_num', 'min:3', 'max:100',
+                Rule::unique('users')->ignore(auth()->id()),
+            ],
             'profile_picture' => ['image', 'max:2000'], // Limit file size to 2MB
         ]);
 

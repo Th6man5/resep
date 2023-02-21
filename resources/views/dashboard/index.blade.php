@@ -76,7 +76,8 @@
         </div>
     @else
         <p class="text-center sm:text-2xl font-bold mt-5">No Bookmarked Recipe Found</p>
-        <p class="text-center mt-2">Go find some <a class="text-green3 hover:text-green2" href="/">Recipe!</a></p>
+        <p class="text-center mt-2">Go find some <a class="text-primary1 hover:text-secondary1" href="/">Recipe!</a>
+        </p>
     @endif
 
 

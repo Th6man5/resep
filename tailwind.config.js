@@ -9,7 +9,8 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                green1: "#24F577",
+                primary1: "#E53935",
+                secondary1: "#C62828;",
                 green2: "#A1F530",
                 green3: "#1FCC64",
                 whitep: "#DAEEFA",
@@ -20,7 +21,7 @@ module.exports = {
                 yellow1: "#FCBA4C",
                 yellow2: "#FCD24C",
                 blue1: "#337AFF",
-                white1: "#F5F5F5",
+                white1: "#F5F5DC",
             },
             fontFamily: {
                 montserrat: ["Montserrat"],

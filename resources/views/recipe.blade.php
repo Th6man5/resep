@@ -41,8 +41,8 @@
                 @endif
                 <a class="hidden" href="{{ route('recipe', ['recipe' => $recipe->id]) }}">Example Link</a>
                 <a href="{{ route('generate_pdf', $recipe->id) }}" target="_blank"
-                    class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Print</a>
-                <button class="btn bg-green1 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"
+                    class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Print</a>
+                <button class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"
                     id="copy-link-btn">Share</button>
                 <button class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">
                     Report</button>
@@ -53,7 +53,7 @@
             <h1 class="mt-3 text-2xl text-center bold">{{ $recipe->recipe_name }}</h1>
 
             <div class="text-center my-3 text-lg">
-                <a class="text-green1 hover:text-green2 transition-all"
+                <a class="text-green3 hover:text-green2 transition-all"
                     href="/maker/{{ $recipe->maker->id }}">{{ $recipe->maker->name }} <span
                         class="text-slate-400">#{{ $recipe->maker->username }}</span>
                 </a>
@@ -93,7 +93,7 @@
         <button class="btn mb-5 rounded-md" type="submit">Submit</button>
     </form>
 
-    <div class="bg-white1 w-full rounded-lg p-4 shadow-md">
+    <div class="bg-white w-full rounded-lg p-4 shadow-md">
         <h1 class="text-4xl text-center font-bold uppercase text-black">Comments</h1>
         @if ($recipe->comments->count())
             <hr class="border-black border-2 bg-black rounded-md m-3">
@@ -125,6 +125,7 @@
 
 
     <script>
+        //Copy Link
         const copyLinkBtn = document.querySelector('#copy-link-btn');
         const link = "{{ route('recipe', ['recipe' => $recipe->id]) }}";
 
@@ -138,6 +139,8 @@
                 });
         });
 
+
+        //PDF
         function printPDF() {
             window.print('invoice.blade.pdf');
         }

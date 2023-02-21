@@ -16,7 +16,7 @@
 
         <div class="grid grid-cols-3  mb-10 gap-4 text-center mt-5">
             <div>
-                <div class="circle bg-green1 hover:bg-green3 ">
+                <div class="circle bg-primary1 hover:bg-secondary1 ">
                     <i class="bi bi-bookmark-fill text-white" style="font-size: 2rem;"></i>
                 </div>
 
@@ -24,14 +24,14 @@
                 <p class="m-0">Total: {{ $saved->count() }} </p>
             </div>
             <div>
-                <div class="circle bg-green1 hover:bg-green3">
+                <div class="circle bg-primary1 hover:bg-secondary1">
                     <i class="bi bi-eye-fill text-white" style="font-size: 2rem;"></i>
                 </div>
                 <p class="m-0">Views</p>
                 <p class="m-0">Total: {{ $view }} </p>
             </div>
             <div>
-                <div class="circle bg-green1 hover:bg-green3 ">
+                <div class="circle bg-primary1 hover:bg-secondary1 ">
                     <i class="bi bi-clipboard2-fill text-white" style="font-size: 2rem;"></i>
                 </div>
                 <p class="m-0">Recipe</p>
@@ -43,7 +43,7 @@
         <hr class="mb-5">
         {{-- Throphies Icon --}}
         <div class="text-center">
-            <div class="circle bg-green1 hover:bg-green3 ">
+            <div class="circle bg-primary1 hover:bg-secondary1 ">
                 <i class="bi bi-trophy-fill" style="font-size: 2rem; color: white;"></i>
             </div>
             <p class="text-xl uppercase mb-5 mt-1">Top 3</p>
