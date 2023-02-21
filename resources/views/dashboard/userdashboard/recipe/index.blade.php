@@ -61,7 +61,7 @@
         <div class="grid lg:grid-cols-2  gap-10 mx-4">
             @foreach ($recipe as $resep)
                 <div
-                    class="bg-white hover:bg-whitep hover:text-black rounded overflow-hidden shadow-md hover:shadow-lg relative  transition-all">
+                    class="bg-white hover:bg-whitep hover:text-black rounded-xl overflow-hidden shadow-md hover:shadow-lg relative  transition-all">
                     @if ($resep->image)
                         <a href="/{{ $resep->id }}">
                             <img src="{{ asset('storage/' . $resep->image) }}" class="w-full h-32 sm:h-48 object-cover">

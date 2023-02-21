@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Rating;
 use App\Models\Recipe;
 use App\Models\Country;
 use App\Models\Bookmark;
 use App\Models\Category;
 use App\Models\Ingredients;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class RecipeController extends Controller
 {
@@ -23,8 +24,6 @@ class RecipeController extends Controller
      */
     public function index()
     {
-
-
         return view('home', [
             "title" => "Home",
             "active" => 'home',
@@ -32,6 +31,8 @@ class RecipeController extends Controller
 
         ]);
     }
+
+    //PDF DOWNLOAD
 
     public function downloadPDF($id)
     {
@@ -44,6 +45,8 @@ class RecipeController extends Controller
         return $pdf->download(Str::slug($recipe->recipe_name) . '.pdf');
     }
 
+    //BOOKMARK
+
     public function bookmark(Recipe $recipe, Bookmark $bookmark)
     {
         $bookmark = new Bookmark;
@@ -54,6 +57,7 @@ class RecipeController extends Controller
         return back();
     }
 
+    //UnBOOMARK
     public function unbookmark(Recipe $recipe)
     {
         $bookmark = Bookmark::where('recipe_id', $recipe->id)
@@ -66,33 +70,36 @@ class RecipeController extends Controller
 
         return back()->with('success', 'Recipe successfully Unbookmarked');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    //RATING
+
+    public function rate(Request $request, $recipe)
     {
-        //
+        $validatedData = $request->validate([
+            'rating' => 'required|integer|between:1,5',
+        ]);
+
+        $user = auth()->user();
+        $recipeModel = Recipe::findOrFail($recipe);
+        $rating = Rating::where('recipe_id', $recipeModel->id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($rating) {
+            $rating->rating = $validatedData['rating'];
+            $rating->save();
+        } else {
+            $rating = new Rating;
+            $rating->recipe_id = $recipeModel->id;
+            $rating->user_id = $user->id;
+            $rating->rating = $validatedData['rating'];
+            $rating->save();
+        }
+
+        return back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //RECIPE VIEW
     public function show(Recipe $recipe)
     {
         $isBookmarked = false;
@@ -102,50 +109,20 @@ class RecipeController extends Controller
             $isBookmarked = $bookmarks->contains('recipe_id', $recipe->id);
         }
 
+        $userRating = Rating::where('recipe_id', $recipe->id)
+            ->where('user_id', auth()->id())
+            ->value('rating');
+
         $recipe->incrementReadCount();
         return view(
             'recipe',
-            compact($recipe),
             [
                 "title" =>  $recipe->recipe_name,
                 "active" => 'home',
                 "recipe" => $recipe,
                 'isBookmarked' => $isBookmarked,
+                'userRating' => $userRating,
             ]
         );
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

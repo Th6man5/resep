@@ -111,6 +111,7 @@ Route::group(
     ],
     function () {
         Route::post('/{recipe:id}', [RecipeController::class, 'bookmark'])->name('recipes.bookmark');
+        Route::post('/{recipe:id}/rate', [RecipeController::class, 'rate'])->name('recipes.rate');
         Route::resource('/{recipe:id}/comments', CommentController::class)->only(['store']);
         Route::delete('/{recipe:id}/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
         Route::get('/{recipe:id}/generate_pdf', [RecipeController::class, 'downloadPDF'])->name('generate_pdf');

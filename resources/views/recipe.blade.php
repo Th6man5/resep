@@ -2,11 +2,12 @@
 @section('content')
     <div class="grid lg:grid-cols-2 gap-10 relative mb-10">
         <div class="rounded">
-            <div class="sticky top-0 shadow-md" style="top: 100px">
+            <div class="sticky top-0 " style="top: 100px">
                 @if ($recipe->image)
-                    <img src="{{ asset('storage/' . $recipe->image) }}" class=" object-cover">
+                    <img src="{{ asset('storage/' . $recipe->image) }}" class=" object-cover shadow-md rounded-lg">
                 @else
-                    <img src="https://source.unsplash.com/1000x1000/?{{ $recipe->recipe_name }}" class=" object-cover">
+                    <img src="https://source.unsplash.com/1000x1000/?{{ $recipe->recipe_name }}"
+                        class=" object-cover rounded shadow-md">
                 @endif
                 <div
                     class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all">
@@ -16,36 +17,42 @@
                     </p>
                 </div>
             </div>
-
-
-
         </div>
-        <div class="bg-white rounded border-2  shadow-md">
+        <div class="bg-white rounded border-2  shadow-md p-5">
             <div class="grid grid-cols-4  gap-2 mx-10 p-6 ">
 
+                {{--  Bookmark --}}
                 @if ($isBookmarked)
                     <form action="{{ route('recipes.unbookmark', $recipe) }}" method="POST"
                         class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="uppercase">Saved</button>
+                        <button type="submit" class="uppercase" title="Unbookmark"><i
+                                class="bi bi-bookmark-fill text-2xl text-white"></i></button>
                     </form>
                 @else
                     <form action="{{ route('recipes.bookmark', $recipe) }}" method="POST"
                         class="btn bg-yellow2 hover:bg-yellow1 text-black border-none hover:scale-105 text-xs md:text-sm">
                         @csrf
-                        <button type="submit" class="uppercase">
-                            Save
+                        <button type="submit" class="uppercase" title="Bookmark">
+                            <i class="bi bi-bookmark text-2xl text-white"></i>
                         </button>
                     </form>
                 @endif
+
                 <a class="hidden" href="{{ route('recipe', ['recipe' => $recipe->id]) }}">Example Link</a>
-                <a href="{{ route('generate_pdf', $recipe->id) }}" target="_blank"
-                    class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm">Print</a>
+
+                {{--  Print --}}
+                <a href="{{ route('generate_pdf', $recipe->id) }}" target="_blank" title="Save"
+                    class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"><i
+                        class="bi bi-save-fill text-2xl text-white"></i></a>
+                {{--  Share --}}
                 <button class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"
-                    id="copy-link-btn">Share</button>
-                <button class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">
-                    Report</button>
+                    id="copy-link-btn" title="Copy Link"><i class="bi bi-share-fill text-2xl text-white"></i></button>
+                {{--  Report --}}
+                <button title="Report"
+                    class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">
+                    <i class="bi bi-flag-fill text-2xl text-white"></i></button>
             </div>
 
             <hr>
@@ -84,6 +91,28 @@
 
             <h1 class="mt-3 text-2xl text-center  uppercase">Steps</h1>
             <div class="mx-4 my-4">{{ $recipe->steps }}</div>
+            <div class="text-center mt-5">
+                <form method="POST" action="{{ route('recipes.rate', $recipe->id) }}">
+                    @csrf
+                    <label for="rating">Rate this recipe:</label>
+                    <div class="rating">
+                        <input type="radio" name="rating" value="1" class="mask mask-star-2 bg-orange-400"
+                            {{ $userRating == 1 ? 'checked' : '' }} checked />
+                        <input type="radio" name="rating" value="2" class="mask mask-star-2 bg-orange-400"
+                            {{ $userRating == 2 ? 'checked' : '' }} />
+                        <input type="radio" name="rating" value="3" class="mask mask-star-2 bg-orange-400"
+                            {{ $userRating == 3 ? 'checked' : '' }} />
+                        <input type="radio" name="rating" value="4" class="mask mask-star-2 bg-orange-400"
+                            {{ $userRating == 4 ? 'checked' : '' }} />
+                        <input type="radio" name="rating" value="5" class="mask mask-star-2 bg-orange-400"
+                            {{ $userRating == 5 ? 'checked' : '' }} />
+                    </div>
+                    <button type="submit"
+                        class="btn rounded bg-yellow-500 text-black hover:bg-yellow-600 border-none sm:mt-2">Submit
+                        rating</button>
+                </form>
+            </div>
+
         </div>
     </div>
     <form method="POST" action="{{ route('comments.store', ['recipe' => $recipe->id]) }}">
@@ -92,6 +121,8 @@
         <textarea class="textarea textarea-bordered rounded w-full" name="body" placeholder="Give a comment"></textarea>
         <button class="btn mb-5 rounded-md" type="submit">Submit</button>
     </form>
+
+
 
     <div class="bg-white w-full rounded-lg p-4 shadow-md">
         <h1 class="text-4xl text-center font-bold uppercase text-black">Comments</h1>
