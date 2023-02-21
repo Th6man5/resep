@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
-class admindashboardCountryController
+class AdmindashboardCountryController
 {
     public function index(Country $country)
     {

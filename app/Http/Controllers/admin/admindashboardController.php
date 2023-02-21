@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
-class admindashboardController
+class AdmindashboardController
 {
     /**
      * Display a listing of the resource.

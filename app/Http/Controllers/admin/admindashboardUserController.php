@@ -6,7 +6,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 
-class admindashboardUserController
+class AdmindashboardUserController
 {
     /**
      * Display a listing of the resource.

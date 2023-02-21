@@ -15,11 +15,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\user\DashboardController;
-use App\Http\Controllers\admin\admindashboardController;
+use App\Http\Controllers\admin\AdmindashboardController;
 use App\Http\Controllers\user\RecipeDashboardController;
-use App\Http\Controllers\admin\admindashboardUserController;
-use App\Http\Controllers\admin\admindashboardCountryController;
-use App\Http\Controllers\admin\admindashboardCategoryController;
+use App\Http\Controllers\admin\AdmindashboardUserController;
+use App\Http\Controllers\admin\AdmindashboardCountryController;
+use App\Http\Controllers\admin\AdmindashboardCategoryController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -80,15 +80,15 @@ Route::group([
         ]);
     });
 
-    Route::resource('/dashboard/recipe', admindashboardController::class)->except(['show', 'update', 'edit', 'store', 'create']);
+    Route::resource('/dashboard/recipe', AdmindashboardController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
-    Route::resource('/dashboard/user', admindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);
+    Route::resource('/dashboard/user', AdmindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
-    Route::resource('/dashboard/category', admindashboardCategoryController::class);
-    Route::put('/dashboard/category/update', [admindashboardCategoryController::class, 'update']);
+    Route::resource('/dashboard/category', AdmindashboardCategoryController::class);
+    Route::put('/dashboard/category/update', [AdmindashboardCategoryController::class, 'update']);
 
-    Route::resource('/dashboard/country', admindashboardCountryController::class);
-    Route::put('/dashboard/country/update', [admindashboardCountryController::class, 'update']);
+    Route::resource('/dashboard/country', AdmindashboardCountryController::class);
+    Route::put('/dashboard/country/update', [AdmindashboardCountryController::class, 'update']);
 });
 
 

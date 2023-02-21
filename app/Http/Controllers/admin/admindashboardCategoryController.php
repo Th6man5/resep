@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class admindashboardCategoryController
+class AdmindashboardCategoryController
 {
     public function index(Category $category)
     {
