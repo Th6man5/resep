@@ -1,5 +1,6 @@
 @extends('dashboard.layouts.main')
 @section('content')
+    @include('errors.perror')
     @if (session()->has('success'))
         <div class="alert alert-success shadow-none rounded-lg transition-all mt-2">
             <div>
@@ -13,12 +14,7 @@
         </div>
     @endif
 
-    @error('name')
-        <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-    @enderror
-    @error('username')
-        <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-    @enderror
+
 
     @if (session()->has('edit'))
         <div class="alert alert-success shadow-none rounded-lg transition-all mt-2">

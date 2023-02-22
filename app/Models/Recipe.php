@@ -84,4 +84,14 @@ class Recipe extends Model
         $this->reads++;
         return $this->save();
     }
+
+    public function averageRating()
+    {
+        return $this->ratings()->average('rating');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

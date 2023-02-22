@@ -1,5 +1,31 @@
 @extends('layouts.main')
 @section('content')
+    @if (session()->has('success'))
+        <div class="alert alert-success shadow-none sm:rounded-lg rounded-none transition-all m-auto mb-4">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="alert alert-success shadow-none sm:rounded-lg rounded-none transition-all m-auto mb-4">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('error') }}</span>
+            </div>
+        </div>
+    @endif
+
+    {{-- IMAGE --}}
     <div class="grid lg:grid-cols-2 gap-10 relative mb-10">
         <div class="rounded">
             <div class="sticky top-0 " style="top: 100px">
@@ -57,6 +83,7 @@
 
             <hr>
 
+            {{--  RECIPE NAME --}}
             <h1 class="mt-3 text-2xl text-center bold">{{ $recipe->recipe_name }}</h1>
 
             <div class="text-center my-3 text-lg">
@@ -68,11 +95,14 @@
 
             <hr>
 
+            {{-- ABOUT --}}
             <h1 class="mt-3 text-2xl text-center  uppercase">About</h1>
 
             <div class="mx-4 my-3">{{ $recipe->about }}</div>
 
             <hr>
+
+            {{-- TIME & PORTION --}}
             <div class="grid grid-cols-2 mx-10 text-center text-lg mt-3 p-1 rounded-md">
 
                 <span class=" rounded-l-md p-1 bg-black text-white">
@@ -83,18 +113,30 @@
                     <i class="bi bi-person-fill"></i> {{ $recipe->portion }} Portion
                 </span>
             </div>
+
+            {{-- INGREDIENTS --}}
             <h1 class="mt-3 text-2xl text-center  uppercase">Ingredients</h1>
 
             <div class="mx-4 my-4">{!! $recipe->ingredients !!}</div>
 
             <hr>
 
+            {{--  STEPS --}}
             <h1 class="mt-3 text-2xl text-center  uppercase">Steps</h1>
             <div class="mx-4 my-4">{{ $recipe->steps }}</div>
-            <div class="text-center mt-5">
+
+            {{-- RATING --}}
+            <div class="text-center mt-5 bg-whitep rounded-xl p-5">
+                <div class="mb-2">
+                    @if ($recipe->ratings()->count() > 0)
+                        <span>Rating average: {{ number_format($recipe->averageRating(), 1) }}</span>
+                    @else
+                        <span>No ratings yet.</span>
+                    @endif
+                </div>
                 <form method="POST" action="{{ route('recipes.rate', $recipe->id) }}">
                     @csrf
-                    <label for="rating">Rate this recipe:</label>
+                    <label>Rate this recipe:</label>
                     <div class="rating">
                         <input type="radio" name="rating" value="1" class="mask mask-star-2 bg-orange-400"
                             {{ $userRating == 1 ? 'checked' : '' }} checked />
@@ -111,10 +153,14 @@
                         class="btn rounded bg-yellow-500 text-black hover:bg-yellow-600 border-none sm:mt-2">Submit
                         rating</button>
                 </form>
+
+
             </div>
 
         </div>
     </div>
+
+    {{-- COMMENTS --}}
     <form method="POST" action="{{ route('comments.store', ['recipe' => $recipe->id]) }}">
         @csrf
         <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
@@ -127,17 +173,29 @@
     <div class="bg-white w-full rounded-lg p-4 shadow-md">
         <h1 class="text-4xl text-center font-bold uppercase text-black">Comments</h1>
         @if ($recipe->comments->count())
-            <hr class="border-black border-2 bg-black rounded-md m-3">
+            <hr class="border-black my-3">
             <div class="m-2">
                 @foreach ($recipe->comments as $comment)
-                    <div class="m-2 bg-white1 p-2 rounded-lg">
+                    <div class="m-2 bg-whitep p-5 rounded-lg">
                         <div class="flex flex-row items-center">
-                            @if (auth()->user()->username == $comment->user->username)
+                            @if (auth()->check() && auth()->user()->id === $comment->user_id)
                                 <h4 class="text-xl flex-none mr-1 leading-none text-red-600">{{ $comment->user->name }}
                                 @else
                                     <h4 class="text-xl flex-none mr-1 leading-none">{{ $comment->user->name }}
                             @endif
                             <h4 class="text-sm text-slate-500">#{{ $comment->user->username }}</h4>
+                            <div class="ml-auto">
+                                @if (auth()->check() && auth()->user()->id === $comment->user_id)
+                                    <form method="POST" action="{{ route('comments.destroy', $comment->id) }}"
+                                        onsubmit="return confirm('are you sure you want to delete this comment?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i
+                                                class="bi bi-x-octagon-fill text-2xl text-red-500 hover:text-red-600"></i></button>
+                                    </form>
+                                @endif
+                            </div>
+
                         </div>
                         <p class="text-xs text-slate-400">Posted {{ $comment->created_at->diffForHumans() }}</p>
                         <p class="text-md mt-2 m-2">{{ $comment->body }}</p>

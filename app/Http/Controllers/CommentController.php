@@ -23,4 +23,16 @@ class CommentController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        $comment = Comment::find($id);
+
+        if (!$comment) {
+            return redirect()->back()->with('error', 'Comment not found');
+        }
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Comment deleted successfully');
+    }
 }

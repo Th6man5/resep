@@ -25,7 +25,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 Route::get('/maker/{user:id}', [GuestController::class, 'index']);
 
-Route::get('/', [RecipeController::class, 'index']);
+Route::get('/', [RecipeController::class, 'index'])->name('home');
 
 
 //User Route
@@ -113,6 +113,7 @@ Route::group(
         Route::post('/{recipe:id}', [RecipeController::class, 'bookmark'])->name('recipes.bookmark');
         Route::post('/{recipe:id}/rate', [RecipeController::class, 'rate'])->name('recipes.rate');
         Route::resource('/{recipe:id}/comments', CommentController::class)->only(['store']);
+        Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
         Route::delete('/{recipe:id}/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
         Route::get('/{recipe:id}/generate_pdf', [RecipeController::class, 'downloadPDF'])->name('generate_pdf');
     }

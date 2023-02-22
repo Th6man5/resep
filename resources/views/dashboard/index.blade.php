@@ -1,6 +1,8 @@
 @extends('dashboard.layouts.main')
 @section('content')
 
+    @include('errors.perror')
+
     @if (session()->has('success'))
         <div class="alert alert-success shadow-none sm:rounded-lg rounded-none transition-all mt-2 m-auto">
             <div>

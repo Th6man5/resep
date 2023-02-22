@@ -78,6 +78,10 @@ class ProfileController extends Controller
                 'required', 'alpha_num', 'min:3', 'max:100',
                 Rule::unique('users')->ignore(auth()->id()),
             ],
+            'email' => [
+                'required', 'email:dns',
+                Rule::unique('users')->ignore(auth()->id()),
+            ],
             'profile_picture' => ['image', 'max:2000'], // Limit file size to 2MB
         ]);
 
@@ -86,6 +90,7 @@ class ProfileController extends Controller
 
         $user->name = $request->name;
         $user->username = $request->username;
+        $user->email = $request->email;
 
         if ($request->hasFile('profile_picture')) {
             // Remove old profile picture if exists

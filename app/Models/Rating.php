@@ -9,8 +9,19 @@ class Rating extends Model
 {
     use HasFactory;
 
-    public function getAverageRatingAttribute()
+    protected $fillable = [
+        'user_id',
+        'recipe_id',
+        'rating',
+    ];
+
+    public function recipe()
     {
-        return Rating::where('recipe_id', $this->id)->avg('rating');
+        return $this->belongsTo(Recipe::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

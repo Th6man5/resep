@@ -88,6 +88,7 @@
                 </div>
 
             </div>
+
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success shadow-none rounded-lg transition-all mt-2">
@@ -120,30 +121,42 @@
             <form method="POST" action="/user/dashboard/update" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="grid grid-cols-2 items-center">
-                    <div class="form-group">
-                        <label for="profile_picture">Profile Picture</label>
-                        <input type="file" name="profile_picture" id="imgInp" accept="image/png , image/jpeg">
-                    </div>
-                    <div class="avatar mt-4 ml-auto">
-                        <div class="rounded-full w-24">
-                            <img id="blah" src="#" class="hidden " />
-                        </div>
-                    </div>
+
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Pick a file</span>
+                    </label>
+                    <input type="file" class="file-input file-input-bordered w-full max-w-xs" name="profile_picture"
+                        id="imgInp" accept="image/png , image/jpeg" />
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Name</span>
+                    </label>
+                    <input type="text" placeholder="Name" name="name" class="input input-bordered w-full max-w-xs"
+                        value="{{ auth()->user()->name }}" required />
+
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Username</span>
+                    </label>
+                    <input type="text" placeholder="Username" name="username"
+                        class="input input-bordered w-full max-w-xs" value="{{ auth()->user()->username }}" required />
+
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Email</span>
+                    </label>
+                    <input type="email" placeholder="Email" name="email"
+                        class="input input-bordered w-full max-w-xs" value="{{ auth()->user()->email }}" required />
+
+                </div>
+                <div class="mt-5">
+                    <input type="submit" class="btn btn-success place-self-end mt-3" value="Submit">
                 </div>
 
-                @error('profile_picture')
-                    {{ $message }}
-                @enderror
-                <label class="form-label">Name</label>
-                <input type="text" name="name" placeholder="Name" class="form-control p-1 rounded-lg "
-                    value="{{ auth()->user()->name }}" required>
-
-                <label class="form-label">Username</label>
-                <input type="text" name="username" placeholder="Username" class="form-control"
-                    value="{{ auth()->user()->username }}" required>
-
-                <input type="submit" class="btn btn-primary btn-sm mt-3" value="Submit">
             </form>
             </p>
         </div>
@@ -167,30 +180,3 @@
 </script>
 
 </html>
-{{-- <div class="container mt-4">
-        <div class="container-sm">
-            <div class="card shadow-sm">
-
-                <div class="d-flex mb-3">
-                    <div class="p-2 m-3"><img src="https://source.unsplash.com/500x500/?anime" width="200"
-                            class="rounded-circle img-thumbnail" />
-                    </div>
-                    <div class="me-auto p-2 mt-5">
-                        <h3>{{ auth()->user()->name }}</h3>
-                        <p><small class="text-muted">#{{ auth()->user()->username }}</small></p>
-                    </div>
-                    <div class="ms-2 py-2 mt-5"><a href="#" class="btn btn-success btn-sm"><i
-                                class="bi bi-pen-fill"></i></a></div>
-                    <div class="p-2 mt-5"><a href="/user/dashboard/report" class="btn btn-primary btn-sm"><i
-                                class="bi bi-bar-chart-fill"></i></a></div>
-                    <div class="py-2 mt-5 me-2"><a href="#" class="btn btn-secondary btn-sm"><i
-                                class="bi bi-gear-fill"></i></a></div>
-                </div>
-                <div class="d-flex flex-row mb-2 ms-4 me-4">
-                    <div class="p-2"><a href="/user/dashboard">Saved</a></div>
-                    <div class="p-2"><a href="/user/dashboard/recipe">My Recipe</a></div>
-                    <div class="ms-auto"><a href="/user/dashboard/recipe/create" class="btn btn-primary btn-md">New
-                            Recipe</a></div>
-                </div>
-            </div>
-        </div> --}}
