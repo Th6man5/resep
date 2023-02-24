@@ -15,12 +15,32 @@
                                 text-sm font-medium uppercase leading-4">
                                 Total Users</p>
                             <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
-                                <span>{{ $user->count() }}</span>
+                                <span>{{ $user->where('is_admin', false)->count() }}</span>
                             </p>
+
                         </div>
                     </div>
-                </div>
 
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <i class="bi bi-person text-3xl"></i>
+                        </div>
+                        <div>
+                            <p
+                                class="text-lime-500
+                                text-sm font-medium uppercase leading-4">
+                                Total Admins</p>
+                            <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $user->where('is_admin', true)->count() }}
+                                </span>
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
 
 
                 @if (session()->has('delete'))
@@ -40,17 +60,20 @@
         <div class="py-6">
 
             <div id="last-users">
-                <h1 class="font-bold py-4 uppercase">Recipes</h1>
+                <h1 class="font-bold py-4 uppercase">Users</h1>
                 <div class="overflow-x-auto">
                     <table class="w-full whitespace-nowrap mb-5">
                         <thead class="bg-white/10">
                             <th class="text-left py-3 px-2 rounded-l-lg">#</th>
-                            <th class="text-left py-3 px-2">Recipe Name</th>
+                            <th class="text-left py-3 px-2">Name</th>
                             <th class="text-left py-3 px-2">Username</th>
-                            <th class="text-left py-3 px-2">Reads</th>
+                            <th class="text-left py-3 px-2">Email</th>
                             <th class="text-left py-3 px-2 rounded-r-lg">Actions</th>
                         </thead>
                         @foreach ($user as $use)
+                            @if ($use->is_admin)
+                                @continue
+                            @endif
                             <tr class="border-b border-gray-700">
                                 <td class="py-3 px-2 font-bold">
                                     {{ $loop->iteration }}

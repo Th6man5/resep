@@ -67,6 +67,14 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true
         ]);
 
+        User::create([
+            'name' => 'raihan',
+            'username' => 'th6man5',
+            'email' => 'raihanm@gmail.com',
+            'password' => bcrypt('12345'),
+            'is_admin' => true
+        ]);
+
 
         Recipe::factory(300)->create();
     }

@@ -94,4 +94,19 @@ class Recipe extends Model
     {
         return $this->hasMany(Rating::class);
     }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
+    //Delete report jika resep hapus
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($recipe) {
+            $recipe->reports()->delete();
+        });
+    }
 }

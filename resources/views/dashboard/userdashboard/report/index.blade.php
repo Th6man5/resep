@@ -13,7 +13,9 @@
 
 
         <h3 class="text-center my-3 text-4xl">Recipe Reports</h3>
-
+        <a href="{{ route('user.report.generate_pdf') }}" target="_blank" title="Save"
+            class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"><i
+                class="bi bi-save-fill text-2xl text-white"></i></a>
         <div class="grid grid-cols-3  mb-10 gap-4 text-center mt-5">
             <div>
                 <div class="circle bg-primary1 hover:bg-secondary1 ">
@@ -68,8 +70,8 @@
                             {{ $recipe[0]->recipe_name }}
                         </span>
                         <a class=" text-gray-500 text-sm hover:text-slate-600 hover:text-base transition-all"
-                            href="/?maker={{ $recipe[0]->country->name }}">
-                            {{ $recipe[0]->country->name }}
+                            href="/?maker={{ $recipe[0]->country->name ?? 'Unknown' }}">
+                            {{ $recipe[0]->country->name ?? 'Unknown' }}
                         </a>
 
                     </div>
@@ -101,8 +103,8 @@
                             {{ $recipe[1]->recipe_name }}
                         </span>
                         <a class=" text-gray-500 text-sm hover:text-slate-600 hover:text-base transition-all"
-                            href="/?maker={{ $recipe[1]->country->name }}">
-                            {{ $recipe[1]->country->name }}
+                            href="/?maker={{ $recipe[1]->country->name ?? 'Unknown' }}">
+                            {{ $recipe[1]->country->name ?? 'Unknown' }}
                         </a>
                     </div>
                     <div
@@ -133,8 +135,8 @@
                             {{ $recipe[2]->recipe_name }}
                         </span>
                         <a class=" text-gray-500 text-sm hover:text-slate-600 hover:text-base transition-all"
-                            href="/?maker={{ $recipe[2]->country->name }}">
-                            {{ $recipe[2]->country->name }}
+                            href="/?maker={{ $recipe[2]->country->name ?? 'Unknown' }}">
+                            {{ $recipe[2]->country->name ?? 'Unknown' }}
                         </a>
 
                     </div>
@@ -173,8 +175,8 @@
                                 {{ $resep->recipe_name }}
                             </span>
                             <a class=" text-gray-500 text-sm hover:text-slate-600 hover:text-base transition-all"
-                                href="/?maker={{ $resep->country->name }}">
-                                {{ $resep->country->name }}
+                                href="/?maker={{ $resep->country->name ?? 'Unknown' }}">
+                                {{ $resep->country->name ?? 'Unknown' }}
                             </a>
 
                         </div>
@@ -205,7 +207,7 @@
                             <div class="card shadow-sm">
                                 <img class="" src="https://source.unsplash.com/500x500/?{{ $resep->recipe_name }}">
                                 <div id="cards" class="badge bg-primary text-center w-50 m-auto ">
-                                    {{ $resep->country->name }}</div>
+                                    {{ $resep->country->name   ?? 'Unknown' }}</div>
                                 <h5 class="text-center my-2">{{ $resep->recipe_name }}</h5>
                                 <div class="text-center"><i class="bi bi-eye-fill me-1"></i>{{ $resep->reads }}</div>
                                 <a href="/{{ $resep->id }}" class="btn btn-primary mt-3">Read More</a>

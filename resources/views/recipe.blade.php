@@ -25,6 +25,19 @@
         </div>
     @endif
 
+    @error('reason')
+        <div class="alert alert-warbubf shadow-none sm:rounded-lg rounded-none transition-all m-auto mb-4">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <span>{{ $message }}</span>
+            </div>
+        </div>
+    @enderror
+
     {{-- IMAGE --}}
     <div class="grid lg:grid-cols-2 gap-10 relative mb-10">
         <div class="rounded">
@@ -46,6 +59,7 @@
         </div>
         <div class="bg-white rounded border-2  shadow-md p-5">
             <div class="grid grid-cols-4  gap-2 mx-10 p-6 ">
+
 
                 {{--  Bookmark --}}
                 @if ($isBookmarked)
@@ -76,9 +90,12 @@
                 <button class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"
                     id="copy-link-btn" title="Copy Link"><i class="bi bi-share-fill text-2xl text-white"></i></button>
                 {{--  Report --}}
-                <button title="Report"
+                <label title="Report" for="my-modal-3"
                     class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">
-                    <i class="bi bi-flag-fill text-2xl text-white"></i></button>
+                    <i class="bi bi-flag-fill text-2xl text-white"></i></label>
+
+
+
             </div>
 
             <hr>
@@ -213,6 +230,46 @@
 
 
 
+    <!-- Put this part before </body> tag -->
+    <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box relative">
+            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-lg font-bold">Report</h3>
+            <p class="py-4">
+                Please report any content that contains advertising, pornography, hate speech, or other content unrelated to
+                cooking to the MealsUP team. Thank you.
+            <form method="POST" action="{{ route('recipes.report', $recipe->id) }}">
+                @csrf
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Reason for Report</span>
+                    </label>
+                    <select name="reason"class="rounded-lg">
+                        <option value="">Select a reason</option>
+                        <option value="inappropriate content">Inappropriate content</option>
+                        <option value="inaccurate information">Inaccurate information</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                </div>
+                <div class="form-control w-full max-w-xs mt-3">
+                    <label class="label">
+                        <span class="label-text">Aditional Details:</span>
+                    </label>
+                    <textarea name="details" class="rounded-lg"></textarea>
+
+                </div>
+                <div class="mt-5 text-center">
+                    <button type="submit" class="btn btn-success">Submit Report</button>
+                </div>
+            </form>
+            </p>
+        </div>
+    </div>
+
+
+
     <script>
         //Copy Link
         const copyLinkBtn = document.querySelector('#copy-link-btn');
@@ -231,7 +288,7 @@
 
         //PDF
         function printPDF() {
-            window.print('invoice.blade.pdf');
+            window.print('recipe.blade.pdf');
         }
     </script>
 @endsection

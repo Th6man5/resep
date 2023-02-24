@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Rating;
 use App\Models\Recipe;
+use App\Models\Report;
 use App\Models\Country;
 use App\Models\Bookmark;
 use App\Models\Category;
@@ -38,7 +39,7 @@ class RecipeController extends Controller
     {
 
         $recipe = Recipe::findOrFail($id);
-        $pdf = Pdf::loadView('pdf.invoice', [
+        $pdf = Pdf::loadView('pdf.recipe', [
             'recipe' => $recipe
         ]);
 
@@ -124,5 +125,27 @@ class RecipeController extends Controller
                 'userRating' => $userRating,
             ]
         );
+    }
+
+    public function report(Request $request, $id)
+    {
+        // Get the recipe to report
+        $recipe = Recipe::findOrFail($id);
+
+        // Validate the form data
+        $validatedData = $request->validate([
+            'reason' => 'required',
+            'details' => 'nullable',
+        ]);
+
+        // Create a new report
+        $report = new Report;
+        $report->reason = $validatedData['reason'];
+        $report->details = $validatedData['details'];
+        $report->user_id = Auth::user()->id;
+        $recipe->reports()->save($report);
+
+        // Redirect back to the recipe page with a success message
+        return redirect()->back()->with('success', 'Thank you for your report.');
     }
 }

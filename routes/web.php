@@ -4,6 +4,7 @@
 use App\Models\User;
 use App\Models\Recipe;
 use App\Models\Country;
+use App\Models\Report;
 use App\Models\Category;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
@@ -16,10 +17,12 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\admin\AdmindashboardController;
+use App\Http\Controllers\admin\AdmindashboardReportController;
 use App\Http\Controllers\user\RecipeDashboardController;
 use App\Http\Controllers\admin\AdmindashboardUserController;
 use App\Http\Controllers\admin\AdmindashboardCountryController;
 use App\Http\Controllers\admin\AdmindashboardCategoryController;
+use App\Http\Controllers\User\DashboardReportController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -35,6 +38,7 @@ Route::group([
     'as' => 'user.',
     'middleware' => ['auth']
 ], function () {
+    Route::get('/dashboard/report/generate_pdf', [DashboardReportController::class, 'downloadPDF'])->name('report.generate_pdf');
 
     Route::delete('/dashboard/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
 
@@ -48,17 +52,7 @@ Route::group([
 
     Route::resource('/dashboard/recipe', RecipeDashboardController::class);
 
-    Route::get('/dashboard/report', function (Recipe $recipe) {
-        $save = auth()->user()->bookmarks;
-        $saved = $save->load('recipe');
-        return view('dashboard.userdashboard.report.index', [
-            'title' => 'Report',
-            'active' => 'report',
-            'saved' => $saved,
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->paginate(15)->onEachSide(1)->fragment('recipe'),
-            'view' => Recipe::where('user_id', auth()->user()->id)->sum('reads')
-        ]);
-    });
+    Route::get('/dashboard/report', [DashboardReportController::class, 'index']);
 });
 
 //Admin Route
@@ -68,6 +62,7 @@ Route::group([
     'as' => 'admin.',
     'middleware' => ['auth', 'admin']
 
+
 ], function () {
     Route::get('/dashboard', function (Recipe $recipe) {
         return view('dashboard.admindashboard.index', [
@@ -76,13 +71,21 @@ Route::group([
             'user' => User::all(),
             'category' => Category::all(),
             'country' => Country::all(),
+            'report' => Report::all(),
             'active' => 'dashboard'
         ]);
     });
 
+    Route::resource('/test', RecipeController::class);
+
+
     Route::resource('/dashboard/recipe', AdmindashboardController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
     Route::resource('/dashboard/user', AdmindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);
+
+    Route::resource('/dashboard/report', AdmindashboardReportController::class)->except(['show', 'update', 'edit', 'store', 'create']);
+    Route::delete('dashboard/report/{recipe:id}/destroy-with-recipe', [AdmindashboardReportController::class, 'destroyWithRecipe'])->name('dashboard.report.destroy-with-recipe');
+
 
     Route::resource('/dashboard/category', AdmindashboardCategoryController::class);
     Route::put('/dashboard/category/update', [AdmindashboardCategoryController::class, 'update']);
@@ -95,7 +98,7 @@ Route::group([
 //login
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout']);
 
 
@@ -116,5 +119,6 @@ Route::group(
         Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
         Route::delete('/{recipe:id}/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
         Route::get('/{recipe:id}/generate_pdf', [RecipeController::class, 'downloadPDF'])->name('generate_pdf');
+        Route::post('/{recipes:id}/report', [RecipeController::class, 'report'])->name('recipes.report');
     }
 );

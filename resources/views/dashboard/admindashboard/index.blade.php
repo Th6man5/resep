@@ -46,7 +46,7 @@
                                 text-sm font-medium uppercase leading-4">
                                 Reports</p>
                             <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
-                                <span>Belum</span>
+                                <span>{{ $report->count() }}</span>
                             </p>
                         </div>
                     </div>
