@@ -35,16 +35,16 @@ class RecipeController extends Controller
 
     //PDF DOWNLOAD
 
-    public function downloadPDF($id)
-    {
+    // public function downloadPDF($id)
+    // {
 
-        $recipe = Recipe::findOrFail($id);
-        $pdf = Pdf::loadView('pdf.recipe', [
-            'recipe' => $recipe
-        ]);
+    //     $recipe = Recipe::findOrFail($id);
+    //     $pdf = Pdf::loadView('pdf.recipe', [
+    //         'recipe' => $recipe
+    //     ]);
 
-        return $pdf->download(Str::slug($recipe->recipe_name) . '.pdf');
-    }
+    //     return $pdf->download(Str::slug($recipe->recipe_name) . '.pdf');
+    // }
 
     //BOOKMARK
 
@@ -55,7 +55,7 @@ class RecipeController extends Controller
         $bookmark->recipe_id = $recipe->id;
         $bookmark->save();
 
-        return back();
+        return back()->with('success', 'Recipe successfully Bookmarked');
     }
 
     //UnBOOMARK
@@ -127,25 +127,26 @@ class RecipeController extends Controller
         );
     }
 
+    // Create a new report
     public function report(Request $request, $id)
     {
-        // Get the recipe to report
+
         $recipe = Recipe::findOrFail($id);
 
-        // Validate the form data
+
         $validatedData = $request->validate([
             'reason' => 'required',
             'details' => 'nullable',
         ]);
 
-        // Create a new report
+
         $report = new Report;
         $report->reason = $validatedData['reason'];
         $report->details = $validatedData['details'];
         $report->user_id = Auth::user()->id;
         $recipe->reports()->save($report);
 
-        // Redirect back to the recipe page with a success message
+
         return redirect()->back()->with('success', 'Thank you for your report.');
     }
 }

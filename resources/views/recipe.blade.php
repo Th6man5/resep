@@ -1,5 +1,46 @@
 @extends('layouts.main')
 @section('content')
+    <style>
+        @media print {
+            #noprint1 {
+                display: none;
+            }
+
+            #noprint2 {
+                display: none;
+            }
+
+            #noprint3 {
+                display: none;
+            }
+
+            #noprint4 {
+                display: none;
+            }
+
+            #groupb {
+                display: none;
+            }
+
+            #comment1 {
+                display: none;
+            }
+
+            #comment2 {
+                display: none;
+            }
+
+            #rating {
+                display: none;
+            }
+
+            #view {
+                display: none;
+            }
+
+
+        }
+    </style>
     @if (session()->has('success'))
         <div class="alert alert-success shadow-none sm:rounded-lg rounded-none transition-all m-auto mb-4">
             <div>
@@ -48,8 +89,8 @@
                     <img src="https://source.unsplash.com/1000x1000/?{{ $recipe->recipe_name }}"
                         class=" object-cover rounded shadow-md">
                 @endif
-                <div
-                    class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all">
+                <div class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all"
+                    id="view">
                     <i class="bi bi-eye-fill text-lg"></i>
                     <p>
                         {{ $recipe->reads }}
@@ -58,12 +99,12 @@
             </div>
         </div>
         <div class="bg-white rounded border-2  shadow-md p-5">
-            <div class="grid grid-cols-4  gap-2 mx-10 p-6 ">
+            <div class="grid grid-cols-4  gap-2 mx-10 p-6" id="groupb">
 
 
                 {{--  Bookmark --}}
                 @if ($isBookmarked)
-                    <form action="{{ route('recipes.unbookmark', $recipe) }}" method="POST"
+                    <form action="{{ route('recipes.unbookmark', $recipe) }}" method="POST" id="noprint1"
                         class="btn bg-yellow1 hover:bg-yellow2 text-black border-none hover:scale-105 text-xs md:text-sm">
                         @csrf
                         @method('delete')
@@ -83,14 +124,15 @@
                 <a class="hidden" href="{{ route('recipe', ['recipe' => $recipe->id]) }}">Example Link</a>
 
                 {{--  Print --}}
-                <a href="{{ route('generate_pdf', $recipe->id) }}" target="_blank" title="Save"
+                <a target="_blank" onclick="window.print(); return false;" title="Save" id="noprint2"
                     class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"><i
                         class="bi bi-save-fill text-2xl text-white"></i></a>
                 {{--  Share --}}
                 <button class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"
-                    id="copy-link-btn" title="Copy Link"><i class="bi bi-share-fill text-2xl text-white"></i></button>
+                    id="noprint3" id="copy-link-btn" title="Copy Link"><i
+                        class="bi bi-share-fill text-2xl text-white"></i></button>
                 {{--  Report --}}
-                <label title="Report" for="my-modal-3"
+                <label title="Report" for="my-modal-3" id="noprint4"
                     class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">
                     <i class="bi bi-flag-fill text-2xl text-white"></i></label>
 
@@ -143,7 +185,7 @@
             <div class="mx-4 my-4">{{ $recipe->steps }}</div>
 
             {{-- RATING --}}
-            <div class="text-center mt-5 bg-whitep rounded-xl p-5">
+            <div class="text-center mt-5 bg-whitep rounded-xl p-5" id="rating">
                 <div class="mb-2">
                     @if ($recipe->ratings()->count() > 0)
                         <span>Rating average: {{ number_format($recipe->averageRating(), 1) }}</span>
@@ -178,7 +220,7 @@
     </div>
 
     {{-- COMMENTS --}}
-    <form method="POST" action="{{ route('comments.store', ['recipe' => $recipe->id]) }}">
+    <form method="POST" action="{{ route('comments.store', ['recipe' => $recipe->id]) }}" id="comment1">
         @csrf
         <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
         <textarea class="textarea textarea-bordered rounded w-full" name="body" placeholder="Give a comment"></textarea>
@@ -187,7 +229,7 @@
 
 
 
-    <div class="bg-white w-full rounded-lg p-4 shadow-md">
+    <div class="bg-white w-full rounded-lg p-4 shadow-md" id="comment2">
         <h1 class="text-4xl text-center font-bold uppercase text-black">Comments</h1>
         @if ($recipe->comments->count())
             <hr class="border-black my-3">

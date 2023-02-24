@@ -261,41 +261,5 @@
 
 
 
-    {{--
-    <h2 id="meal" class="text-center">{{ $title }}</h2>
 
-    @if ($recipe->count())
-        <div class="container">
-            <div class="row">
-                @foreach ($recipe as $resep)
-                    <div class="col-md-3 mb-4">
-                        <div class="card shadow-sm">
-                            @if ($resep->image)
-                                <img id="imgcard" src="{{ asset('storage/' . $resep->image) }}" alt="...">
-                            @else
-                                <img id="imgcard" class=""
-                                    src="https://source.unsplash.com/500x500/?{{ $resep->recipe_name }}">
-                            @endif
-
-                            <div id="cards" class="badge bg-primary text-center w-50 ms-auto ">
-                                <a href="/?country={{ $resep->country->name }}"
-                                    style="text-decoration: none; color: white;">{{ $resep->country->name }}</a>
-                            </div>
-                            <div id="cards" class="badge bg-primary text-center w-50 me-auto ">
-                                <a href="/?country={{ $resep->country->name }}"
-                                    style="text-decoration: none; color: white;">{{ $resep->country->name }}</a>
-                            </div>
-                            <h5 class="text-center my-2">{{ $resep->recipe_name }}</h5>
-                            <div class="text-center"><i class="bi bi-eye-fill me-1"></i>{{ $resep->reads }}</div>
-                            <a href="/{{ $resep->id }}" class="btn btn-primary mt-3">Read More</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @else
-        <p class="text-center fs-4">Not Found</p>
-    @endif
-
-    {{ $recipe->render() }} --}}
 @endsection

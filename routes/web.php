@@ -38,7 +38,7 @@ Route::group([
     'as' => 'user.',
     'middleware' => ['auth']
 ], function () {
-    Route::get('/dashboard/report/generate_pdf', [DashboardReportController::class, 'downloadPDF'])->name('report.generate_pdf');
+    // Route::get('/dashboard/report/generate_pdf', [DashboardReportController::class, 'downloadPDF'])->name('report.generate_pdf');
 
     Route::delete('/dashboard/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
 
@@ -118,7 +118,11 @@ Route::group(
         Route::resource('/{recipe:id}/comments', CommentController::class)->only(['store']);
         Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
         Route::delete('/{recipe:id}/unbookmark', [RecipeController::class, 'unbookmark'])->name('recipes.unbookmark');
-        Route::get('/{recipe:id}/generate_pdf', [RecipeController::class, 'downloadPDF'])->name('generate_pdf');
+        // Route::get('/{recipe:id}/generate_pdf', [RecipeController::class, 'downloadPDF'])->name('generate_pdf');
         Route::post('/{recipes:id}/report', [RecipeController::class, 'report'])->name('recipes.report');
     }
 );
+
+Route::get('/{any}', function () {
+    return abort(404);
+})->where('any', '.*');

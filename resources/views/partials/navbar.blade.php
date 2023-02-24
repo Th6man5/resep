@@ -5,6 +5,12 @@
         background-repeat: repeat;
 
     }
+
+    @media print {
+        #navbar {
+            display: none;
+        }
+    }
 </style>
 
 

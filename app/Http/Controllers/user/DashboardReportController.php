@@ -39,39 +39,41 @@ class DashboardReportController extends Controller
         ]);
     }
 
-    public function downloadPDF()
-    {
-        $recipeIds = Recipe::where('user_id', auth()->user()->id)->pluck('id');
 
-        $saved = Bookmark::whereIn('recipe_id', $recipeIds)
-            ->whereHas('user', function ($query) {
-                $query->where('id', '<>', auth()->id());
-            })
-            ->with('user', 'recipe')
-            ->get()
-            ->groupBy('recipe_id')
-            ->map(function ($bookmarks) {
-                return [
-                    'recipe' => $bookmarks->first()->recipe,
-                    'savedBy' => $bookmarks->pluck('user')->unique(),
-                ];
-            });
 
-        $recipe = Recipe::where('user_id', auth()->user()->id)->orderby('reads', 'DESC')->get();
-        $view = Recipe::where('user_id', auth()->user()->id)->sum('reads');
+    // public function downloadPDF()
+    // {
+    //     $recipeIds = Recipe::where('user_id', auth()->user()->id)->pluck('id');
 
-        $pdf = PDF::loadView('pdf.report', [
-            'recipe' => $recipe,
-            'view' => $view,
-            'saved' => $saved,
-        ]);
+    //     $saved = Bookmark::whereIn('recipe_id', $recipeIds)
+    //         ->whereHas('user', function ($query) {
+    //             $query->where('id', '<>', auth()->id());
+    //         })
+    //         ->with('user', 'recipe')
+    //         ->get()
+    //         ->groupBy('recipe_id')
+    //         ->map(function ($bookmarks) {
+    //             return [
+    //                 'recipe' => $bookmarks->first()->recipe,
+    //                 'savedBy' => $bookmarks->pluck('user')->unique(),
+    //             ];
+    //         });
 
-        $filename = 'recipe-report.pdf'; // customize the filename
+    //     $recipe = Recipe::where('user_id', auth()->user()->id)->orderby('reads', 'DESC')->get();
+    //     $view = Recipe::where('user_id', auth()->user()->id)->sum('reads');
 
-        // return the PDF with headers to download the file and save it
-        return $pdf->stream();
-        // return $pdf->download($filename, [
-        //     'Content-Disposition' => 'attachment; filename="' . $filename . '"'
-        // ]);
-    }
+    //     $pdf = PDF::loadView('pdf.report', [
+    //         'recipe' => $recipe,
+    //         'view' => $view,
+    //         'saved' => $saved,
+    //     ]);
+
+    //     $filename = 'recipe-report.pdf'; // customize the filename
+
+    //     // return the PDF with headers to download the file and save it
+    //     return $pdf->stream();
+    //     // return $pdf->download($filename, [
+    //     //     'Content-Disposition' => 'attachment; filename="' . $filename . '"'
+    //     // ]);
+    // }
 }

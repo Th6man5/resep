@@ -39,7 +39,26 @@
         <div class="py-6">
 
             <div>
-                <h1 class="font-bold py-4 uppercase">Recipes</h1>
+                <div class="flex mb-5">
+                    <h1 class="font-bold py-4 uppercase">Recipes</h1>
+                    <div class="ml-auto">
+                        <form action="/admin/dashboard/recipe">
+
+                            <div class="input-group">
+                                <label class="relative block ">
+                                    <input type="text" placeholder="Search..." name="search"
+                                        class="input input-bordered rounded-none rounded-l-2xl w-full max-w-xs "
+                                        value="{{ request('search') }}" />
+                                </label>
+                                <button class="btn bg-primary1 text-black border-none hover:bg-secondary1 "
+                                    type="submit">Search</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+
                 <div class="overflow-x-auto overflow-hidden">
                     <table class="w-full whitespace-nowrap">
                         <thead class="bg-white/10 ">

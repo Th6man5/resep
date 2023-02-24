@@ -24,17 +24,13 @@
     .card {
         background-color: burlywood;
         padding: 10px;
-        border-radius: 10px;
-        width: 50%;
-        height: 50%;
+
+
+
     }
 
     img {
         border-radius: 10px;
-    }
-
-    td {
-        border: none;
     }
 </style>
 
@@ -48,25 +44,29 @@
                 <h2>{{ $recipe[0]->recipe_name }}</h2>
                 <p>Number of views: {{ $recipe[0]->reads }}</p>
             </td>
-            </tr>
+
             <td class="card">
                 <img src="{{ public_path('storage/' . $recipe[1]->image) }}">
                 <h2>{{ $recipe[1]->recipe_name }}</h2>
                 <p>Number of views: {{ $recipe[1]->reads }}</p>
             </td>
-            </tr>
+
 
             <td class="card">
                 <img src="{{ public_path('storage/' . $recipe[2]->image) }}">
                 <h2>{{ $recipe[2]->recipe_name }}</h2>
                 <p>Number of views: {{ $recipe[2]->reads }}</p>
             </td>
-            </tr>
+
 
         </tbody>
     </table>
 
-    <p>Number of views: {{ $view }}</p>
+    <div class="card">
+        <p>Number of views: {{ $view }}</p>
+    </div>
+
+
 
     <p class="m-0">Saved</p>
     <p class="m-0">Total: {{ $saved->count() }} </p>

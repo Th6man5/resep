@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 
@@ -51,5 +53,11 @@ class Handler extends ExceptionHandler
         $this->renderable(function (MethodNotAllowedHttpException $e) {
             abort(404);
         });
+
+        if (Route::name('recipe')) {
+            $this->renderable(function (QueryException $e) {
+                abort(404);
+            });
+        }
     }
 }

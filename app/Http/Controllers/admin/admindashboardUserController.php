@@ -17,7 +17,7 @@ class AdmindashboardUserController
     {
         return view('dashboard.admindashboard.user.index', [
             'title' => 'User List',
-            'user' => User::paginate(10)->onEachSide(1)->fragment('user'),
+            'user' => User::orderBy('updated_at', 'DESC')->filter(request(['search']))->paginate(10)->onEachSide(1)->fragment('user'),
 
 
         ]);
