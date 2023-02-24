@@ -10,7 +10,7 @@
                 display: none;
             }
 
-            #noprint3 {
+            #copy-link-btn {
                 display: none;
             }
 
@@ -124,13 +124,12 @@
                 <a class="hidden" href="{{ route('recipe', ['recipe' => $recipe->id]) }}">Example Link</a>
 
                 {{--  Print --}}
-                <a target="_blank" onclick="window.print(); return false;" title="Save" id="noprint2"
+                <a target="_blank" onclick="window.print(); return false;" title="Print" id="noprint2"
                     class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"><i
-                        class="bi bi-save-fill text-2xl text-white"></i></a>
+                        class="bi bi-printer-fill text-2xl text-white"></i></a>
                 {{--  Share --}}
                 <button class="btn bg-green3 hover:bg-green2 text-black border-none hover:scale-105 text-xs md:text-sm"
-                    id="noprint3" id="copy-link-btn" title="Copy Link"><i
-                        class="bi bi-share-fill text-2xl text-white"></i></button>
+                    id="copy-link-btn" title="Copy Link"><i class="bi bi-share-fill text-2xl text-white"></i></button>
                 {{--  Report --}}
                 <label title="Report" for="my-modal-3" id="noprint4"
                     class="btn bg-red1 hover:bg-red2 text-black border-none hover:scale-105 text-xs md:text-sm">

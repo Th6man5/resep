@@ -78,8 +78,7 @@
                     Ingredients
                 </span>
                 <textarea type="text" name="ingredients" placeholder="Ingredients" required
-                    class="mt-1 px-3 py-2 bg-white  shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md text-sm focus:ring-1 whitespace-nowrap"
-                    id="ingredients"> </textarea>
+                    class="mt-1 px-3 py-2 bg-white  shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md text-sm focus:ring-1 whitespace-nowrap"> </textarea>
                 @error('textarea')
                     <div class="text-red-600 text-sm">
                         {{ $message }}
@@ -94,7 +93,8 @@
                     Steps
                 </span>
                 <textarea type="text" name="steps" placeholder="Burn for 30 minutes in the oven" required
-                    class="mt-1 px-2 py-1 bg-white shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md text-sm focus:ring-1 whitespace-nowrap "></textarea>
+                    class="mt-1 px-2 py-1 bg-white shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md text-sm focus:ring-1 whitespace-nowrap "
+                    id="ingredients"></textarea>
                 @error('steps')
                     <div class="text-red-600 text-sm">
                         {{ $message }}
