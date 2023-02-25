@@ -37,7 +37,8 @@
                     About
                 </span>
                 <input type="text" name="about" placeholder="About this Recipe" required
-                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " />
+                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
+                    value="{{ old('about') }}" />
                 @error('about')
                     <div class="text-red-600 text-sm">
                         {{ $message }}
@@ -48,42 +49,68 @@
             <hr class="mt-6">
 
             <div class="block m-4 mt-4 ">
-                <div class="grid grid-cols-2 text-center">
-                    <span class="block text-lg  text-black">
-                        Time <i class="bi bi-clock-fill"></i>
-                        <input type="number" name="time" placeholder="Time" required
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " /></span>
-                    @error('time')
-                        <div class="text-red-600 text-sm">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                <div class="grid grid-cols-2 items-center gap-4">
 
-                    <span class="block text-lg ml-2 text-black">
-                        Portion <i class="bi bi-person-fill"></i>
-                        <input type="number" name="portion" placeholder="Portion" required
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 " /></span>
-                    @error('portion')
-                        <div class="text-red-600 text-sm">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                    <div class="ml-5">
+                        <span class=" text-lg  text-black">
+                            Time <i class="bi bi-clock-fill"></i>
+                    </div>
+
+                    <div class="form-control">
+                        <label class="input-group">
+                            <input type="number" name="time" placeholder="Time" required
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
+                                value="{{ old('time') }}" />
+                            <span class="mt-1 px-3 text-sm">Minutes</span>
+                        </label>
+                        @error('portion')
+                            <div class="text-red-600 text-sm">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+
+
+                    <div class="ml-5">
+                        <span class=" text-lg  text-black ">
+                            Portion <i class="bi bi-person-fill"></i>
+
+                    </div>
+
+                    <div class="form-control">
+                        <label class="input-group">
+                            <input type="number" name="portion" placeholder="Portion" required
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1 "
+                                value="{{ old('portion') }}" />
+                            <span class="mt-1 px-3 text-sm">People</span>
+                        </label>
+                        @error('portion')
+                            <div class="text-red-600 text-sm">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                 </div>
             </div>
 
             <hr class="mt-6">
-
+            {{-- <textarea type="text" name="ingredients" placeholder="Ingredients" required id="ingredients"
+                    class="mt-1 px-3 py-2 bg-white  shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md text-sm focus:ring-1 whitespace-nowrap"> </textarea> --}}
             <div class="block m-4 mt-4 text-center ">
                 <span class="block text-xl ml-2 text-black">
                     Ingredients
                 </span>
-                <textarea type="text" name="ingredients" placeholder="Ingredients" required
-                    class="mt-1 px-3 py-2 bg-white  shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md text-sm focus:ring-1 whitespace-nowrap"> </textarea>
-                @error('textarea')
+
+                <textarea type="text" name="ingredients" placeholder="Ingredients" id="ingredients"></textarea>
+
+                @error('ingredients')
                     <div class="text-red-600 text-sm">
                         {{ $message }}
                     </div>
                 @enderror
+
             </div>
 
             <hr>
@@ -92,9 +119,8 @@
                 <span class="block text-xl ml-2 text-black">
                     Steps
                 </span>
-                <textarea type="text" name="steps" placeholder="Burn for 30 minutes in the oven" required
-                    class="mt-1 px-2 py-1 bg-white shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500  w-full rounded-md text-sm focus:ring-1 whitespace-nowrap "
-                    id="ingredients"></textarea>
+                <textarea type="text" name="steps" placeholder="Burn for 30 minutes in the oven" id="steps"></textarea>
+
                 @error('steps')
                     <div class="text-red-600 text-sm">
                         {{ $message }}
@@ -157,20 +183,32 @@
         }
     </script>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+
 
     <script>
-        ClassicEditor
-            .create(document.querySelector('#ingredients'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#steps'))
-            .catch(error => {
-                console.error(error);
-            });
+        ClassicEditor.create(document.querySelector('#ingredients'), {
+            toolbar: ['heading', '|', 'bold', 'italic']
+        }).then(editor => {
+            // get the existing value
+            const existingValue = "{!! old('ingredients') !!}"; // replace with your actual variable name
+
+            // set the value in the editor
+            editor.setData(existingValue);
+        }).catch(error => {
+            console.error(error);
+        });
+
+        ClassicEditor.create(document.querySelector('#steps'), {
+            toolbar: ['heading', '|', 'bold', 'italic']
+        }).then(editor2 => {
+            // get the existing value
+            const existingValue = "{!! old('steps') !!}"; // replace with your actual variable name
+
+            // set the value in the editor
+            editor2.setData(existingValue);
+        }).catch(error => {
+            console.error(error);
+        });
     </script>
 @endsection

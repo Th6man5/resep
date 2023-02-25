@@ -181,7 +181,7 @@
 
             {{--  STEPS --}}
             <h1 class="mt-3 text-2xl text-center  uppercase">Steps</h1>
-            <div class="mx-4 my-4">{{ $recipe->steps }}</div>
+            <div class="mx-4 my-4">{!! $recipe->steps !!}</div>
 
             {{-- RATING --}}
             <div class="text-center mt-5 bg-whitep rounded-xl p-5" id="rating">

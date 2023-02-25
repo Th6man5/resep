@@ -36,6 +36,10 @@
             #paginate {
                 display: none;
             }
+
+            #throphy {
+                display: none;
+            }
         }
     </style>
     <div class="ml-auto">
@@ -47,36 +51,44 @@
 
         <h3 class="text-center my-3 text-4xl">Recipe Reports</h3>
 
-        <div class="grid grid-cols-3  mb-10 gap-4 text-center mt-5 " id="reportses">
-            <div>
-                <div class="circle bg-primary1 hover:bg-secondary1 transition-all">
-                    <i class="bi bi-bookmark-fill text-white" style="font-size: 2rem;"></i>
-                </div>
 
-                <p class="m-0">Saved</p>
-                <p class="m-0">Total: {{ $saved->count() }} </p>
-            </div>
-            <div>
-                <div class="circle bg-primary1 hover:bg-secondary1  transition-all">
-                    <i class="bi bi-eye-fill text-white" style="font-size: 2rem;"></i>
+        <div class="stats stats-vertical md:stats-horizontal shadow  flex" id="reportses">
+
+            <div class="stat">
+                <div class="stat-figure ">
+                    <i class="bi bi-bookmark-heart-fill lg:text-3xl hidden lg:block text-red1"></i>
                 </div>
-                <p class="m-0">Views</p>
-                <p class="m-0">Total: {{ $view }} </p>
+                <div class="stat-title">Saved</div>
+                <div class="stat-value">{{ $saved->count() }}</div>
+
             </div>
-            <div>
-                <div class="circle bg-primary1 hover:bg-secondary1  transition-all ">
-                    <i class="bi bi-clipboard2-fill text-white" style="font-size: 2rem;"></i>
+
+            <div class="stat">
+                <div class="stat-figure ">
+                    <i class="bi bi-eye-fill lg:text-3xl hidden lg:block text-blue-700"></i>
                 </div>
-                <p class="m-0">Recipe</p>
-                <p class="m-0">Total: {{ $recipe->total() }}</p>
+                <div class="stat-title">Views</div>
+                <div class="stat-value">{{ $view }}</div>
             </div>
+
+            <div class="stat">
+                <div class="stat-figure ">
+                    <i class="bi bi-credit-card-2-front-fill lg:text-3xl hidden lg:block text-green-700"></i>
+                </div>
+                <div class="stat-title">Recipes</div>
+                <div class="stat-value">{{ $recipe->total() }}</div>
+            </div>
+
         </div>
 
 
-        <hr class="mb-5 border-slate-300" id="hrtag2">
+
+
+
+        <hr class="mb-5 mt-5 border-slate-300" id="hrtag2">
         {{-- Throphies Icon --}}
         <div class="text-center">
-            <div class="circle bg-primary1 hover:bg-secondary1  transition-all ">
+            <div class="circle bg-primary1 hover:bg-secondary1  transition-all " id="throphy">
                 <i class="bi bi-trophy-fill" style="font-size: 2rem; color: white;"></i>
             </div>
             <p class="text-xl uppercase mb-5 mt-1">Top 3</p>
