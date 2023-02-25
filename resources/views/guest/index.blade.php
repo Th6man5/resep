@@ -5,8 +5,8 @@
             <div class="md:flex-none sm:flex-1 p-2 m-3">
                 <label class="avatar">
                     <div class="lg:w-56 w-44 rounded-full">
-                        @if (auth()->user()->profile_picture)
-                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" />
+                        @if ($user->profile_picture)
+                            <img src="{{ asset('storage/' . $user->profile_picture) }}" />
                         @else
                             <img src="https://placeimg.com/192/192/arch" />
                         @endif

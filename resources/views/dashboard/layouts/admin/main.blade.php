@@ -25,7 +25,7 @@
     </style>
 
 
-    <title>MealsUP | {{ $title }}</title>
+    <title>{{ config('app.name') }} | {{ $title }}</title>
     @vite('resources/css/app.css')
 
 
