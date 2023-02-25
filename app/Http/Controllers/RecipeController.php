@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\View;
 use App\Models\Rating;
 use App\Models\Recipe;
 use App\Models\Report;
@@ -28,7 +29,7 @@ class RecipeController extends Controller
         return view('home', [
             "title" => "Home",
             "active" => 'home',
-            "recipe" => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'maker']))->paginate(18)->withQueryString()->onEachSide(2)->fragment('recipe'),
+            "recipe" => Recipe::orderBy('updated_at', 'DESC')->filter(request(['search', 'maker']))->paginate(18)->withQueryString()->onEachSide(2)->fragment('recipe'),
 
         ]);
     }
@@ -114,20 +115,35 @@ class RecipeController extends Controller
             ->where('user_id', auth()->id())
             ->value('rating');
 
-        $recipe->incrementReadCount();
-        return view(
-            'recipe',
-            [
-                "title" =>  $recipe->recipe_name,
-                "active" => 'home',
-                "recipe" => $recipe,
-                'isBookmarked' => $isBookmarked,
-                'userRating' => $userRating,
-            ]
-        );
+        $view = null;
+
+        if (auth()->check()) {
+            $user = auth()->user();
+            $view = View::where('user_id', $user->id)
+                ->where('recipe_id', $recipe->id)
+                ->first();
+
+            if (!$view) {
+                $view = new View([
+                    'user_id' => $user->id,
+                    'recipe_id' => $recipe->id,
+                ]);
+                $view->save();
+            }
+        }
+
+        return view('recipe', [
+            'title' => $recipe->recipe_name,
+            'active' => 'home',
+            'recipe' => $recipe,
+            'isBookmarked' => $isBookmarked,
+            'userRating' => $userRating,
+            'view' => $view
+        ]);
     }
 
-    // Create a new report
+
+    // CREATE REPORT
     public function report(Request $request, $id)
     {
 

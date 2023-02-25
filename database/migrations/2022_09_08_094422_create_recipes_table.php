@@ -25,7 +25,6 @@ return new class extends Migration
             $table->foreignId('country_id');
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            $table->bigInteger('reads')->unsigned()->default(0)->index();
             $table->timestamps();
         });
     }

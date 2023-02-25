@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\View;
 use App\Models\Recipe;
 use App\Models\Bookmark;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class DashboardReportController extends Controller
 {
@@ -30,12 +32,21 @@ class DashboardReportController extends Controller
                 ];
             });
 
+        $recipe = Recipe::select('recipes.*', DB::raw('COUNT(views.id) as view'))
+            ->leftJoin('views', 'views.recipe_id', '=', 'recipes.id')
+            ->where('recipes.user_id', auth()->user()->id)
+            ->groupBy('recipes.id')
+            ->orderBy('view', 'DESC')
+            ->paginate(15)->onEachSide(1)->fragment('recipe');
+
+        $view = View::whereIn('recipe_id', $recipe->pluck('id'))->count();
+
         return view('dashboard.userdashboard.report.index', [
             'title' => 'Report',
             'active' => 'report',
             'saved' => $saved,
-            'recipe' => Recipe::where('user_id', auth()->user()->id)->orderBy('reads', 'DESC')->paginate(15)->onEachSide(1)->fragment('recipe'),
-            'view' => Recipe::where('user_id', auth()->user()->id)->sum('reads')
+            'recipe' => $recipe,
+            'view' => $view
         ]);
     }
 

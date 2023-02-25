@@ -76,6 +76,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Recipe::factory(300)->create();
+        Recipe::factory(100)->create();
     }
 }

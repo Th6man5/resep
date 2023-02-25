@@ -67,7 +67,7 @@
                      hover:bg-skin2 hover:scale-95 transition-all">
                         <i class="bi bi-eye-fill text-lg"></i>
                         <p>
-                            {{ $resep->reads }}
+                            {{ $resep->views->count() }}
                         </p>
                     </div>
 

@@ -93,7 +93,7 @@
                     id="view">
                     <i class="bi bi-eye-fill text-lg"></i>
                     <p>
-                        {{ $recipe->reads }}
+                        {{ \App\Models\View::where('recipe_id', $recipe->id)->count() }}
                     </p>
                 </div>
             </div>

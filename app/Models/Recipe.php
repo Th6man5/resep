@@ -79,10 +79,9 @@ class Recipe extends Model
         return 'id';
     }
 
-    public function incrementReadCount()
+    public function views()
     {
-        $this->reads++;
-        return $this->save();
+        return $this->hasMany(View::class);
     }
 
     public function averageRating()

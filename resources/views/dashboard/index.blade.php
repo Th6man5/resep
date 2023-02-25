@@ -68,7 +68,7 @@
                         class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 hover:scale-105 transition-all">
                         <i class="bi bi-eye-fill text-lg"></i>
                         <p>
-                            {{ $book->recipe->reads }}
+                            {{ $book->recipe->views->count() }}
                         </p>
                     </div>
 

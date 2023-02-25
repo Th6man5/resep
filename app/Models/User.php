@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         return 'id';
     }
+
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
 }
