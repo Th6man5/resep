@@ -75,7 +75,7 @@
                                 </td>
                                 <td class="py-3 px-2">{{ $resep->recipe_name }}</td>
                                 <td class="py-3 px-2">{{ $resep->maker->username }}</td>
-                                <td class="py-3 px-2">{{ $resep->reads }}</td>
+                                <td class="py-3 px-2">{{ $resep->views->count() }}</td>
                                 <td class="py-3 px-2">
 
                                     <div class="inline-flex items-center space-x-1">

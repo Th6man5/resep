@@ -126,21 +126,7 @@
                  </div>
              </div>
          </a>
-         <a href="#" class="md:hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
-             <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
-                 <div>
-                     <i
-                         class="bi bi-gear text-2xl group-hover:text-green3 {{ Request::is('admin/dashboard/    ') ? ' text-green1 ' : '' }}"></i>
-                 </div>
-                 <div>
-                     <p
-                         class="font-bold text-sm lg:text-lg text-slate-200 leading-4 group-hover:text-indigo-400 sm:text-left text-center">
-                         Settings</p>
-                     <p class="text-slate-400 text-sm hidden md:block">Edit settings</p>
-                 </div>
 
-             </div>
-         </a>
          <a href="/" class="md:hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
              <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                  <div>

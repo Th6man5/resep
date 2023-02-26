@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdmindashboardController
 {
@@ -15,9 +16,19 @@ class AdmindashboardController
      */
     public function index(Recipe $recipe)
     {
+        $recipe = Recipe::select('recipes.*', DB::raw('COUNT(views.id) as view'))
+            ->leftJoin('views', 'views.recipe_id', '=', 'recipes.id')
+            ->groupBy('recipes.id')
+            ->orderBy('view', 'DESC')
+            ->filter(request(['search', 'maker']))
+            ->paginate(15)
+            ->onEachSide(1)
+            ->fragment('recipe');
+
+
         return view('dashboard.admindashboard.recipe.index', [
             'title' => 'Recipe List',
-            'recipe' => Recipe::orderBy('reads', 'DESC')->filter(request(['search', 'maker']))->paginate(10)->onEachSide(1)->fragment('recipe'),
+            'recipe' => $recipe,
 
 
         ]);

@@ -1,5 +1,17 @@
 @extends('dashboard.layouts.make')
 @section('content')
+    @if (session()->has('success'))
+        <div class="alert alert-success shadow-none rounded-lg transition-all mt-2 mb-10">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
     <div class="bg-white p-10 rounded-xl">
         <form method="POST" action="{{ route('user.password.update') }}">
             @csrf
@@ -23,7 +35,7 @@
                         </label>
                         <input type="password" name="password" placeholder="Type here"
                             class="input input-bordered w-full max-w-xs" />
-                        @error('current_password')
+                        @error('password')
                             <div class="text-red-500 text-sm">{{ $message }}</div>
                         @enderror
                     </div>
@@ -35,6 +47,7 @@
                         </label>
                         <input type="password" name="password_confirmation" placeholder="Type here"
                             class="input input-bordered w-full max-w-xs" />
+
                     </div>
                 </div>
 

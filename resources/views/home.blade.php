@@ -156,7 +156,7 @@
                             {{ $resep->recipe_name }}
                         </span>
                         <a class="text-sm hover:text-gray-300" href="/maker/{{ $resep->maker->id }}">
-                            {{ $resep->maker->name }}
+                            {{ $resep->maker->username }}
                         </a>
                     </div>
                     <div
