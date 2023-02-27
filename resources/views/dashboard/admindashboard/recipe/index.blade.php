@@ -44,7 +44,7 @@
                     <div class="ml-auto">
                         <form action="/admin/dashboard/recipe">
 
-                            <div class="input-group">
+                            <div class="input-group ml-2">
                                 <label class="relative block ">
                                     <input type="text" placeholder="Search..." name="search"
                                         class="input input-bordered rounded-none rounded-l-2xl w-full max-w-xs "
@@ -68,39 +68,45 @@
                             <th class="text-left py-3 px-2">Reads</th>
                             <th class="text-left py-3 px-2 rounded-r-lg">Actions</th>
                         </thead>
-                        @foreach ($recipe as $resep)
-                            <tr class="border-b border-gray-700">
-                                <td class="py-3 px-2 font-bold">
-                                    {{ $loop->iteration + $recipe->firstItem() - 1 }}
-                                </td>
-                                <td class="py-3 px-2">{{ $resep->recipe_name }}</td>
-                                <td class="py-3 px-2">{{ $resep->maker->username }}</td>
-                                <td class="py-3 px-2">{{ $resep->views->count() }}</td>
-                                <td class="py-3 px-2">
+                        @if ($recipe->count())
+                            @foreach ($recipe as $resep)
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-3 px-2 font-bold">
+                                        {{ $loop->iteration + $recipe->firstItem() - 1 }}
+                                    </td>
+                                    <td class="py-3 px-2">{{ $resep->recipe_name }}</td>
+                                    <td class="py-3 px-2">{{ $resep->maker->username }}</td>
+                                    <td class="py-3 px-2">{{ $resep->views->count() }}</td>
+                                    <td class="py-3 px-2">
 
-                                    <div class="inline-flex items-center space-x-1">
-                                        <div class="dropdown dropdown-left">
-                                            <i tabindex="0" title="Show"
-                                                class="hover:text-indigo-400
+                                        <div class="inline-flex items-center space-x-1">
+                                            <div class="dropdown dropdown-left">
+                                                <i tabindex="0" title="Show"
+                                                    class="hover:text-indigo-400
                                                 bi bi-eye w-5 h-5"></i>
-                                            <ul tabindex="0"
-                                                class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                <li><a href="/maker/{{ $resep->maker->id }}"
-                                                        class="hover:text-indigo-400">Show User</a></li>
-                                                <li><a href="/{{ $resep->id }}" class="hover:text-indigo-400">Show
-                                                        Recipe</a></li>
-                                            </ul>
+                                                <ul tabindex="0"
+                                                    class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                                                    <li><a href="/maker/{{ $resep->maker->id }}"
+                                                            class="hover:text-indigo-400">Show User</a></li>
+                                                    <li><a href="/{{ $resep->id }}" class="hover:text-indigo-400">Show
+                                                            Recipe</a></li>
+                                                </ul>
+                                            </div>
+                                            <form onsubmit="return confirm('are you sure you want to delete this?');"
+                                                action="/admin/dashboard/recipe/{{ $resep->id }}" method="POST">
+                                                @method('delete')
+                                                @csrf
+                                                <button title="Delete" class="hover:text-red-400">
+                                                    <i class="bi bi-x-circle w-5 h-5"></i>
+                                                </button>
+                                            </form>
                                         </div>
-                                        <form onsubmit="return confirm('are you sure you want to delete this?');"
-                                            action="/admin/dashboard/recipe/{{ $resep->id }}" method="POST">
-                                            @method('delete')
-                                            @csrf
-                                            <button title="Delete" class="hover:text-red-400">
-                                                <i class="bi bi-x-circle w-5 h-5"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                        @endforeach
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-xl">Not Found</td>
+                            </tr>
+                        @endif
 
 
                     </table>

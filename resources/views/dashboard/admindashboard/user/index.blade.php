@@ -65,7 +65,7 @@
                     <div class="ml-auto">
                         <form action="/admin/dashboard/user">
 
-                            <div class="input-group">
+                            <div class="input-group ml-2">
                                 <label class="relative block ">
                                     <input type="text" placeholder="Search..." name="search"
                                         class="input input-bordered rounded-none rounded-l-2xl w-full max-w-xs "
@@ -88,42 +88,49 @@
                             <th class="text-left py-3 px-2">Email</th>
                             <th class="text-left py-3 px-2 rounded-r-lg">Actions</th>
                         </thead>
-                        @foreach ($user as $use)
-                            @if ($use->is_admin)
-                                @continue
-                            @endif
-                            <tr class="border-b border-gray-700">
-                                <td class="py-3 px-2 font-bold">
-                                    {{ $loop->iteration }}
-                                </td>
-                                <td class="py-3 px-2">{{ $use->name }}</td>
-                                <td class="py-3 px-2">{{ $use->username }}</td>
-                                <td class="py-3 px-2">{{ $use->email }}</td>
+                        @if ($user->count())
+                            @foreach ($user as $use)
+                                @if ($use->is_admin)
+                                    @continue
+                                @endif
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-3 px-2 font-bold">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td class="py-3 px-2">{{ $use->name }}</td>
+                                    <td class="py-3 px-2">{{ $use->username }}</td>
+                                    <td class="py-3 px-2">{{ $use->email }}</td>
 
-                                <td class="py-3 px-2">
+                                    <td class="py-3 px-2">
 
-                                    <div class="inline-flex items-center space-x-1">
-                                        <div class="dropdown dropdown-top dropdown-left">
-                                            <i tabindex="0" title="Show"
-                                                class="hover:text-indigo-400
+                                        <div class="inline-flex items-center space-x-1">
+                                            <div class="dropdown dropdown-top dropdown-left">
+                                                <i tabindex="0" title="Show"
+                                                    class="hover:text-indigo-400
                                                 bi bi-eye w-5 h-5"></i>
-                                            <ul tabindex="0"
-                                                class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                <li><a href="/maker/{{ $use->id }}" class="hover:text-indigo-400">Show
-                                                        User</a></li>
-                                            </ul>
+                                                <ul tabindex="0"
+                                                    class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                                                    <li><a href="/maker/{{ $use->id }}"
+                                                            class="hover:text-indigo-400">Show
+                                                            User</a></li>
+                                                </ul>
+                                            </div>
+                                            <form action="/admin/dashboard/user/{{ $use->id }}"
+                                                onsubmit="return confirm('are you sure you want to delete this?');"
+                                                method="POST">
+                                                @method('delete')
+                                                @csrf
+                                                <button title="Delete" class="hover:text-red-400">
+                                                    <i class="bi bi-x-circle w-5 h-5"></i>
+                                                </button>
+                                            </form>
                                         </div>
-                                        <form action="/admin/dashboard/user/{{ $use->id }}"
-                                            onsubmit="return confirm('are you sure you want to delete this?');"
-                                            method="POST">
-                                            @method('delete')
-                                            @csrf
-                                            <button title="Delete" class="hover:text-red-400">
-                                                <i class="bi bi-x-circle w-5 h-5"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                        @endforeach
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-xl">Not Found</td>
+                            </tr>
+                        @endif
                     </table>
                     {{ $user->links() }}
                 </div>

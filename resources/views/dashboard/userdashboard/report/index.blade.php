@@ -50,10 +50,7 @@
     <main>
 
         <h3 class="text-center my-3 text-4xl">Recipe Reports</h3>
-
-
         <div class="stats stats-vertical md:stats-horizontal shadow  flex" id="reportses">
-
             <div class="stat">
                 <div class="stat-figure ">
                     <i class="bi bi-bookmark-heart-fill lg:text-3xl hidden lg:block text-red1"></i>

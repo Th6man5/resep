@@ -39,62 +39,66 @@
         </div>
 
         <div class="py-6">
+            @if ($report->count())
+                <div class="grid  lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-10">
 
-            <div class="grid  lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-10">
-                @foreach ($report as $rep)
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-base-100">
-                        <figure>
-                            @if ($rep->recipe->image)
-                                <img src="{{ asset('storage/' . $rep->recipe->image) }}">
-                            @else
-                                <img src="https://source.unsplash.com/500x500/?{{ $rep->recipe->recipe_name }}">
-                            @endif
+                    @foreach ($report as $rep)
+                        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-base-100">
+                            <figure>
+                                @if ($rep->recipe->image)
+                                    <img src="{{ asset('storage/' . $rep->recipe->image) }}">
+                                @else
+                                    <img src="https://source.unsplash.com/500x500/?{{ $rep->recipe->recipe_name }}">
+                                @endif
 
-                        </figure>
+                            </figure>
 
-                        <div class="card-body">
+                            <div class="card-body">
 
-                            <h2 class="text-lg font-bold">Recipe Name: </h2>
-                            <div>{{ $rep->recipe->recipe_name }}</div>
-                            <h2 class="text-lg font-bold">Reason:</h2>
-                            <div>{{ $rep->reason }}</div>
-                            <h2 class="text-lg font-bold ">Details:</h2>
-                            @if (is_null($rep->details))
-                                none
-                            @else
-                                <div>{{ $rep->details }}</div>
-                            @endif
-                            <h2 class="text-lg font-bold ">Reporter:</h2>
-                            <div>{{ $rep->user->username }}</div>
-                            <div class="mt-4 text-center">
-                                <form action="/admin/dashboard/report/{{ $rep->id }}"
-                                    onsubmit="return confirm('are you sure you want to delete this?');" method="POST"
-                                    class=" mb-2">
-                                    @method('delete')
-                                    @csrf
-                                    <button title="Delete" class="btn hover:text-red-400 ">
-                                        Delete Report
-                                    </button>
-                                </form>
-                                <form action="/admin/dashboard/report/{{ $rep->id }}/destroy-with-recipe"
-                                    method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button title="Delete report and recipe" class="btn hover:text-red-400"
-                                        type="submit">Delete
-                                        Report and
-                                        Recipe</button>
-                                </form>
+                                <h2 class="text-lg font-bold">Recipe Name: </h2>
+                                <div>{{ $rep->recipe->recipe_name }}</div>
+                                <h2 class="text-lg font-bold">Reason:</h2>
+                                <div>{{ $rep->reason }}</div>
+                                <h2 class="text-lg font-bold ">Details:</h2>
+                                @if (is_null($rep->details))
+                                    none
+                                @else
+                                    <div>{{ $rep->details }}</div>
+                                @endif
+                                <h2 class="text-lg font-bold ">Reporter:</h2>
+                                <div>{{ $rep->user->username }}</div>
+                                <div class="mt-4 text-center">
+                                    <form action="/admin/dashboard/report/{{ $rep->id }}"
+                                        onsubmit="return confirm('are you sure you want to delete this?');" method="POST"
+                                        class=" mb-2">
+                                        @method('delete')
+                                        @csrf
+                                        <button title="Delete" class="btn hover:text-red-400 ">
+                                            Delete Report
+                                        </button>
+                                    </form>
+                                    <form action="/admin/dashboard/report/{{ $rep->id }}/destroy-with-recipe"
+                                        method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button title="Delete report and recipe" class="btn hover:text-red-400"
+                                            type="submit">Delete
+                                            Report and
+                                            Recipe</button>
+                                    </form>
+                                </div>
+
+
+
+
                             </div>
-
-
-
-
                         </div>
-                    </div>
-                @endforeach
-            </div>
-            {{ $report->links() }}
+                    @endforeach
+                @else
+                    <h1 class="text-xl text-center">Not Reports Found</h1>
+            @endif
         </div>
+        {{ $report->links() }}
+    </div>
     </div>
 @endsection

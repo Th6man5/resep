@@ -75,6 +75,19 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true
         ]);
 
+        // Recipe::create([
+        //     'image' => 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Pecel_Hariadhi.JPG',
+        //     'recipe_name' => 'Bakso surabaya',
+        //     'about' => 'bakso yang di buat dalam surabaya',
+        //     'time' => '2',
+        //     'portion' => '2',
+        //     'ingredients' => 'raihanm@gmail.com',
+        //     'steps' => 'pertama di bakar terus makan',
+        //     'country_id' => '1',
+        //     'category_id' => '1',
+        //     'user_id' => '1',
+        // ]);
+
 
         Recipe::factory(100)->create();
     }
