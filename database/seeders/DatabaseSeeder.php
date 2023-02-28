@@ -30,19 +30,19 @@ class DatabaseSeeder extends Seeder
         // User::factory(3)->create();
 
         Country::create([
-            'name' => 'Internasional',
+            'name' => 'Italy',
         ]);
 
         Country::create([
-            'name' => 'Local',
+            'name' => 'Internasional',
         ]);
 
         Category::create([
-            'name' => 'Bekal',
+            'name' => 'homemade',
         ]);
 
         Category::create([
-            'name' => 'Murah',
+            'name' => 'cheap',
         ]);
 
         User::create([
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
 6. Ambil atau angkat bakso sapi urat, kemudian masukkan ke dalam wadah yang berisi air dan es batu untuk mendinginkan bakso.<br><br>
 7. Bakso sapi urat siap digunakan dan masukkan seledri serta daun bawang ke panci kaldu.<br><br>
 Jika Moms tidak suka bakso urat, Moms tetap dapat mengikuti resep bakso sapi ini, tetapi cukup ganti jenis dagingnya saja dan usahakan jangan pilih daging yang berlemak.',
-            'country_id' => '1',
+            'country_id' => '2',
             'category_id' => '1',
             'user_id' => '1',
         ]);
@@ -129,7 +129,7 @@ Grated Parmesan cheese, for serving<br>',
 6. Bring the sauce to a simmer and cook for 20 minutes, stirring occasionally.<br>
 7. Serve the sauce over the cooked spaghetti with grated Parmesan cheese on top.<br>',
             'country_id' => '1',
-            'category_id' => '1',
+            'category_id' => '2',
             'user_id' => '2',
         ]);
 
@@ -159,8 +159,8 @@ Fresh cilantro, for garnish<br>',
 6. Bring the curry to a simmer and cook for 20-25 minutes, or until the chicken is cooked through and the sauce has thickened.<br>
 7. Season with salt and pepper to taste.<br>
 8. Garnish with fresh cilantro and serve over rice or with naan bread.<br>',
-            'country_id' => '1',
-            'category_id' => '1',
+            'country_id' => '2',
+            'category_id' => '2',
             'user_id' => '1',
         ]);
 
@@ -188,8 +188,8 @@ Salt and pepper, to taste<br>',
 8. Place the chicken in a roasting pan and roast for 1 to 1 1/2 hours, or until the internal temperature reaches 165°F.<br>
 9. Let the chicken rest for 10 minutes before carving.<br>
 10. Serve with the roasted lemons and herbs on top.<br>',
-            'country_id' => '1',
-            'category_id' => '1',
+            'country_id' => '2',
+            'category_id' => '2',
             'user_id' => '1',
         ]);
 
@@ -218,8 +218,8 @@ Croutons, for serving<br>',
 8. Using an immersion blender or transfer the soup to a blender, puree until smooth.<br>
 9. Serve hot with croutons on top.',
             'country_id' => '1',
-            'category_id' => '1',
-            'user_id' => '1',
+            'category_id' => '2',
+            'user_id' => '2',
         ]);
 
         Recipe::create([
@@ -253,7 +253,7 @@ Fresh parsley, for garnish<br>',
 10. Stir in the sour cream until well combined.<br>
 11. Season with salt and pepper to taste.<br>
 Serve the beef stroganoff over the egg noodles and garnish with fresh parsley.',
-            'country_id' => '1',
+            'country_id' => '2',
             'category_id' => '1',
             'user_id' => '1',
         ]);
