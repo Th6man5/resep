@@ -2,10 +2,12 @@
 @section('container')
     <div id="content" class="bg-black col-span-9  p-6">
         <div>
-            {{-- <div class="ml-auto">
-                <a class="btn btn-primary" href="/">Home</a>
-            </div> --}}
-            <h1 class="font-bold py-4 uppercase">Dashboard</h1>
+            <div class="ml-auto">
+                <a target="_blank" title="Print" onclick="window.print(); return false;" id="print"
+                    class="btn bg-green3 hover:bg-green2  border-none rounded-lg "><i
+                        class="bi bi-printer-fill text-2xl  text-white"></i></a>
+            </div>
+            <h1 class="font-bold py-4 uppercase">Reports</h1>
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
@@ -22,7 +24,7 @@
                 </div>
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
-                        <div id="stats-1">
+                        <div id="stats-2">
                             <i class="bi bi-card-text text-3xl"></i>
                         </div>
                         <div>
@@ -38,7 +40,7 @@
                 </div>
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
-                        <div>
+                        <div id="stats-3">
                             <i class="bi bi-exclamation-octagon text-3xl"></i>
                         </div>
                         <div>
@@ -53,7 +55,7 @@
                 </div>
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
-                        <div id="stats-1">
+                        <div id="stats-4">
                             <i class="bi bi-tag text-3xl"></i>
                         </div>
                         <div>
@@ -69,7 +71,7 @@
                 </div>
                 <div class="bg-white/10 p-6 rounded-lg">
                     <div class="flex flex-row space-x-4 items-center">
-                        <div id="stats-1">
+                        <div id="stats-5">
                             <i class="bi bi-flag text-3xl"></i>
                         </div>
                         <div>

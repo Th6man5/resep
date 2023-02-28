@@ -22,6 +22,25 @@
                 font-family: 'Inter var', sans-serif;
             }
         }
+
+        @media print {
+            #grid {
+                grid: none;
+            }
+
+            #menu {
+                display: none;
+            }
+
+            #stats {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            #print {
+                display: none;
+            }
+
+        }
     </style>
 
 
@@ -33,8 +52,8 @@
 
 <body>
 
-    <div class="antialiased w-full min-h-screen text-slate-300 relative " style="background-color: #DAEEFA">
-        <div class="grid grid-cols-12 min-h-screen">
+    <div class="antialiased w-full min-h-screen text-slate-300 relative bg-black">
+        <div class="grid grid-cols-12 min-h-screen" id="grid">
             @include('dashboard.layouts.admin.sidebar')
 
             @yield('container')

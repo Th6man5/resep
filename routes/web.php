@@ -76,9 +76,6 @@ Route::group([
         ]);
     });
 
-    Route::resource('/test', RecipeController::class);
-
-
     Route::resource('/dashboard/recipe', AdmindashboardController::class)->except(['show', 'update', 'edit', 'store', 'create']);
 
     Route::resource('/dashboard/user', AdmindashboardUserController::class)->except(['show', 'update', 'edit', 'store', 'create']);

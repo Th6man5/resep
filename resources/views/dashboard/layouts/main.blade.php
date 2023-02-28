@@ -43,7 +43,7 @@
                             @if (auth()->user()->profile_picture)
                                 <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" />
                             @else
-                                <img src="https://placeimg.com/192/192/arch" />
+                                <img src="/img/profile.png" />
                             @endif
                         </div>
                     </label>

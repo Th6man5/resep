@@ -81,16 +81,16 @@ class DatabaseSeeder extends Seeder
             'about' => 'bakso yang di buat dengan cinta',
             'time' => '60',
             'portion' => '2',
-            'ingredients' => '500 gr Daging bagian sengkel dalam keadaan dingin ( potong kecil)<br>
-100 gr Es batu<br>
-100 gr Tepung sagu<br>
-2 sdm Bawang merah goreng<br>
-1 sdm Bawang putih goreng<br>
-1 Butir putih telur ukuran besar<br>
-½ sdt Garam<br>
-½ sdt Lada bubuk<br>
-½ sdt Kaldu bubuk<br>
-1 sdt Baking powder<br>',
+            'ingredients' => '<p>500 gr Daging bagian sengkel dalam keadaan dingin ( potong kecil)</p>
+<p>100 gr Es batu</p>
+<p>100 gr Tepung sagu</p>
+<p>2 sdm Bawang merah goreng</p>
+<p>1 sdm Bawang putih goreng</p>
+<p>1 Butir putih telur ukuran besar</p>
+<p>½ sdt Garam</p>
+<p>½ sdt Lada bubuk</p>
+<p>½ sdt Kaldu bubuk</p>
+<p>1 sdt Baking powder</p>',
             'steps' => '1. Panaskan air untuk kaldu, masukkan tetelan, bawang merah dan bawang putih goreng, lalu biarkan mendidih. Jangan lupa untuk memasak air kaldu minimum 1 jam sebelumnya dengan api keci.<br><br>
 2. Masukkan semua bahan ke dalam food processor, kecuali tepung, baking powder dan es batu. Giling sampai halus kemudian masukkan tepung dan es, lalu giling kembali. Adoanan harus seperti pasta.<br><br>
 3. Remas-remas adoanan dengan tangan hingga muncul di sela ibu jari dan telunjuk. Gunakan sendok untuk mengambil adonan, kemudian masukkan ke panci kaldu yang airnya masih panas, tetapi dalam keadaan kompor mati. Lakukan sampai habis.<br><br>

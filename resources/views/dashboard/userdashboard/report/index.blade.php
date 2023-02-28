@@ -123,66 +123,72 @@
 
                 </div>
 
-                <div class="bg-white rounded overflow-hidden shadow-md relative hover:bg-whitep transition-all">
-                    @if ($recipe[1]->image)
-                        <a href="/{{ $recipe[1]->id }}">
-                            <img src="{{ asset('storage/' . $recipe[1]->image) }}"
-                                class="w-full h-32 sm:h-48 object-cover">
-                        </a>
-                    @else
-                        <a href="/{{ $recipe[1]->id }}">
-                            <img src="https://source.unsplash.com/1000x1000/?{{ $recipe[1]->recipe_name }}"
-                                class="w-full h-32 sm:h-48 object-cover">
-                        </a>
-                    @endif
-                    <div class="m-4">
-                        <span class="font-bold block">
-                            {{ $recipe[1]->recipe_name }}
-                        </span>
-                        <a class=" text-gray-500 text-sm hover:text-slate-600  transition-all">
-                            {{ $recipe[1]->country->name ?? 'Unknown' }}
-                        </a>
-                    </div>
-                    <div
-                        class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 transition-all">
-                        <i class="bi bi-eye-fill text-lg"></i>
-                        <p>
-                            {{ $recipe[1]->views->count() }}
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="bg-white rounded overflow-hidden shadow-md relative hover:bg-whitep transition-all">
-                    @if ($recipe[2]->image)
-                        <a href="/{{ $recipe[2]->id }}">
-                            <img src="{{ asset('storage/' . $recipe[2]->image) }}"
-                                class="w-full h-32 sm:h-48 object-cover">
-                        </a>
-                    @else
-                        <a href="/{{ $recipe[2]->id }}">
-                            <img src="https://source.unsplash.com/1000x1000/?{{ $recipe[2]->recipe_name }}"
-                                class="w-full h-32 sm:h-48 object-cover">
-                        </a>
-                    @endif
-                    <div class="m-4">
-                        <span class="font-bold block">
-                            {{ $recipe[2]->recipe_name }}
-                        </span>
-                        <a class=" text-gray-500 text-sm hover:text-slate-600  transition-all">
-                            {{ $recipe[2]->country->name ?? 'Unknown' }}
-                        </a>
+                @if (isset($recipe[1]))
+                    <div class="bg-white rounded overflow-hidden shadow-md relative hover:bg-whitep transition-all">
+                        @if ($recipe[1]->image)
+                            <a href="/{{ $recipe[1]->id }}">
+                                <img src="{{ asset('storage/' . $recipe[1]->image) }}"
+                                    class="w-full h-32 sm:h-48 object-cover">
+                            </a>
+                        @else
+                            <a href="/{{ $recipe[1]->id }}">
+                                <img src="https://source.unsplash.com/1000x1000/?{{ $recipe[1]->recipe_name }}"
+                                    class="w-full h-32 sm:h-48 object-cover">
+                            </a>
+                        @endif
+                        <div class="m-4">
+                            <span class="font-bold block">
+                                {{ $recipe[1]->recipe_name }}
+                            </span>
+                            <a class=" text-gray-500 text-sm hover:text-slate-600  transition-all">
+                                {{ $recipe[1]->country->name ?? 'Unknown' }}
+                            </a>
+                        </div>
+                        <div
+                            class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 transition-all">
+                            <i class="bi bi-eye-fill text-lg"></i>
+                            <p>
+                                {{ $recipe[1]->views->count() }}
+                            </p>
+                        </div>
 
                     </div>
-                    <div
-                        class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 transition-all">
-                        <i class="bi bi-eye-fill text-lg"></i>
-                        <p>
-                            {{ $recipe[2]->views->count() }}
-                        </p>
-                    </div>
+                @else
+                @endif
 
-                </div>
+                @if (isset($recipe[2]))
+                    <div class="bg-white rounded overflow-hidden shadow-md relative hover:bg-whitep transition-all">
+                        @if ($recipe[2]->image)
+                            <a href="/{{ $recipe[2]->id }}">
+                                <img src="{{ asset('storage/' . $recipe[2]->image) }}"
+                                    class="w-full h-32 sm:h-48 object-cover">
+                            </a>
+                        @else
+                            <a href="/{{ $recipe[2]->id }}">
+                                <img src="https://source.unsplash.com/1000x1000/?{{ $recipe[2]->recipe_name }}"
+                                    class="w-full h-32 sm:h-48 object-cover">
+                            </a>
+                        @endif
+                        <div class="m-4">
+                            <span class="font-bold block">
+                                {{ $recipe[2]->recipe_name }}
+                            </span>
+                            <a class=" text-gray-500 text-sm hover:text-slate-600  transition-all">
+                                {{ $recipe[2]->country->name ?? 'Unknown' }}
+                            </a>
+
+                        </div>
+                        <div
+                            class="bg-skin text-black text-xs  font-bold rounded-full p-2 absolute top-0 ml-2 mt-2 text-center hover:bg-skin2 transition-all">
+                            <i class="bi bi-eye-fill text-lg"></i>
+                            <p>
+                                {{ $recipe[2]->views->count() }}
+                            </p>
+                        </div>
+
+                    </div>
+                @else
+                @endif
 
 
             </div>
@@ -237,5 +243,4 @@
             </p>
         @endif
     </main>
-
 @endsection
